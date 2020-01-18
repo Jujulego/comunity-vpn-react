@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/comunity-vpn-react.iml" filepath="$PROJECT_DIR$/.idea/comunity-vpn-react.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/community-vpn-react.iml" filepath="$PROJECT_DIR$/.idea/community-vpn-react.iml" />
     </modules>
   </component>
 </project>
