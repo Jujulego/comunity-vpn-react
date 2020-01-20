@@ -12,7 +12,7 @@ import {
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
-import LogoutButton from './auth/LogoutButton';
+import AccountMenu from './auth/AccountMenu';
 
 import styles from './AppBar.module.scss';
 
@@ -24,7 +24,7 @@ const AppBar: FC = ({ children }) => {
       <MaterialAppBar classes={{ root: styles.appBar }} position="fixed">
         <Toolbar>
           <Typography className={ styles.title } variant="h6">Community VPN</Typography>
-          <LogoutButton color="inherit" />
+          <AccountMenu />
         </Toolbar>
       </MaterialAppBar>
       <Drawer classes={{ root: styles.drawer, paper: styles.paper }} variant="permanent">
