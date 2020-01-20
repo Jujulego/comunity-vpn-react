@@ -1,4 +1,29 @@
+@import "assets/theme";
+
 // Rules
-.title {
-  flex-grow: 1;
+.root {
+  display: flex;
+
+  .appBar {
+    z-index: $drawer-z-index + 1;
+
+    .title {
+      flex-grow: 1;
+    }
+  }
+
+  .drawer {
+    width: $drawer-width;
+    flex-shrink: 0;
+
+    .paper {
+      width: $drawer-width;
+      z-index: $drawer-z-index;
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+    padding: spacing(3);
+  }
 }

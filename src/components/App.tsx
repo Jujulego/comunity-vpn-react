@@ -5,9 +5,10 @@ import {
   Switch, Route
 } from 'react-router-dom';
 
+import Login from './auth/Login';
+import PrivateRoute from './auth/PrivateRoute';
+import AppBar from './AppBar';
 import Home from './Home';
-import Login from 'components/auth/Login';
-import PrivateRoute from 'components/auth/PrivateRoute';
 
 // Component
 const App: FC = () => {
@@ -17,8 +18,16 @@ const App: FC = () => {
         <Route path="/login">
           <Login />
         </Route>
-        <PrivateRoute path="/">
-          <Home />
+        <PrivateRoute>
+          <AppBar>
+            <Switch>
+              <Route path="/servers">
+              </Route>
+              <Route>
+                <Home />
+              </Route>
+            </Switch>
+          </AppBar>
         </PrivateRoute>
       </Switch>
     </Router>

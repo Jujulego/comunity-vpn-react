@@ -1,11 +1,8 @@
 import React, { FC } from 'react';
 
 import {
-  Toolbar,
   Typography
 } from '@material-ui/core';
-
-import AppBar from 'components/AppBar';
 
 import { useMe } from 'store/user/hooks';
 
@@ -20,11 +17,7 @@ const Home: FC = () => {
   }
 
   return (
-    <>
-      <AppBar />
-      <Toolbar />
-      <Typography>Bonjour {me.email}</Typography>
-    </>
+    <Typography>Bonjour {me.email}</Typography>
   );
 };
 
