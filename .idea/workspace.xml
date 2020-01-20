@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="">
+    <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="update: disable empty links">
+      <change afterPath="$PROJECT_DIR$/src/components/admin/AdminLinks.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/admin/AdminLinks.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/AccountMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/AccountMenu.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +16,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
         <option value="SCSS File" />
-        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -118,7 +119,7 @@
       <updated>1579335136626</updated>
       <workItem from="1579335138417" duration="300000" />
       <workItem from="1579350412285" duration="10245000" />
-      <workItem from="1579475605476" duration="27536000" />
+      <workItem from="1579475605476" duration="29224000" />
     </task>
     <task id="LOCAL-00001" summary="Init project">
       <created>1579350729338</created>
@@ -253,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579559165778</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="update: disable empty links">
+      <created>1579559236014</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1579559236014</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,7 +284,8 @@
     <MESSAGE value="add: AdminRoute" />
     <MESSAGE value="update: login redirection" />
     <MESSAGE value="add: account menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: account menu" />
+    <MESSAGE value="update: disable empty links" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: disable empty links" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-2839" y="-716" key="#Docker_Image" timestamp="1579352518769">
@@ -296,11 +305,11 @@
     </state>
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579531425007" />
-    <state x="533" y="16" key="CommitChangelistDialog2" timestamp="1579559165162">
+    <state x="533" y="16" key="CommitChangelistDialog2" timestamp="1579560505669">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
-    <state x="533" y="16" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579559165162" />
+    <state x="533" y="16" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579560505669" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1579542253707">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
