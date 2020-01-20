@@ -1,5 +1,6 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import { authReducer } from './auth/reducers';
@@ -12,8 +13,10 @@ const rootReducer = combineReducers({
 export type AppState = ReturnType<typeof rootReducer>;
 
 // Store
-const store = createStore(rootReducer, composeWithDevTools({})(
-  applyMiddleware(thunk)
-));
+export const store = createStore(rootReducer,
+  composeWithDevTools({})(
+    applyMiddleware(thunk)
+  )
+);
 
-export default store;
+export const persistor = persistStore(store);

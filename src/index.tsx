@@ -1,12 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
 
 import { CssBaseline, StylesProvider } from '@material-ui/core';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import App from 'components/App';
 import * as serviceWorker from 'serviceWorker';
-import store from 'store';
+import { persistor, store } from 'store';
 
 import 'typeface-roboto';
 import 'index.css';
@@ -16,7 +17,9 @@ render((
   <StylesProvider injectFirst>
     <CssBaseline />
     <Provider store={store}>
-      <App />
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </StylesProvider>
 ), document.getElementById('root'));
