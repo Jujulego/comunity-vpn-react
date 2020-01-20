@@ -4,7 +4,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-import { useMe } from 'store/user/hooks';
+import { useMe } from 'store/users/hooks';
 
 // Component
 const Home: FC = () => {

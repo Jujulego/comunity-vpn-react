@@ -3,10 +3,10 @@ import { Dispatch } from 'redux';
 
 import { env } from 'env';
 import { AppState } from 'store';
-import { setUser } from 'store/user/actions';
+import { setUserData } from 'store/users/actions';
 
 import { setError, setToken } from './actions';
-import { authHeaders } from './utils';
+import { authError, authHeaders } from './utils';
 
 // Thunks
 export const login = (email: string, password: string) => async (dispatch: Dispatch) => {
@@ -34,13 +34,9 @@ export const logout = () => async (dispatch: Dispatch, getState: () => AppState)
 
     // Remove token and user
     dispatch(setToken(null));
-    dispatch(setUser(null));
+    dispatch(setUserData('me', null));
   } catch (error) {
-    if (error.response.status === 401) {
-      dispatch(setToken(null));
-      dispatch(setUser(null));
-    } else {
-      throw error;
-    }
+    if (authError(error, dispatch)) return;
+    throw error;
   }
 };

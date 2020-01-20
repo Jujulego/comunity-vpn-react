@@ -11,6 +11,6 @@ export interface AuthState {
 }
 
 // Actions
-export type AuthActionTypes = AnyAction |
+export type AuthActions = AnyAction |
   SetAction<typeof SET_TOKEN, AuthState['token']> |
   SetAction<typeof SET_ERROR, AuthState['error']>
