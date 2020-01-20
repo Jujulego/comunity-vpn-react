@@ -7,7 +7,11 @@ import {
 
 import Login from './auth/Login';
 import PrivateRoute from './auth/PrivateRoute';
+
+import AdminRoute from './admin/AdminRoute';
+
 import AppBar from './AppBar';
+import Forbidden from './Forbidden';
 import Home from './Home';
 
 // Component
@@ -21,6 +25,11 @@ const App: FC = () => {
         <PrivateRoute>
           <AppBar>
             <Switch>
+              <AdminRoute path="/admin">
+              </AdminRoute>
+              <Route path="/forbidden">
+                <Forbidden />
+              </Route>
               <Route path="/servers">
               </Route>
               <Route>

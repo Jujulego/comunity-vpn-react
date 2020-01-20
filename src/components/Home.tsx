@@ -12,9 +12,7 @@ const Home: FC = () => {
   const me = useMe();
 
   // Rendering
-  if (me == null) {
-    return null;
-  }
+  if (me == null) return null;
 
   return (
     <Typography>Bonjour {me.email}</Typography>

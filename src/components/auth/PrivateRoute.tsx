@@ -5,8 +5,11 @@ import { Redirect, Route, RouteProps } from 'react-router';
 
 import { AppState } from 'store';
 
+// Types
+export type PrivateRouteProps = Omit<RouteProps, "render">
+
 // Component
-const PrivateRoute: FC<RouteProps> = ({ children , ...props }) => {
+const PrivateRoute: FC<PrivateRouteProps> = ({ children , ...props }) => {
   // Redux
   const isLoggedIn = useSelector<AppState,boolean>(state => state.auth.token != null);
 
