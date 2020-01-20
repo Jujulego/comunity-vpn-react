@@ -5,24 +5,18 @@ import { env } from 'env';
 import User from 'data/user';
 import { AppState } from 'store';
 
-import { setLoading, setError, setUser } from './actions';
+import { setLoading, setUser } from './actions';
 import { authHeaders } from 'store/auth/utils';
 
 // Thunks
 export const getMe = () => async (dispatch: Dispatch, getState: () => AppState) => {
-  try {
-    const { token } = getState().auth;
-    if (token == null) return;
+  const { token } = getState().auth;
+  if (token == null) return;
 
-    dispatch(setLoading(true));
+  dispatch(setLoading(true));
 
-    const res = await axios.get(`${env.API_BASE_URL}/user/me`, { headers: authHeaders(token) });
-    const user = res.data as User;
+  const res = await axios.get(`${env.API_BASE_URL}/user/me`, { headers: authHeaders(token) });
+  const user = res.data as User;
 
-    dispatch(setUser(user));
-  } catch (error) {
-    dispatch(setError(error.response.data.error));
-
-    throw error;
-  }
+  dispatch(setUser(user));
 };

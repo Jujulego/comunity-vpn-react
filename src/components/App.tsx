@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 
 import Home from './Home';
-import Login from './Login';
-import PrivateRoute from './PrivateRoute';
+import Login from 'components/auth/Login';
+import PrivateRoute from 'components/auth/PrivateRoute';
 
 // Component
 const App: FC = () => {

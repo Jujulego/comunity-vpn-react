@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 
 import { env } from 'env';
 import { AppState } from 'store';
+import { setUser } from 'store/user/actions';
 
 import { setError, setToken } from './actions';
 import { authHeaders } from './utils';
@@ -29,13 +30,17 @@ export const logout = () => async (dispatch: Dispatch, getState: () => AppState)
 
   try {
     // Make logout request
-    await axios.post(`${env.API_BASE_URL}/user/me/logout`, { headers: authHeaders(token) });
+    await axios.post(`${env.API_BASE_URL}/user/me/logout`, {}, { headers: authHeaders(token) });
 
     // Remove token and user
     dispatch(setToken(null));
+    dispatch(setUser(null));
   } catch (error) {
-    dispatch(setError(error.response.data.error));
-
-    throw error;
+    if (error.response.status === 401) {
+      dispatch(setToken(null));
+      dispatch(setUser(null));
+    } else {
+      throw error;
+    }
   }
 };
