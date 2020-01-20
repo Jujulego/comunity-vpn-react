@@ -1,7 +1,7 @@
 import { Action } from 'redux';
 
 // Types
-export default interface SetAction<A extends string, T extends any> extends Action<A> {
+export default interface SetAction<A, T extends any> extends Action<A> {
   readonly value: T
 }
 

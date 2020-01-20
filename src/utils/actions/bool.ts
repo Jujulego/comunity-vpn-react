@@ -13,8 +13,10 @@ interface ToggleAction<A> extends Action<A> {
   kind: 'toggle'
 }
 
-export type BoolAction<A = any> = TrueAction<A> | FalseAction<A> | ToggleAction<A>;
+type BoolAction<A = any> = TrueAction<A> | FalseAction<A> | ToggleAction<A>;
 type Kind = BoolAction['kind']
+
+export default BoolAction;
 
 // Creators
 type Names = { [name in Kind]: string };

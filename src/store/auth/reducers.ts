@@ -1,7 +1,7 @@
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { SET_ERROR, SET_TOKEN, SET_USER } from './constants';
+import { SET_ERROR, SET_TOKEN } from './constants';
 import { AuthActionTypes, AuthState } from './types';
 
 // Persist config
@@ -14,7 +14,6 @@ const config = {
 // Initial state
 const initial: AuthState = {
   error: null,
-  user: null,
   token: null
 };
 
@@ -26,9 +25,6 @@ export const authReducer = persistReducer<AuthState,AuthActionTypes>(config, (st
 
     case SET_TOKEN:
       return { ...state, token: action.value, error: null };
-
-    case SET_USER:
-      return { ...state, user: action.value, error: null };
 
     default:
       return state;

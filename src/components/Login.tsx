@@ -31,8 +31,8 @@ const Login: FC = () => {
 
   // Redux
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector<AppState,boolean>(state => state.auth.token != null);
-  const error = useSelector<AppState, string | null>(state => state.auth.error);
+  const isLoggedIn = useSelector((state: AppState) => state.auth.token != null);
+  const error = useSelector((state: AppState) => state.auth.error);
 
   // Callbacks
   const handleChange = (field: keyof Form) => (event: ChangeEvent<{ value: unknown }>) => {
