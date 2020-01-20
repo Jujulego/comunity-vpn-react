@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { StylesProvider } from '@material-ui/core';
+import { CssBaseline, StylesProvider } from '@material-ui/core';
 
 import App from 'components/App';
 import * as serviceWorker from 'serviceWorker';
@@ -14,6 +14,7 @@ import 'index.css';
 // Application
 render((
   <StylesProvider injectFirst>
+    <CssBaseline />
     <Provider store={store}>
       <App />
     </Provider>
