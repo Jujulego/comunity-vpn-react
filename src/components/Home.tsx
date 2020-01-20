@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import Typography from '@material-ui/core/Typography';
+import { Typography } from '@material-ui/core';
 
 // Component
 const Home: FC = () => {
