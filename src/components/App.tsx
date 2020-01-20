@@ -19,22 +19,14 @@ const App: FC = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/login">
-          <Login />
-        </Route>
+        <Route path="/login" component={Login} />
         <PrivateRoute>
           <AppBar>
             <Switch>
-              <AdminRoute path="/admin">
-              </AdminRoute>
-              <Route path="/forbidden">
-                <Forbidden />
-              </Route>
-              <Route path="/servers">
-              </Route>
-              <Route>
-                <Home />
-              </Route>
+              <AdminRoute path="/admin" />
+              <Route path="/forbidden" component={Forbidden} />
+              <Route path="/servers" />
+              <Route component={Home} />
             </Switch>
           </AppBar>
         </PrivateRoute>

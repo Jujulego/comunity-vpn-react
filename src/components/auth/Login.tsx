@@ -9,7 +9,7 @@ import {
   TextField
 } from '@material-ui/core';
 
-import { Redirect } from 'react-router';
+import { Redirect, RouteChildrenProps } from 'react-router';
 
 import { AppState } from 'store';
 import { login } from 'store/auth/thunks';
@@ -17,15 +17,17 @@ import { login } from 'store/auth/thunks';
 import styles from './Login.module.scss';
 
 // Types
-interface Form {
+interface FormState {
   email: string,
   password: string
 }
 
+export type LoginProps = RouteChildrenProps<{}, { from?: string }>
+
 // Component
-const Login: FC = () => {
+const Login: FC<LoginProps> = ({ location }) => {
   // State
-  const [form, setForm] = useState<Form>({
+  const [form, setForm] = useState<FormState>({
     email: '', password: ''
   });
 
@@ -35,7 +37,7 @@ const Login: FC = () => {
   const error = useSelector((state: AppState) => state.auth.error);
 
   // Callbacks
-  const handleChange = (field: keyof Form) => (event: ChangeEvent<{ value: unknown }>) => {
+  const handleChange = (field: keyof FormState) => (event: ChangeEvent<{ value: unknown }>) => {
     event.persist();
     setForm(old => ({ ...old, [field]: event.target.value }));
   };
@@ -46,7 +48,7 @@ const Login: FC = () => {
 
   // Render
   if (isLoggedIn) {
-    return <Redirect to="/" />;
+    return <Redirect to={(location.state.from || "/")} />;
   }
 
   return (
