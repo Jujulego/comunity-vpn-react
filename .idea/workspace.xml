@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/auth/AccountMenu.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/LogoutButton.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/AccountMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/AccountMenu.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +118,7 @@
       <updated>1579335136626</updated>
       <workItem from="1579335138417" duration="300000" />
       <workItem from="1579350412285" duration="10245000" />
-      <workItem from="1579475605476" duration="27463000" />
+      <workItem from="1579475605476" duration="27536000" />
     </task>
     <task id="LOCAL-00001" summary="Init project">
       <created>1579350729338</created>
@@ -247,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579543925157</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="add: account menu">
+      <created>1579559165778</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1579559165778</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,7 +275,8 @@
     <MESSAGE value="add: api's url in production" />
     <MESSAGE value="add: AdminRoute" />
     <MESSAGE value="update: login redirection" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: login redirection" />
+    <MESSAGE value="add: account menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: account menu" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-2839" y="-716" key="#Docker_Image" timestamp="1579352518769">
@@ -289,11 +296,11 @@
     </state>
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579531425007" />
-    <state x="533" y="16" key="CommitChangelistDialog2" timestamp="1579543924653">
+    <state x="533" y="16" key="CommitChangelistDialog2" timestamp="1579559165162">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
-    <state x="533" y="16" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579543924653" />
+    <state x="533" y="16" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579559165162" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1579542253707">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
