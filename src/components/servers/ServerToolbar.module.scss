@@ -1,0 +1,10 @@
+@import "assets/theme";
+
+// rules
+.toolbar {
+  padding-right: spacing(1);
+
+  .title {
+    flex: 1 1 100%;
+  }
+}

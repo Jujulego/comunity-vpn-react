@@ -6,10 +6,10 @@ import { AppState } from 'store';
 import { refreshUserServers } from 'store/users/thunks';
 import { toggleServer } from 'store/servers/thunks';
 
-import ServerTable, { ServerTableProps } from 'components/servers/ServersTable';
+import ServerTable, { ServerTableProps } from 'components/servers/ServerTable';
 
 // Type
-export interface UserServerTableProps extends Omit<ServerTableProps, 'servers' | 'onLoad' | 'onToggleServer'> {
+export interface UserServerTableProps extends Omit<ServerTableProps, 'servers' | 'onLoad' | 'onRefresh' | 'onToggleServer'> {
   user: string,
 }
 
@@ -30,6 +30,7 @@ function mapStateToProps(state: AppState, own: UserServerTableProps) {
 function mapDispatchToProps(dispatch: ThunkDispatch<AppState, {}, any>, own: UserServerTableProps) {
   return {
     onLoad: () => dispatch(refreshUserServers(own.user)),
+    onRefresh: () => dispatch(refreshUserServers(own.user)),
     onToggleServer: (id: string, port: number) => dispatch(toggleServer(id, port))
   };
 }
