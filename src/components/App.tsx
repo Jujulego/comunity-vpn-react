@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 
+import { env } from 'env';
+
 import {
   BrowserRouter as Router,
   Switch, Route
@@ -17,7 +19,7 @@ import Home from './Home';
 // Component
 const App: FC = () => {
   return (
-    <Router>
+    <Router basename={env.BASENAME}>
       <Switch>
         <Route path="/login" component={Login} />
         <PrivateRoute>

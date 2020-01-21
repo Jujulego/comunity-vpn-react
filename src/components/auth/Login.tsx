@@ -48,7 +48,7 @@ const Login: FC<LoginProps> = ({ location }) => {
 
   // Render
   if (isLoggedIn) {
-    return <Redirect to={(location.state.from || "/")} />;
+    return <Redirect to={ (location.state && location.state.from) || "/" } />;
   }
 
   return (
