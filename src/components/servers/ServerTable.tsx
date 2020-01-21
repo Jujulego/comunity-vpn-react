@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import Server from 'data/server';
 
@@ -8,12 +8,14 @@ import {
   TableProps, Paper
 } from '@material-ui/core';
 
+import AddServerDialog from './AddServerDialog';
 import ServerToolbar from './ServerToolbar';
 
 // Types
 export interface ServerTableProps extends TableProps {
   title: string, servers: Server[] | null,
   onLoad: () => void, onRefresh: () => void,
+  onAddServer?: (ip: string) => void,
   onToggleServer: (id: string, port: number) => void
 }
 
@@ -28,16 +30,27 @@ const ServerTable: FC<ServerTableProps> = (props) => {
   const {
     title, servers,
     onLoad, onRefresh,
+    onAddServer,
     onToggleServer,
     ...table
   } = props;
 
-  // Render
-  if (servers == null) onLoad();
+  // State
+  const [dialog, setDialog] = useState(false);
 
+  // Effects
+  useEffect(() => {
+    onLoad();
+  }, [onLoad]);
+
+  // Handlers
+  const handleOpen = onAddServer && (() => setDialog(true));
+  const handleClose = () => setDialog(false);
+
+  // Render
   return (
     <Paper>
-      <ServerToolbar title={title} onRefresh={onRefresh} />
+      <ServerToolbar title={title} onAdd={handleOpen} onRefresh={onRefresh} />
       <TableContainer>
         <Table {...table}>
           <TableHead>
@@ -62,6 +75,9 @@ const ServerTable: FC<ServerTableProps> = (props) => {
           </TableBody>
         </Table>
       </TableContainer>
+      { onAddServer && (
+        <AddServerDialog open={dialog} onClose={handleClose} onAddServer={onAddServer} />
+      )}
     </Paper>
   );
 };

@@ -1,4 +1,7 @@
-import { SET_LOADING, SET_DATA, SET_SERVERS } from './constants';
+import {
+  SET_LOADING, SET_DATA, SET_SERVERS,
+  ADD_SERVER
+} from './constants';
 import { UserActions, UserState, UsersState } from './types';
 
 // Initial state
@@ -18,7 +21,11 @@ const userReducer = (state= initial, action: UserActions) => {
       return { ...state, data: action.value, error: null, loading: false };
 
     case SET_SERVERS:
-      return { ...state, servers: action.value, error: null };
+      return { ...state, servers: action.value };
+
+    case ADD_SERVER:
+      const servers = state.servers || [];
+      return { ...state, servers: [...servers, action.server]};
 
     default:
       return state;
@@ -30,6 +37,7 @@ export const usersReducer = (state: UsersState = {}, action: UserActions) => {
     case SET_DATA:
     case SET_LOADING:
     case SET_SERVERS:
+    case ADD_SERVER:
       const { user } = action;
       return { ...state, [user]: userReducer(state[user], action) };
 
