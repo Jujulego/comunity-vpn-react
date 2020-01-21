@@ -7,12 +7,11 @@ WORKDIR /app
 
 # Dependencies
 COPY package.json /app
-COPY yarn.lock /app
-RUN yarn install
+RUN npm install
 
 # Build
 COPY . /app
-RUN yarn run build --prod
+RUN npm run build -- --prod
 
 # Server
 FROM nginx:latest
