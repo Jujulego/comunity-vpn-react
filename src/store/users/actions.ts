@@ -1,4 +1,4 @@
-import { SET_LOADING, SET_DATA } from './constants';
+import { SET_LOADING, SET_DATA, SET_SERVERS } from './constants';
 import { UserActions, UserSetAction } from './types';
 
 // Action creator
@@ -11,3 +11,4 @@ export function creator<A extends UserActions['type']>(type: A) {
 // Actions
 export const setUserLoading = creator<typeof SET_LOADING>(SET_LOADING);
 export const setUserData    = creator<typeof SET_DATA>(SET_DATA);
+export const setUserServers = creator<typeof SET_SERVERS>(SET_SERVERS);
