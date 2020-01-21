@@ -4,11 +4,12 @@ import { ThunkDispatch } from 'redux-thunk';
 import Server from 'data/server';
 import { AppState } from 'store';
 import { refreshUserServers } from 'store/users/thunks';
+import { toggleServer } from 'store/servers/thunks';
 
 import ServerTable, { ServerTableProps } from 'components/servers/ServersTable';
 
 // Type
-export interface UserServerTableProps extends Omit<ServerTableProps, 'servers' | 'onLoad'> {
+export interface UserServerTableProps extends Omit<ServerTableProps, 'servers' | 'onLoad' | 'onToggleServer'> {
   user: string,
 }
 
@@ -28,7 +29,8 @@ function mapStateToProps(state: AppState, own: UserServerTableProps) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<AppState, {}, any>, own: UserServerTableProps) {
   return {
-    onLoad: () => dispatch(refreshUserServers(own.user))
+    onLoad: () => dispatch(refreshUserServers(own.user)),
+    onToggleServer: (id: string, port: number) => dispatch(toggleServer(id, port))
   };
 }
 
