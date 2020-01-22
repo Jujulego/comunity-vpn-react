@@ -4,11 +4,13 @@ import { persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import { authReducer } from './auth/reducers';
+import { serversReducer } from './servers/reducers';
 import { usersReducer } from './users/reducers';
 
 // Root reducer
 const rootReducer = combineReducers({
   auth: authReducer,
+  servers: serversReducer,
   users: usersReducer
 });
 

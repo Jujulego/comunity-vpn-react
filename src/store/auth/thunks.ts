@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 
 import { env } from 'env';
 import { AppState } from 'store';
-import { setUserData } from 'store/users/actions';
+import { setUserData, setUserServers } from 'store/users/actions';
 
 import { setError, setToken } from './actions';
 import { authError, authHeaders } from './utils';
@@ -35,6 +35,7 @@ export const logout = () => async (dispatch: Dispatch, getState: () => AppState)
     // Remove token and user
     dispatch(setToken(null));
     dispatch(setUserData('me', null));
+    dispatch(setUserServers('me', []));
   } catch (error) {
     if (authError(error, dispatch)) return;
     throw error;

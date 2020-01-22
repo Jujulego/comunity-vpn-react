@@ -41,7 +41,7 @@ const AppBar: FC = ({ children }) => {
             <ListItemIcon><HomeIcon /></ListItemIcon>
             <ListItemText primary="Accueil" />
           </ListItem>
-          <ListItem button disabled component={Link} to="/servers">
+          <ListItem button component={Link} to="/servers">
             <ListItemIcon><ServersIcon /></ListItemIcon>
             <ListItemText primary="Serveurs" />
           </ListItem>
