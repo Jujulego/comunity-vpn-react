@@ -1,5 +1,5 @@
-import { SET_LOADING, SET_DATA } from './constants';
-import { ServerActions, ServerState, ServersState } from './types';
+import { DEL_SERVER, SET_DATA, SET_LOADING } from './constants';
+import { ServerActions, ServersState, ServerState } from './types';
 
 // Initial state
 const initial: ServerState = {
@@ -22,11 +22,16 @@ const serverReducer = (state= initial, action: ServerActions) => {
 };
 
 export const serversReducer = (state: ServersState = {}, action: ServerActions) => {
+  const { server } = action;
+
   switch (action.type) {
     case SET_LOADING:
     case SET_DATA:
-      const { server } = action;
       return { ...state, [server]: serverReducer(state[server], action) };
+
+    case DEL_SERVER:
+      const { [server]: _, ...others } = state;
+      return others;
 
     default:
       return state;

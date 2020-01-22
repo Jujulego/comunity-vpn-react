@@ -17,6 +17,7 @@ export interface ServerTableProps extends TableProps {
   title: string, servers: Server[],
   onLoad: () => void, onRefresh: () => void,
   onAddServer?: (ip: string) => void,
+  onDeleteServer?: (id: string) => void,
   onToggleServer: (id: string, port: number) => void
 }
 
@@ -32,6 +33,7 @@ const ServerTable: FC<ServerTableProps> = (props) => {
     title, servers,
     onLoad, onRefresh,
     onAddServer,
+    onDeleteServer,
     onToggleServer,
     ...table
   } = props;
@@ -40,7 +42,7 @@ const ServerTable: FC<ServerTableProps> = (props) => {
   const [dialog, setDialog] = useState(false);
   const [selected, setSelected] = useState<SelectedState>({});
 
-  const selectedCount = servers.reduce((acc, server) => {
+  const numSelected = servers.reduce((acc, server) => {
     if (selected[server._id]) acc++;
     return acc;
   }, 0);
@@ -54,8 +56,12 @@ const ServerTable: FC<ServerTableProps> = (props) => {
   const handleOpen = onAddServer && (() => setDialog(true));
   const handleClose = () => setDialog(false);
 
+  const handleSelect = (id: string) => () => {
+    setSelected(old => ({ ...old, [id]: !old[id] }));
+  };
+
   const handleSelectAll = () => {
-    if (selectedCount === servers.length) {
+    if (numSelected === servers.length) {
       setSelected({});
     } else {
       setSelected(servers.reduce<SelectedState>((acc, server) => {
@@ -65,16 +71,18 @@ const ServerTable: FC<ServerTableProps> = (props) => {
     }
   };
 
-  const handleSelect = (id: string) => () => {
-    setSelected(old => ({ ...old, [id]: !old[id] }));
-  };
+  const handleDelete = onDeleteServer && (() => {
+    servers.forEach(server => {
+      if (selected[server._id]) onDeleteServer(server._id);
+    });
+  });
 
   // Render
   return (
     <Paper>
       <ServerToolbar
-        title={title}
-        onAdd={handleOpen} onRefresh={onRefresh}
+        title={title} numSelected={numSelected}
+        onAdd={handleOpen} onDelete={handleDelete} onRefresh={onRefresh}
       />
       <TableContainer>
         <Table {...table}>
@@ -82,8 +90,8 @@ const ServerTable: FC<ServerTableProps> = (props) => {
             <TableRow>
               <TableCell padding="checkbox">
                 <Checkbox
-                  indeterminate={selectedCount > 0 && selectedCount < servers.length}
-                  checked={selectedCount === servers.length}
+                  indeterminate={numSelected > 0 && numSelected < servers.length}
+                  checked={numSelected > 0 && numSelected === servers.length}
                   onChange={handleSelectAll}
                 />
               </TableCell>

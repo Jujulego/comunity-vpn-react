@@ -1,8 +1,8 @@
-import { Action, AnyAction } from 'redux';
+import { Action } from 'redux';
 
 import Server from 'data/server';
 
-import { SET_LOADING, SET_DATA } from './constants';
+import { DEL_SERVER, SET_LOADING, SET_DATA } from './constants';
 
 // State
 export interface ServerState {
@@ -13,11 +13,14 @@ export interface ServerState {
 export type ServersState = { [id: string]: ServerState }
 
 // Actions
-export interface ServerSetAction<A, T> extends Action<A> {
+export interface ServerAction<A> extends Action<A> {
   readonly server: string,
+}
+
+export interface ServerSetAction<A, T> extends ServerAction<A> {
   readonly value: T
 }
 
-export type ServerActions = AnyAction                         |
+export type ServerActions = ServerAction<typeof DEL_SERVER>   |
   ServerSetAction<typeof SET_LOADING, ServerState['loading']> |
   ServerSetAction<typeof SET_DATA, ServerState['data']>
