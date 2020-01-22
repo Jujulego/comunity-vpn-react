@@ -34,7 +34,7 @@ export const refreshUserServers = (id: string) => async (dispatch: Dispatch, get
     const { token } = getState().auth;
     if (token == null) return;
 
-    dispatch(setUserServers(id, null));
+    dispatch(setUserServers(id, []));
 
     const res = await axios.get(`${env.API_BASE_URL}/user/${id}/servers`, { headers: authHeaders(token) });
     const servers = res.data as Server[];

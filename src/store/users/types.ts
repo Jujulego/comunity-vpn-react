@@ -8,7 +8,7 @@ import { ADD_SERVER, SET_DATA, SET_LOADING, SET_SERVERS } from './constants';
 export interface UserState {
   loading: boolean,
   data: User | null,
-  servers: string[] | null
+  servers: string[]
 }
 
 export type UsersState = { [user: string]: UserState }

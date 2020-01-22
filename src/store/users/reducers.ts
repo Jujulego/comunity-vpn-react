@@ -8,7 +8,7 @@ import { UserActions, UserState, UsersState } from './types';
 const initial: UserState = {
   loading: false,
   data: null,
-  servers: null
+  servers: []
 };
 
 // Reducers

@@ -35,7 +35,7 @@ export const logout = () => async (dispatch: Dispatch, getState: () => AppState)
     // Remove token and user
     dispatch(setToken(null));
     dispatch(setUserData('me', null));
-    dispatch(setUserServers('me', null));
+    dispatch(setUserServers('me', []));
   } catch (error) {
     if (authError(error, dispatch)) return;
     throw error;
