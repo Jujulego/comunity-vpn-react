@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -42,7 +42,8 @@ const Login: FC<LoginProps> = ({ location }) => {
     setForm(old => ({ ...old, [field]: event.target.value }));
   };
 
-  const handleConnect = () => {
+  const handleConnect = (event: FormEvent<HTMLDivElement>) => {
+    event.preventDefault();
     dispatch(login(form.email, form.password));
   };
 
@@ -53,7 +54,7 @@ const Login: FC<LoginProps> = ({ location }) => {
 
   return (
     <Container classes={{ root: styles.container }} fixed maxWidth="sm">
-      <Card>
+      <Card component="form" onSubmit={handleConnect}>
         <CardHeader
           classes={{ root: styles.header }}
           title="Community VPN" titleTypographyProps={{ variant: "body1" }}
@@ -76,10 +77,10 @@ const Login: FC<LoginProps> = ({ location }) => {
             </Grid>
           </Grid>
         </CardContent>
-        <CardActions>
+        <CardActions classes={{ root: styles.actions }}>
           <Button
-            color="primary" disabled={!form.email || !form.password}
-            onClick={handleConnect}
+            color="primary" variant="contained" disabled={!form.email || !form.password}
+            type="submit"
           >
             Connexion
           </Button>

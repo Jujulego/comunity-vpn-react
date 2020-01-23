@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/users/UserTable.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/users/UserToolbar.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/users/UserToolbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/users/AllUserTable.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/admin/AdminApp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/AdminApp.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/admin/AdminLinks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/AdminLinks.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/servers/ServerToolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/servers/ServerToolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/admin/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/admin/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/admin/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/admin/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/admin/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/admin/reducers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/admin/thunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/admin/thunks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/admin/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/admin/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users/reducers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users/thunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users/thunks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/Login.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Login.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Login.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +123,7 @@
       <workItem from="1579569513416" duration="16045000" />
       <workItem from="1579687028187" duration="4824000" />
       <workItem from="1579741436131" duration="2252000" />
-      <workItem from="1579772931626" duration="3181000" />
+      <workItem from="1579772931626" duration="3767000" />
     </task>
     <task id="LOCAL-00001" summary="Init project">
       <created>1579350729338</created>
@@ -375,14 +363,20 @@
       <option name="project" value="LOCAL" />
       <updated>1579743670426</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="add: users screen in admin">
+      <created>1579776915108</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1579776915108</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: login page" />
     <MESSAGE value="update: make redux store persistent" />
     <MESSAGE value="update: persist auth token" />
     <MESSAGE value="update: separate &quot;me&quot; management from auth" />
@@ -407,7 +401,8 @@
     <MESSAGE value="add: delete selected servers" />
     <MESSAGE value="update: set version to 0.2.0" />
     <MESSAGE value="add: server screen in admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: server screen in admin" />
+    <MESSAGE value="add: users screen in admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: users screen in admin" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-2839" y="-716" key="#Docker_Image" timestamp="1579352518769">
@@ -427,11 +422,11 @@
     </state>
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579773341708" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2" timestamp="1579743668829">
+    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2" timestamp="1579776914483">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579743668829" />
+    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579776914483" />
     <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579691620369" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1579742010787">
       <screen x="0" y="0" width="1536" height="824" />
@@ -469,10 +464,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1579742729759" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1579776884137">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1579776921804">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1579776884137" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1579776921804" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1579741865637">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -7,9 +7,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
 
-.header {
-  background-color: $primary;
-  color: white;
+  .header {
+    background-color: $primary;
+    color: white;
+  }
+
+  .actions {
+    justify-content: center;
+  }
 }
