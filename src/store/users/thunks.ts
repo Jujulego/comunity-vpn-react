@@ -6,12 +6,14 @@ import Server from 'data/server';
 import User from 'data/user';
 
 import { AppState } from 'store';
+import { setAllUsers } from 'store/admin/actions';
 import { authError, authHeaders } from 'store/auth/utils';
 import { deleteServer, setServerData } from 'store/servers/actions';
 
 import {
   addUserServer as addUserServerAction,
   deleteUserServer as deleteUserServerAction,
+  deleteUser as deleteUserAction,
   setUserLoading, setUserData, setUserServers
 } from './actions';
 
@@ -93,6 +95,21 @@ export const deleteUserServer = (user: string, id: string) => async (dispatch: D
 
     dispatch(deleteUserServerAction(user, id));
     dispatch(deleteServer(id));
+  } catch (error) {
+    if (authError(error, dispatch)) return;
+    throw error;
+  }
+};
+
+export const deleteUser = (user: string) => async (dispatch: Dispatch, getState: () => AppState) => {
+  try {
+    const { token } = getState().auth;
+    if (token == null) return;
+
+    await axios.delete(`${env.API_BASE_URL}/user/${user}`, { headers: authHeaders(token) });
+
+    dispatch(setAllUsers(getState().admin.users.filter(id => id !== user)));
+    dispatch(deleteUserAction(user));
   } catch (error) {
     if (authError(error, dispatch)) return;
     throw error;

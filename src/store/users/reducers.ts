@@ -1,4 +1,8 @@
-import { ADD_SERVER, DEL_SERVER, SET_DATA, SET_LOADING, SET_SERVERS } from './constants';
+import {
+  ADD_SERVER, DEL_SERVER,
+  DEL_USER,
+  SET_DATA, SET_LOADING, SET_SERVERS
+} from './constants';
 import { UserActions, UsersState, UserState } from './types';
 
 // Initial state
@@ -34,6 +38,7 @@ const userReducer = (state= initial, action: UserActions) => {
 };
 
 export const usersReducer = (state: UsersState = {}, action: UserActions) => {
+  // Get user id
   let { user } = action;
   if (!user) return state;
 
@@ -41,5 +46,13 @@ export const usersReducer = (state: UsersState = {}, action: UserActions) => {
     user = 'me';
   }
 
-  return { ...state, [user]: userReducer(state[user], action) };
+  // Apply actions
+  switch (action.type) {
+    case DEL_USER:
+      const { [user]: _, ...others } = state;
+      return others;
+
+    default:
+      return { ...state, [user]: userReducer(state[user], action) };
+  }
 };
