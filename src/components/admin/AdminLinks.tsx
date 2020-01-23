@@ -35,7 +35,7 @@ const AdminLinks: FC = () => {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List classes={{ root: styles.nested }} disablePadding>
-          <ListItem button disabled component={Link} to="/admin/users">
+          <ListItem button component={Link} to="/admin/users">
             <ListItemIcon><PeopleIcon /></ListItemIcon>
             <ListItemText primary="Utilisateurs" />
           </ListItem>

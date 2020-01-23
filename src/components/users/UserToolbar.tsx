@@ -7,27 +7,25 @@ import {
   Typography
 } from '@material-ui/core';
 import {
-  Add as AddIcon,
   Delete as DeleteIcon,
   Refresh as RefreshIcon
 } from '@material-ui/icons';
 
-import styles from './ServerToolbar.module.scss';
+import styles from 'components/users/UserToolbar.module.scss';
 
 // Types
-export interface ServerToolbarProps {
+export interface UserToolbarProps {
   title: string, numSelected: number,
-  onAdd?: () => void,
   onDelete?: () => void,
   onRefresh: () => void
 }
 
 // Component
-const ServerToolbar: FC<ServerToolbarProps> = (props) => {
+const UserToolbar: FC<UserToolbarProps> = (props) => {
   // Props
   const {
     title, numSelected,
-    onAdd, onDelete, onRefresh
+    onDelete, onRefresh
   } = props;
 
   // Render
@@ -39,16 +37,9 @@ const ServerToolbar: FC<ServerToolbarProps> = (props) => {
         <Typography classes={{ root: styles.title }} variant="h6">{title}</Typography>
       ) }
       { onDelete && (numSelected > 0) && (
-        <Tooltip title="Supprimer les serveurs sélectionnés">
+        <Tooltip title="Supprimer les utilistateurs sélectionnés">
           <IconButton onClick={onDelete}>
             <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      ) }
-      { onAdd && (
-        <Tooltip title="Ajouter un serveur">
-          <IconButton onClick={onAdd}>
-            <AddIcon />
           </IconButton>
         </Tooltip>
       ) }
@@ -61,4 +52,4 @@ const ServerToolbar: FC<ServerToolbarProps> = (props) => {
   );
 };
 
-export default ServerToolbar;
+export default UserToolbar;

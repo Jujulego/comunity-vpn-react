@@ -51,6 +51,23 @@ export const refreshUserServers = (id: string) => async (dispatch: Dispatch, get
   }
 };
 
+export const toggleAdmin = (id: string) => async (dispatch: Dispatch, getState: () => AppState) => {
+  try {
+    const { token } = getState().auth;
+    if (token == null) return;
+
+    const admin = !(getState().users[id].data!.admin);
+
+    const res = await axios.put(`${env.API_BASE_URL}/user/${id}`, { admin }, { headers: authHeaders(token) });
+    const user = res.data as User;
+
+    dispatch(setUserData(id, user));
+  } catch (error) {
+    if (authError(error, dispatch)) return;
+    throw error;
+  }
+};
+
 export const addUserServer = (user: string, ip: string) => async (dispatch: Dispatch, getState: () => AppState) => {
   try {
     const { token } = getState().auth;
