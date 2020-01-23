@@ -11,6 +11,11 @@
   .header {
     background-color: $primary;
     color: white;
+
+    .action {
+      margin-top: -12px;
+      margin-bottom: -12px;
+    }
   }
 
   .actions {

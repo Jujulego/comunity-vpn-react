@@ -9,32 +9,30 @@ import {
   TextField
 } from '@material-ui/core';
 
-import { Redirect, RouteChildrenProps } from 'react-router';
+import { Redirect } from 'react-router';
 
 import { AppState } from 'store';
-import { login } from 'store/auth/thunks';
+import { signIn } from 'store/auth/thunks';
 
-import styles from './Login.module.scss';
+import styles from 'components/auth/Forms.module.scss';
 
 // Types
 interface FormState {
   email: string,
-  password: string
+  password: string,
+  confirm: string
 }
 
-export type LoginProps = RouteChildrenProps<{}, { from?: string }>
-
 // Component
-const Login: FC<LoginProps> = ({ location }) => {
+const SignInForm: FC = () => {
   // State
   const [form, setForm] = useState<FormState>({
-    email: '', password: ''
+    email: '', password: '', confirm: ''
   });
 
   // Redux
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: AppState) => state.auth.token != null);
-  const error = useSelector((state: AppState) => state.auth.error);
 
   // Callbacks
   const handleChange = (field: keyof FormState) => (event: ChangeEvent<{ value: unknown }>) => {
@@ -42,19 +40,22 @@ const Login: FC<LoginProps> = ({ location }) => {
     setForm(old => ({ ...old, [field]: event.target.value }));
   };
 
-  const handleConnect = (event: FormEvent<HTMLDivElement>) => {
+  const handleSignIn = (event: FormEvent<HTMLDivElement>) => {
     event.preventDefault();
-    dispatch(login(form.email, form.password));
+    dispatch(signIn(form.email, form.password));
   };
 
   // Render
   if (isLoggedIn) {
-    return <Redirect to={ (location.state && location.state.from) || "/" } />;
+    return <Redirect to="/" />;
   }
+
+  const confirmError = !!form.confirm && form.password !== form.confirm;
+  const confirmText  = "Les mots de passe ne correspondent pas";
 
   return (
     <Container classes={{ root: styles.container }} fixed maxWidth="sm">
-      <Card component="form" onSubmit={handleConnect}>
+      <Card component="form" onSubmit={handleSignIn}>
         <CardHeader
           classes={{ root: styles.header }}
           title="Community VPN" titleTypographyProps={{ variant: "body1" }}
@@ -65,24 +66,29 @@ const Login: FC<LoginProps> = ({ location }) => {
               <TextField
                 label="Email" fullWidth required
                 value={form.email} onChange={handleChange('email')}
-                error={error != null} helperText={error}
               />
             </Grid>
             <Grid item xs>
               <TextField
                 label="Mot de passe" fullWidth required type="password"
                 value={form.password} onChange={handleChange('password')}
-                error={error != null}
+              />
+            </Grid>
+            <Grid item xs>
+              <TextField
+                label="Confirmez le mot de passe" fullWidth required type="password"
+                value={form.confirm} onChange={handleChange('confirm')}
+                error={confirmError} helperText={confirmError && confirmText}
               />
             </Grid>
           </Grid>
         </CardContent>
         <CardActions classes={{ root: styles.actions }}>
           <Button
-            color="primary" variant="contained" disabled={!form.email || !form.password}
+            color="primary" variant="contained" disabled={!form.email || !form.password || !form.confirm || confirmError}
             type="submit"
           >
-            Connexion
+            Inscription
           </Button>
         </CardActions>
       </Card>
@@ -90,4 +96,4 @@ const Login: FC<LoginProps> = ({ location }) => {
   );
 };
 
-export default Login;
+export default SignInForm;

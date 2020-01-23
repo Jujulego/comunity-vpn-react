@@ -9,8 +9,9 @@ import {
 
 import UserServerTable from 'containers/servers/UserServerTable';
 
-import Login from './auth/Login';
+import LoginForm from './auth/LoginForm';
 import PrivateRoute from './auth/PrivateRoute';
+import SignInForm from './auth/SignInForm';
 
 import AdminApp from './admin/AdminApp';
 import AdminRoute from './admin/AdminRoute';
@@ -24,7 +25,8 @@ const App: FC = () => {
   return (
     <Router basename={env.BASENAME}>
       <Switch>
-        <Route path="/login" component={Login} />
+        <Route path="/login" component={LoginForm} />
+        <Route path="/signin" component={SignInForm} />
         <PrivateRoute>
           <AppBar>
             <Switch>
