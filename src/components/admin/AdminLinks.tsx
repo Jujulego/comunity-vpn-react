@@ -39,7 +39,7 @@ const AdminLinks: FC = () => {
             <ListItemIcon><PeopleIcon /></ListItemIcon>
             <ListItemText primary="Utilisateurs" />
           </ListItem>
-          <ListItem button disabled component={Link} to="/admin/servers">
+          <ListItem button component={Link} to="/admin/servers">
             <ListItemIcon><ServersIcon /></ListItemIcon>
             <ListItemText primary="Serveurs" />
           </ListItem>

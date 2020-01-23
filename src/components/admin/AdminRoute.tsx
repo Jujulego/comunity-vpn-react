@@ -5,7 +5,7 @@ import { Redirect, Route, RouteProps } from 'react-router';
 import { useMe } from 'store/users/hooks';
 
 // Types
-export type AdminRouteProps = Omit<RouteProps, "render">
+export type AdminRouteProps = Omit<RouteProps, "render" | "component">
 
 // Component
 const AdminRoute: FC<AdminRouteProps> = ({ children , ...props }) => {

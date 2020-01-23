@@ -12,6 +12,7 @@ import UserServerTable from 'containers/servers/UserServerTable';
 import Login from './auth/Login';
 import PrivateRoute from './auth/PrivateRoute';
 
+import AdminApp from './admin/AdminApp';
 import AdminRoute from './admin/AdminRoute';
 
 import AppBar from './AppBar';
@@ -27,7 +28,9 @@ const App: FC = () => {
         <PrivateRoute>
           <AppBar>
             <Switch>
-              <AdminRoute path="/admin" />
+              <AdminRoute path="/admin">
+                <AdminApp />
+              </AdminRoute>
               <Route path="/forbidden" component={Forbidden} />
               <Route path="/servers">
                 <UserServerTable title="Mes serveurs" user="me" />

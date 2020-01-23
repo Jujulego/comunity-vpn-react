@@ -9,7 +9,7 @@ import { toggleServer } from 'store/servers/thunks';
 import ServerTable, { ServerTableProps } from 'components/servers/ServerTable';
 
 // Type
-type DefinedProps = 'servers' | 'onLoad' | 'onRefresh' | 'onAddServer' | 'onToggleServer' | 'onDeleteServer';
+type DefinedProps = 'servers' | 'showUsers' | 'onLoad' | 'onRefresh' | 'onAddServer' | 'onToggleServer' | 'onDeleteServer';
 export interface UserServerTableProps extends Omit<ServerTableProps, DefinedProps> {
   user: string,
 }
@@ -19,7 +19,8 @@ function mapStateToProps(state: AppState, own: UserServerTableProps) {
   const { servers } = state.users[own.user];
 
   return {
-    servers: servers && servers.reduce<Server[]>((acc, id) => {
+    showUsers: false,
+    servers: servers.reduce<Server[]>((acc, id) => {
       const { data } = state.servers[id];
       if (data) acc.push(data);
 
