@@ -13,8 +13,9 @@ import ServerToolbar from './ServerToolbar';
 
 // Types
 interface SelectedState { [id: string]: boolean }
+
 export interface ServerTableProps extends TableProps {
-  title: string, servers: Server[],
+  title: string, servers: Server[], showUsers?: boolean,
   onLoad: () => void, onRefresh: () => void,
   onAddServer?: (ip: string) => void,
   onDeleteServer?: (id: string) => void,
@@ -30,7 +31,7 @@ function randomPort() {
 const ServerTable: FC<ServerTableProps> = (props) => {
   // Props
   const {
-    title, servers,
+    title, servers, showUsers = false,
     onLoad, onRefresh,
     onAddServer,
     onDeleteServer,
@@ -98,6 +99,9 @@ const ServerTable: FC<ServerTableProps> = (props) => {
               <TableCell>Adresse</TableCell>
               <TableCell>Port</TableCell>
               <TableCell>Pays</TableCell>
+              { showUsers && (
+                <TableCell>Utilisateur</TableCell>
+              ) }
               <TableCell>Actif</TableCell>
             </TableRow>
           </TableHead>
@@ -113,6 +117,9 @@ const ServerTable: FC<ServerTableProps> = (props) => {
                 <TableCell>{server.ip}</TableCell>
                 <TableCell>{server.port}</TableCell>
                 <TableCell>{server.country}</TableCell>
+                { showUsers && (
+                  <TableCell>{ server.user }</TableCell>
+                ) }
                 <TableCell padding="none">
                   <Switch checked={server.available} onChange={() => onToggleServer(server._id, randomPort())} />
                 </TableCell>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 
 import { env } from 'env';
 import { AppState } from 'store';
@@ -17,6 +18,18 @@ export const login = (email: string, password: string) => async (dispatch: Dispa
 
     // Store data
     dispatch(setToken(token));
+  } catch (error) {
+    dispatch(setError(error.response.data.error));
+
+    throw error;
+  }
+};
+
+export const signIn = (email: string, password: string) => async (dispatch: ThunkDispatch<AppState, {}, any>) => {
+  try {
+    // Make sign in request
+    await axios.post(`${env.API_BASE_URL}/users`, { email, password });
+    dispatch(login(email, password));
   } catch (error) {
     dispatch(setError(error.response.data.error));
 

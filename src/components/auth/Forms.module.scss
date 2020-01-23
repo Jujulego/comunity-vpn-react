@@ -1,0 +1,24 @@
+@import "assets/theme";
+
+// Rules
+.container {
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .header {
+    background-color: $primary;
+    color: white;
+
+    .action {
+      margin-top: -12px;
+      margin-bottom: -12px;
+    }
+  }
+
+  .actions {
+    justify-content: center;
+  }
+}

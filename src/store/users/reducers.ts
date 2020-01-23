@@ -34,16 +34,12 @@ const userReducer = (state= initial, action: UserActions) => {
 };
 
 export const usersReducer = (state: UsersState = {}, action: UserActions) => {
-  switch (action.type) {
-    case SET_DATA:
-    case SET_LOADING:
-    case SET_SERVERS:
-    case ADD_SERVER:
-    case DEL_SERVER:
-      const { user } = action;
-      return { ...state, [user]: userReducer(state[user], action) };
+  let { user } = action;
+  if (!user) return state;
 
-    default:
-      return state;
+  if (state.me && state.me.data && state.me.data._id === user) {
+    user = 'me';
   }
+
+  return { ...state, [user]: userReducer(state[user], action) };
 };
