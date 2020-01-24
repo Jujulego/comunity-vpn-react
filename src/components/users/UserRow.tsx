@@ -32,16 +32,12 @@ const UserRow: FC<UserRowProps> = (props) => {
   if (user.tokens.length > 0) {
     const tokens = user.tokens.sort((a, b) => moment(a.createdAt).diff(b.createdAt)).reverse();
     const last = moment.utc(tokens[0].createdAt);
-    last.local();
 
     connection = `${tokens[0].from} ${last.fromNow()}`
   }
 
   return (
-    <TableRow
-      {...row}
-      selected={selected}
-    >
+    <TableRow {...row} selected={selected}>
       <TableCell padding="checkbox">
         <Checkbox checked={selected} onChange={onSelect} />
       </TableCell>

@@ -1,42 +1,39 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import User from 'data/user';
-
 import {
   Checkbox,
   Table, TableContainer, TableHead, TableBody, TableRow, TableCell,
   TableProps, Paper
 } from '@material-ui/core';
 
-import UserRow from 'components/users/UserRow';
-import UserToolbar from 'components/users/UserToolbar';
+import Token from 'data/token';
+import TokenRow from 'components/tokens/TokenRow';
+import TokenToolbar from 'components/tokens/TokenToolbar';
 
 // Types
 interface SelectedState { [id: string]: boolean }
 
-export interface UserTableProps extends TableProps {
-  title: string, users: User[],
+export interface TokenTableProps extends TableProps {
+  title: string, tokens: Token[],
   onLoad: () => void, onRefresh: () => void,
-  onDeleteUser?: (id: string) => void,
-  onToggleAdmin: (id: string) => void
+  onDeleteToken?: (id: string) => void,
 }
 
 // Component
-const UserTable: FC<UserTableProps> = (props) => {
+const TokenTable: FC<TokenTableProps> = (props) => {
   // Props
   const {
-    title, users,
+    title, tokens,
     onLoad, onRefresh,
-    onDeleteUser,
-    onToggleAdmin,
+    onDeleteToken,
     ...table
   } = props;
 
   // State
   const [selected, setSelected] = useState<SelectedState>({});
 
-  const numSelected = users.reduce((acc, user) => {
-    if (selected[user._id]) acc++;
+  const numSelected = tokens.reduce((acc, token) => {
+    if (selected[token._id]) acc++;
     return acc;
   }, 0);
 
@@ -51,26 +48,26 @@ const UserTable: FC<UserTableProps> = (props) => {
   };
 
   const handleSelectAll = () => {
-    if (numSelected === users.length) {
+    if (numSelected === tokens.length) {
       setSelected({});
     } else {
-      setSelected(users.reduce<SelectedState>((acc, server) => {
+      setSelected(tokens.reduce<SelectedState>((acc, server) => {
         acc[server._id] = true;
         return acc;
       }, {}));
     }
   };
 
-  const handleDelete = onDeleteUser && (() => {
-    users.forEach(user => {
-      if (selected[user._id]) onDeleteUser(user._id);
+  const handleDelete = onDeleteToken && (() => {
+    tokens.forEach(token => {
+      if (selected[token._id]) onDeleteToken(token._id);
     });
   });
 
   // Render
   return (
     <Paper>
-      <UserToolbar
+      <TokenToolbar
         title={title} numSelected={numSelected}
         onDelete={handleDelete} onRefresh={onRefresh}
       />
@@ -80,24 +77,21 @@ const UserTable: FC<UserTableProps> = (props) => {
             <TableRow>
               <TableCell padding="checkbox">
                 <Checkbox
-                  indeterminate={numSelected > 0 && numSelected < users.length}
-                  checked={numSelected > 0 && numSelected === users.length}
+                  indeterminate={numSelected > 0 && numSelected < tokens.length}
+                  checked={numSelected > 0 && numSelected === tokens.length}
                   onChange={handleSelectAll}
                 />
               </TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Connexions</TableCell>
-              <TableCell>Dernière connexion</TableCell>
-              <TableCell>Admin</TableCell>
+              <TableCell>Adresse</TableCell>
+              <TableCell>Date</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            { users.map(user => (
-              <UserRow
-                key={user._id}
-                hover user={user} selected={selected[user._id]}
-                onSelect={handleSelect(user._id)}
-                onToggleAdmin={() => onToggleAdmin(user._id)}
+            { tokens.map(token => (
+              <TokenRow
+                key={token._id}
+                hover token={token} selected={selected[token._id]}
+                onSelect={handleSelect(token._id)}
               />
             )) }
           </TableBody>
@@ -107,4 +101,4 @@ const UserTable: FC<UserTableProps> = (props) => {
   );
 };
 
-export default UserTable;
+export default TokenTable;
