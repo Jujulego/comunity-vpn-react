@@ -16,6 +16,7 @@ import {
   deleteUser as deleteUserAction,
   setUserLoading, setUserData, setUserServers
 } from './actions';
+import { getUserState } from './utils';
 
 // Thunks
 export const refreshUser = (id: string) => async (dispatch: Dispatch, getState: () => AppState) => {
@@ -58,7 +59,7 @@ export const toggleAdmin = (id: string) => async (dispatch: Dispatch, getState: 
     const { token } = getState().auth;
     if (token == null) return;
 
-    const admin = !(getState().users[id].data!.admin);
+    const admin = !(getUserState(id, () => getState().users)!.data!.admin);
 
     const res = await axios.put(`${env.API_BASE_URL}/user/${id}`, { admin }, { headers: authHeaders(token) });
     const user = res.data as User;

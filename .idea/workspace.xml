@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="update: show user email in admin server table">
+    <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="update: show user's last connexion">
       <change afterPath="$PROJECT_DIR$/src/components/users/UserRow.tsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/data/token.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/actions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/users/utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/servers/ServerRow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/servers/ServerRow.tsx" afterDir="false" />
@@ -13,8 +12,8 @@
       <change beforePath="$PROJECT_DIR$/src/components/users/UserTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/UserTable.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/user.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/auth/thunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth/thunks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/users/hooks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users/hooks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/users/thunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users/thunks.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +140,7 @@
       <workItem from="1579741436131" duration="2252000" />
       <workItem from="1579772931626" duration="7383000" />
       <workItem from="1579804236538" duration="1654000" />
-      <workItem from="1579858101314" duration="8542000" />
+      <workItem from="1579858101314" duration="10172000" />
     </task>
     <task id="LOCAL-00001" summary="Init project">
       <created>1579350729338</created>
@@ -423,15 +422,20 @@
       <option name="project" value="LOCAL" />
       <updated>1579860870948</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="update: global reset on logout">
+      <created>1579873259235</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1579873259235</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: update user data management" />
-    <MESSAGE value="add: api's url in production" />
     <MESSAGE value="add: AdminRoute" />
     <MESSAGE value="update: login redirection" />
     <MESSAGE value="add: account menu" />
@@ -455,7 +459,9 @@
     <MESSAGE value="update: version 0.3.0" />
     <MESSAGE value="update: delete user (admin)" />
     <MESSAGE value="update: show user email in admin server table" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: show user email in admin server table" />
+    <MESSAGE value="update: global reset on logout" />
+    <MESSAGE value="update: show user's last connexion" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: show user's last connexion" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-2839" y="-716" key="#Docker_Image" timestamp="1579352518769">
@@ -475,11 +481,11 @@
     </state>
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579773341708" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2" timestamp="1579873192241">
+    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2" timestamp="1579874795616">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579873192241" />
+    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579874795616" />
     <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579691620369" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1579742010787">
       <screen x="0" y="0" width="1536" height="824" />
@@ -521,6 +527,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1579785471160" />
+    <state x="462" y="144" width="611" height="536" key="find.popup" timestamp="1579873811341">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="462" y="144" width="611" height="536" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1579873811341" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1579741865637">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

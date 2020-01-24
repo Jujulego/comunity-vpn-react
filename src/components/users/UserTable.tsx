@@ -3,11 +3,12 @@ import React, { FC, useEffect, useState } from 'react';
 import User from 'data/user';
 
 import {
-  Checkbox, Switch,
+  Checkbox,
   Table, TableContainer, TableHead, TableBody, TableRow, TableCell,
   TableProps, Paper
 } from '@material-ui/core';
 
+import UserRow from 'components/users/UserRow';
 import UserToolbar from 'components/users/UserToolbar';
 
 // Types
@@ -84,26 +85,20 @@ const UserTable: FC<UserTableProps> = (props) => {
                   onChange={handleSelectAll}
                 />
               </TableCell>
-              <TableCell>Id</TableCell>
               <TableCell>Email</TableCell>
+              <TableCell>Connexions</TableCell>
+              <TableCell>Dernière connexion</TableCell>
               <TableCell>Admin</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            { users && users.map(user => (
-              <TableRow
+            { users.map(user => (
+              <UserRow
                 key={user._id}
-                hover selected={selected[user._id]}
-              >
-                <TableCell padding="checkbox">
-                  <Checkbox checked={selected[user._id] || false} onChange={handleSelect(user._id)} />
-                </TableCell>
-                <TableCell>{user._id}</TableCell>
-                <TableCell>{user.email}</TableCell>
-                <TableCell padding="none">
-                  <Switch checked={user.admin} onChange={() => onToggleAdmin(user._id)} />
-                </TableCell>
-              </TableRow>
+                hover user={user} selected={selected[user._id]}
+                onSelect={handleSelect(user._id)}
+                onToggleAdmin={() => onToggleAdmin(user._id)}
+              />
             )) }
           </TableBody>
         </Table>

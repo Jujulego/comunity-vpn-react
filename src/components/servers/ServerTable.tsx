@@ -110,9 +110,8 @@ const ServerTable: FC<ServerTableProps> = (props) => {
             { servers.map(server => (
               <ServerRow
                   key={server._id}
-                  server={server}
-                  selected={selected[server._id]}
-                  showUser={showUsers}
+                  server={server} selected={selected[server._id]}
+                  hover showUser={showUsers}
                   onSelect={handleSelect(server._id)}
                   onToggleServer={() => onToggleServer(server._id, randomPort())}
               />
