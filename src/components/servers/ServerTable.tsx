@@ -3,12 +3,13 @@ import React, { FC, useEffect, useState } from 'react';
 import Server from 'data/server';
 
 import {
-  Checkbox, Switch,
+  Checkbox,
   Table, TableContainer, TableHead, TableBody, TableRow, TableCell,
   TableProps, Paper
 } from '@material-ui/core';
 
 import AddServerDialog from './AddServerDialog';
+import ServerRow from './ServerRow';
 import ServerToolbar from './ServerToolbar';
 
 // Types
@@ -106,24 +107,15 @@ const ServerTable: FC<ServerTableProps> = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            { servers && servers.map(server => (
-              <TableRow
-                key={server._id}
-                hover selected={selected[server._id]}
-              >
-                <TableCell padding="checkbox">
-                  <Checkbox checked={selected[server._id] || false} onChange={handleSelect(server._id)} />
-                </TableCell>
-                <TableCell>{server.ip}</TableCell>
-                <TableCell>{server.port}</TableCell>
-                <TableCell>{server.country}</TableCell>
-                { showUsers && (
-                  <TableCell>{ server.user }</TableCell>
-                ) }
-                <TableCell padding="none">
-                  <Switch checked={server.available} onChange={() => onToggleServer(server._id, randomPort())} />
-                </TableCell>
-              </TableRow>
+            { servers.map(server => (
+              <ServerRow
+                  key={server._id}
+                  server={server}
+                  selected={selected[server._id]}
+                  showUser={showUsers}
+                  onSelect={handleSelect(server._id)}
+                  onToggleServer={() => onToggleServer(server._id, randomPort())}
+              />
             )) }
           </TableBody>
         </Table>
