@@ -1,22 +1,16 @@
 import React, { FC } from 'react';
-import clsx from 'clsx';
 
-import {
-  IconButton,
-  Toolbar, Tooltip,
-  Typography
-} from '@material-ui/core';
+import { IconButton, Tooltip } from '@material-ui/core';
 import {
   Add as AddIcon,
   Delete as DeleteIcon,
   Refresh as RefreshIcon
 } from '@material-ui/icons';
 
-import styles from './ServerToolbar.module.scss';
+import Toolbar, { ToolbarProps } from 'components/basics/Toolbar';
 
 // Types
-export interface ServerToolbarProps {
-  title: string, numSelected: number,
+export interface ServerToolbarProps extends ToolbarProps {
   onAdd?: () => void,
   onDelete?: () => void,
   onRefresh: () => void
@@ -26,34 +20,32 @@ export interface ServerToolbarProps {
 const ServerToolbar: FC<ServerToolbarProps> = (props) => {
   // Props
   const {
-    title, numSelected,
-    onAdd, onDelete, onRefresh
+    onAdd, onDelete, onRefresh,
+    ...toolbar
   } = props;
 
   // Render
+  const selected = toolbar.numSelected > 0;
+  const color = selected ? "inherit" : undefined;
+
   return (
-    <Toolbar classes={{ root: clsx(styles.toolbar, { [styles.selected]: numSelected > 0 }) }}>
-      { (numSelected > 0) ? (
-        <Typography classes={{ root: styles.title }} color="inherit" variant="subtitle1">{numSelected} sélectionné(s)</Typography>
-      ) : (
-        <Typography classes={{ root: styles.title }} variant="h6">{title}</Typography>
-      ) }
-      { onDelete && (numSelected > 0) && (
+    <Toolbar {...toolbar}>
+      { onDelete && selected && (
         <Tooltip title="Supprimer les serveurs sélectionnés">
-          <IconButton onClick={onDelete}>
+          <IconButton color={color} onClick={onDelete}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
       ) }
       { onAdd && (
         <Tooltip title="Ajouter un serveur">
-          <IconButton onClick={onAdd}>
+          <IconButton color={color} onClick={onAdd}>
             <AddIcon />
           </IconButton>
         </Tooltip>
       ) }
       <Tooltip title="Rafraîchir">
-        <IconButton onClick={onRefresh}>
+        <IconButton color={color} onClick={onRefresh}>
           <RefreshIcon />
         </IconButton>
       </Tooltip>

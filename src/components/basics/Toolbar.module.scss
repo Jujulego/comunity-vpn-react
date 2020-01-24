@@ -5,6 +5,7 @@
   padding-right: spacing(1);
 
   &.selected {
+    color: white;
     background-color: $secondary;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;

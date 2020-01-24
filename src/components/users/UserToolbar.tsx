@@ -1,21 +1,15 @@
 import React, { FC } from 'react';
-import clsx from 'clsx';
 
-import {
-  IconButton,
-  Toolbar, Tooltip,
-  Typography
-} from '@material-ui/core';
+import { IconButton, Tooltip } from '@material-ui/core';
 import {
   Delete as DeleteIcon,
   Refresh as RefreshIcon
 } from '@material-ui/icons';
 
-import styles from 'components/users/UserToolbar.module.scss';
+import Toolbar, { ToolbarProps } from 'components/basics/Toolbar';
 
 // Types
-export interface UserToolbarProps {
-  title: string, numSelected: number,
+export interface UserToolbarProps extends ToolbarProps {
   onDelete?: () => void,
   onRefresh: () => void
 }
@@ -24,27 +18,25 @@ export interface UserToolbarProps {
 const UserToolbar: FC<UserToolbarProps> = (props) => {
   // Props
   const {
-    title, numSelected,
-    onDelete, onRefresh
+    onDelete, onRefresh,
+    ...toolbar
   } = props;
 
   // Render
+  const selected = toolbar.numSelected > 0;
+  const color = selected ? "inherit" : undefined;
+
   return (
-    <Toolbar classes={{ root: clsx(styles.toolbar, { [styles.selected]: numSelected > 0 }) }}>
-      { (numSelected > 0) ? (
-        <Typography classes={{ root: styles.title }} color="inherit" variant="subtitle1">{numSelected} sélectionné(s)</Typography>
-      ) : (
-        <Typography classes={{ root: styles.title }} variant="h6">{title}</Typography>
-      ) }
-      { onDelete && (numSelected > 0) && (
+    <Toolbar {...toolbar}>
+      { onDelete && selected && (
         <Tooltip title="Supprimer les utilistateurs sélectionnés">
-          <IconButton onClick={onDelete}>
+          <IconButton color={color} onClick={onDelete}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
       ) }
       <Tooltip title="Rafraîchir">
-        <IconButton onClick={onRefresh}>
+        <IconButton color={color} onClick={onRefresh}>
           <RefreshIcon />
         </IconButton>
       </Tooltip>
