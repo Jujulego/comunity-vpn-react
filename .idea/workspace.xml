@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/utils/style.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/_spacing.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/_theme.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppBar.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/admin/AdminLinks.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/admin/AdminLinks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/AdminLinks.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/Forms.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/LoginForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/SignInForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/SignInForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/basics/Toolbar.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/basics/Toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/Toolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +131,7 @@
       <workItem from="1579804236538" duration="1654000" />
       <workItem from="1579858101314" duration="10275000" />
       <workItem from="1579906898841" duration="5038000" />
-      <workItem from="1579956140581" duration="4391000" />
+      <workItem from="1579956140581" duration="7205000" />
     </task>
     <task id="LOCAL-00001" summary="Init project">
       <created>1579350729338</created>
@@ -461,15 +448,27 @@
       <option name="project" value="LOCAL" />
       <updated>1579911923243</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="update: use Material UI's style solution instead of SASS">
+      <created>1579960575474</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1579960575474</updated>
+    </task>
+    <task id="LOCAL-00047" summary="add: dark mode">
+      <created>1579961929867</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1579961929867</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update: disable empty links" />
-    <MESSAGE value="add: admin links" />
     <MESSAGE value="update: yarn upgrade" />
     <MESSAGE value="update: use npm" />
     <MESSAGE value="add: servers data management" />
@@ -493,7 +492,9 @@
     <MESSAGE value="add: generic toolbar" />
     <MESSAGE value="add: token table" />
     <MESSAGE value="add: user page" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: user page" />
+    <MESSAGE value="update: use Material UI's style solution instead of SASS" />
+    <MESSAGE value="add: dark mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: dark mode" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-2839" y="-716" key="#Docker_Image" timestamp="1579352518769">
@@ -514,40 +515,40 @@
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579773341708" />
     <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579960517937" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2" timestamp="1579911922668">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="888" y="27" width="776" height="808" key="CommitChangelistDialog2" timestamp="1579961929273">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
     <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579911922668" />
-    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579691620369" />
+    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579961929273" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1579742010787">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1579742010787" />
-    <state width="2539" height="694" key="GridCell.Tab.0.bottom" timestamp="1579956240586">
+    <state width="2539" height="694" key="GridCell.Tab.0.bottom" timestamp="1579961204029">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.bottom/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819127" />
     <state width="1515" height="374" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579911940735" />
-    <state width="2539" height="694" key="GridCell.Tab.0.bottom/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579956240586" />
-    <state width="2539" height="694" key="GridCell.Tab.0.center" timestamp="1579956240586">
+    <state width="2539" height="694" key="GridCell.Tab.0.bottom/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579961204029" />
+    <state width="2539" height="694" key="GridCell.Tab.0.center" timestamp="1579961204029">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.center/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819126" />
     <state width="1515" height="374" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1579911940735" />
-    <state width="2539" height="694" key="GridCell.Tab.0.center/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579956240586" />
-    <state width="2539" height="694" key="GridCell.Tab.0.left" timestamp="1579956240586">
+    <state width="2539" height="694" key="GridCell.Tab.0.center/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579961204029" />
+    <state width="2539" height="694" key="GridCell.Tab.0.left" timestamp="1579961204029">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.left/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819126" />
     <state width="1515" height="374" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1579911940735" />
-    <state width="2539" height="694" key="GridCell.Tab.0.left/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579956240586" />
-    <state width="2539" height="694" key="GridCell.Tab.0.right" timestamp="1579956240586">
+    <state width="2539" height="694" key="GridCell.Tab.0.left/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579961204029" />
+    <state width="2539" height="694" key="GridCell.Tab.0.right" timestamp="1579961204029">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.right/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819127" />
     <state width="1515" height="374" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1579911940735" />
-    <state width="2539" height="694" key="GridCell.Tab.0.right/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579956240586" />
+    <state width="2539" height="694" key="GridCell.Tab.0.right/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579961204029" />
     <state x="277" y="56" key="SettingsEditor" timestamp="1579476817376">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

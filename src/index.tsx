@@ -2,7 +2,7 @@ import moment from 'moment';
 import React from 'react';
 import { render } from 'react-dom';
 
-import { CssBaseline, StylesProvider } from '@material-ui/core';
+import { StylesProvider } from '@material-ui/core';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -78,7 +78,6 @@ moment.locale('fr', {
 // Application
 render((
   <StylesProvider injectFirst>
-    <CssBaseline />
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <App />

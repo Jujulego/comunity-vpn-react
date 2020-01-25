@@ -1,11 +1,15 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
+import { createMuiTheme, useMediaQuery } from '@material-ui/core';
+import { deepPurple } from '@material-ui/core/colors';
 
-import { env } from 'env';
-
+import { CssBaseline } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core/styles';
 import {
   BrowserRouter as Router,
   Switch, Route
 } from 'react-router-dom';
+
+import { env } from 'env';
 
 import UserServerTable from 'containers/servers/UserServerTable';
 
@@ -24,30 +28,49 @@ import Home from './Home';
 
 // Component
 const App: FC = () => {
+  // Theme
+  const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
+  const theme = useMemo(
+    () => createMuiTheme({
+      palette: {
+        primary: {
+          main: deepPurple[400]
+        },
+        type: prefersDark ? 'dark' : 'light'
+
+      }
+    }),
+    [prefersDark]
+  );
+
+  // Render
   return (
-    <Router basename={env.BASENAME}>
-      <Switch>
-        <Route path="/login" component={LoginForm} />
-        <Route path="/signin" component={SignInForm} />
-        <PrivateRoute>
-          <AppBar>
-            <Switch>
-              <AdminRoute path="/admin">
-                <AdminApp />
-              </AdminRoute>
-              <Route path="/forbidden" component={Forbidden} />
-              <Route path="/profile">
-                <UserPage id="me" />
-              </Route>
-              <Route path="/servers">
-                <UserServerTable title="Mes serveurs" user="me" />
-              </Route>
-              <Route component={Home} />
-            </Switch>
-          </AppBar>
-        </PrivateRoute>
-      </Switch>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router basename={env.BASENAME}>
+        <Switch>
+          <Route path="/login" component={LoginForm} />
+          <Route path="/signin" component={SignInForm} />
+          <PrivateRoute>
+            <AppBar>
+              <Switch>
+                <AdminRoute path="/admin">
+                  <AdminApp />
+                </AdminRoute>
+                <Route path="/forbidden" component={Forbidden} />
+                <Route path="/profile">
+                  <UserPage id="me" />
+                </Route>
+                <Route path="/servers">
+                  <UserServerTable title="Mes serveurs" user="me" />
+                </Route>
+                <Route component={Home} />
+              </Switch>
+            </AppBar>
+          </PrivateRoute>
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 };
 
