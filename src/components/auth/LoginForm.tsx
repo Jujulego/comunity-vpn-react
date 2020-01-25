@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   Button, IconButton,
@@ -8,9 +9,7 @@ import {
   Grid,
   TextField
 } from '@material-ui/core';
-import {
-  PersonAdd as PersonAddIcon
-} from '@material-ui/icons';
+import { PersonAdd as PersonAddIcon } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
 import { Redirect, RouteChildrenProps } from 'react-router';
@@ -18,18 +17,46 @@ import { Redirect, RouteChildrenProps } from 'react-router';
 import { AppState } from 'store';
 import { login } from 'store/auth/thunks';
 
-import styles from 'components/auth/Forms.module.scss';
-
 // Types
 interface FormState {
   email: string,
   password: string
 }
 
-export type LoginProps = RouteChildrenProps<{}, { from?: string }>
+export type LoginProps = RouteChildrenProps<{}, { from?: string }>;
+
+// Style
+const useStyles = makeStyles(({ palette }) => {
+  const primary = palette.primary.main;
+  const text = palette.getContrastText(primary);
+
+  return {
+    container: {
+      height: '100vh',
+
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+    },
+    header: {
+      color: text,
+      backgroundColor: primary
+    },
+    action: {
+      marginTop: -12,
+      marginBottom: -12
+    },
+    actions: {
+      justifyContent: 'center'
+    }
+  };
+});
 
 // Component
-const LoginForm: FC<LoginProps> = ({ location }) => {
+const LoginForm: FC<LoginProps> = (props) => {
+  // Props
+  const { location } = props;
+
   // State
   const [form, setForm] = useState<FormState>({
     email: '', password: ''
@@ -52,6 +79,8 @@ const LoginForm: FC<LoginProps> = ({ location }) => {
   };
 
   // Render
+  const styles = useStyles();
+
   if (isLoggedIn) {
     return <Redirect to={ (location.state && location.state.from) || "/" } />;
   }

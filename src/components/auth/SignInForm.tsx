@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   Button,
@@ -14,14 +15,39 @@ import { Redirect } from 'react-router';
 import { AppState } from 'store';
 import { signIn } from 'store/auth/thunks';
 
-import styles from 'components/auth/Forms.module.scss';
-
 // Types
 interface FormState {
   email: string,
   password: string,
   confirm: string
 }
+
+// Style
+const useStyles = makeStyles(({ palette }) => {
+  const primary = palette.primary.main;
+  const text = palette.getContrastText(primary);
+
+  return {
+    container: {
+      height: '100vh',
+
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+    },
+    header: {
+      color: text,
+      backgroundColor: primary
+    },
+    action: {
+      marginTop: -12,
+      marginBottom: -12
+    },
+    actions: {
+      justifyContent: 'center'
+    }
+  };
+});
 
 // Component
 const SignInForm: FC = () => {
@@ -46,6 +72,8 @@ const SignInForm: FC = () => {
   };
 
   // Render
+  const styles = useStyles();
+
   if (isLoggedIn) {
     return <Redirect to="/" />;
   }

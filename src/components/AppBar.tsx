@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-
-import { useMe } from 'store/users/hooks';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   AppBar as MaterialAppBar, Toolbar,
@@ -14,10 +13,35 @@ import {
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
+import { useMe } from 'store/users/hooks';
+
 import AdminLinks from './admin/AdminLinks';
 import AccountMenu from './auth/AccountMenu';
 
-import styles from './AppBar.module.scss';
+// Styles
+const useStyles = makeStyles(({ spacing, zIndex }) => ({
+  root: {
+    display: 'flex'
+  },
+  appBar: {
+    zIndex: zIndex.drawer + 1
+  },
+  title: {
+    flexGrow: 1
+  },
+  drawer: {
+    width: 300,
+    flexShrink: 0
+  },
+  paper: {
+    width: 300,
+    zIndex: zIndex.drawer
+  },
+  content: {
+    flexGrow: 1,
+    padding: spacing(3)
+  }
+}));
 
 // Component
 const AppBar: FC = ({ children }) => {
@@ -26,6 +50,8 @@ const AppBar: FC = ({ children }) => {
   const isAdmin = user && user.admin;
 
   // Render
+  const styles = useStyles();
+
   return (
     <div className={styles.root}>
       <MaterialAppBar classes={{ root: styles.appBar }} position="fixed">
