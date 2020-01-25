@@ -1,21 +1,16 @@
 import React, { FC } from 'react';
 
-import {
-  Checkbox, Switch,
-  TableCell, TableRow,
-  TableRowProps
-} from '@material-ui/core';
+import { Switch, TableCell } from '@material-ui/core';
 
 import Server from 'data/server';
 
+import TableRow, { TableRowProps } from 'components/basics/TableRow';
 import UserCell from 'components/users/UserCell';
 
 // Types
-export interface ServerRowProps extends TableRowProps {
+export interface ServerRowProps extends Omit<TableRowProps, 'doc'> {
   server: Server,
-  selected?: boolean,
   showUser?: boolean,
-  onSelect: () => void
   onToggleServer: () => void
 }
 
@@ -23,19 +18,14 @@ export interface ServerRowProps extends TableRowProps {
 const ServerRow: FC<ServerRowProps> = (props) => {
   // Props
   const {
-    server,
-    selected = false,
-    showUser = false,
-    onSelect, onToggleServer,
+    server, showUser = false,
+    onToggleServer,
     ...row
   } = props;
 
   // Render
   return (
-    <TableRow selected={selected} {...row}>
-      <TableCell padding="checkbox">
-        <Checkbox checked={selected} onChange={onSelect} />
-      </TableCell>
+    <TableRow {...row} doc={server}>
       <TableCell>{server.ip}</TableCell>
       <TableCell>{server.port}</TableCell>
       <TableCell>{server.country}</TableCell>

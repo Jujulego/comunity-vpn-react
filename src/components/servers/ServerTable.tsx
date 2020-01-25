@@ -1,20 +1,21 @@
-import React, { FC, useEffect, useState } from 'react';
-
-import Server from 'data/server';
+import React, { FC, useContext, useEffect, useState } from 'react';
 
 import {
-  Checkbox,
-  Table, TableContainer, TableHead, TableBody, TableRow, TableCell,
+  Table, TableContainer, TableHead, TableBody, TableCell,
   TableProps, Paper
 } from '@material-ui/core';
+
+import TableContext from 'contexts/TableContext';
+import Server from 'data/server';
+
+import DataTable from 'components/basics/DataTable';
+import TableRow from 'components/basics/TableRow';
 
 import AddServerDialog from './AddServerDialog';
 import ServerRow from './ServerRow';
 import ServerToolbar from './ServerToolbar';
 
 // Types
-interface SelectedState { [id: string]: boolean }
-
 export interface ServerTableProps extends TableProps {
   title: string, servers: Server[], showUsers?: boolean,
   onLoad: () => void, onRefresh: () => void,
@@ -40,14 +41,11 @@ const ServerTable: FC<ServerTableProps> = (props) => {
     ...table
   } = props;
 
+  // Context
+  const { selected } = useContext(TableContext);
+
   // State
   const [dialog, setDialog] = useState(false);
-  const [selected, setSelected] = useState<SelectedState>({});
-
-  const numSelected = servers.reduce((acc, server) => {
-    if (selected[server._id]) acc++;
-    return acc;
-  }, 0);
 
   // Effects
   useEffect(() => {
@@ -58,21 +56,6 @@ const ServerTable: FC<ServerTableProps> = (props) => {
   const handleOpen = onAddServer && (() => setDialog(true));
   const handleClose = () => setDialog(false);
 
-  const handleSelect = (id: string) => () => {
-    setSelected(old => ({ ...old, [id]: !old[id] }));
-  };
-
-  const handleSelectAll = () => {
-    if (numSelected === servers.length) {
-      setSelected({});
-    } else {
-      setSelected(servers.reduce<SelectedState>((acc, server) => {
-        acc[server._id] = true;
-        return acc;
-      }, {}));
-    }
-  };
-
   const handleDelete = onDeleteServer && (() => {
     servers.forEach(server => {
       if (selected[server._id]) onDeleteServer(server._id);
@@ -82,43 +65,36 @@ const ServerTable: FC<ServerTableProps> = (props) => {
   // Render
   return (
     <Paper>
-      <ServerToolbar
-        title={title} numSelected={numSelected}
-        onAdd={handleOpen} onDelete={handleDelete} onRefresh={onRefresh}
-      />
-      <TableContainer>
-        <Table {...table}>
-          <TableHead>
-            <TableRow>
-              <TableCell padding="checkbox">
-                <Checkbox
-                  indeterminate={numSelected > 0 && numSelected < servers.length}
-                  checked={numSelected > 0 && numSelected === servers.length}
-                  onChange={handleSelectAll}
+      <DataTable data={servers}>
+        <ServerToolbar
+          title={title}
+          onAdd={handleOpen} onDelete={handleDelete} onRefresh={onRefresh}
+        />
+        <TableContainer>
+          <Table {...table}>
+            <TableHead>
+              <TableRow>
+                <TableCell>Adresse</TableCell>
+                <TableCell>Port</TableCell>
+                <TableCell>Pays</TableCell>
+                { showUsers && (
+                  <TableCell>Utilisateur</TableCell>
+                ) }
+                <TableCell>Actif</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              { servers.map(server => (
+                <ServerRow
+                    key={server._id} server={server}
+                    hover showUser={showUsers}
+                    onToggleServer={() => onToggleServer(server._id, randomPort())}
                 />
-              </TableCell>
-              <TableCell>Adresse</TableCell>
-              <TableCell>Port</TableCell>
-              <TableCell>Pays</TableCell>
-              { showUsers && (
-                <TableCell>Utilisateur</TableCell>
-              ) }
-              <TableCell>Actif</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            { servers.map(server => (
-              <ServerRow
-                  key={server._id}
-                  server={server} selected={selected[server._id]}
-                  hover showUser={showUsers}
-                  onSelect={handleSelect(server._id)}
-                  onToggleServer={() => onToggleServer(server._id, randomPort())}
-              />
-            )) }
-          </TableBody>
-        </Table>
-      </TableContainer>
+              )) }
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </DataTable>
       { onAddServer && (
         <AddServerDialog open={dialog} onClose={handleClose} onAddServer={onAddServer} />
       )}

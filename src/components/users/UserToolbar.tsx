@@ -1,12 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 
-import { IconButton, Tooltip } from '@material-ui/core';
 import {
   Delete as DeleteIcon,
   Refresh as RefreshIcon
 } from '@material-ui/icons';
 
-import Toolbar, { ToolbarProps } from 'components/basics/Toolbar';
+import TableContext from 'contexts/TableContext';
+
+import TableToolbar, { ToolbarProps } from 'components/basics/TableToolbar';
+import ToolbarAction from 'components/basics/ToolbarAction';
 
 // Types
 export interface UserToolbarProps extends ToolbarProps {
@@ -22,25 +24,25 @@ const UserToolbar: FC<UserToolbarProps> = (props) => {
     ...toolbar
   } = props;
 
-  // Render
-  const selected = toolbar.numSelected > 0;
-  const color = selected ? "inherit" : undefined;
+  // Context
+  const { selectedCount } = useContext(TableContext);
 
+  // Render
   return (
-    <Toolbar {...toolbar}>
-      { onDelete && selected && (
-        <Tooltip title="Supprimer les utilistateurs sélectionnés">
-          <IconButton color={color} onClick={onDelete}>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
+    <TableToolbar {...toolbar}>
+      { onDelete && selectedCount > 0 && (
+        <ToolbarAction
+          icon={<DeleteIcon />}
+          tooltip="Supprimer les utilistateurs sélectionnés"
+          onClick={onDelete}
+        />
       ) }
-      <Tooltip title="Rafraîchir">
-        <IconButton color={color} onClick={onRefresh}>
-          <RefreshIcon />
-        </IconButton>
-      </Tooltip>
-    </Toolbar>
+      <ToolbarAction
+        icon={<RefreshIcon />}
+        tooltip="Rafraîchir"
+        onClick={onRefresh}
+      />
+    </TableToolbar>
   );
 };
 

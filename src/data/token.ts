@@ -1,7 +1,8 @@
+import Document from './document';
+
 // Interface
-interface Token {
+interface Token extends Document {
   // Attributes
-  readonly _id: string,
   from: string,
   createdAt: string
 }

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
@@ -8,12 +8,13 @@ import {
   Typography
 } from '@material-ui/core';
 
+import TableContext from 'contexts/TableContext';
 import { StyledProps } from 'utils/style';
 
 // Types
 type Classes = 'root' | 'selected' | 'title';
 export interface ToolbarProps extends Omit<MaterialToolbarProps, 'classes'>, StyledProps<Classes> {
-  title: string, numSelected: number
+  title: string
 }
 
 // Styles
@@ -38,27 +39,30 @@ const useStyles = makeStyles(({ shape, palette, spacing }) => {
 });
 
 // Component
-const Toolbar: FC<ToolbarProps> = (props) => {
+const TableToolbar: FC<ToolbarProps> = (props) => {
   // Props
   const {
-    title, numSelected,
+    title,
     children,
     ...toolbar
   } = props;
+
+  // Context
+  const { selectedCount } = useContext(TableContext);
 
   // Render
   const styles = useStyles(props);
 
   return (
-    <MaterialToolbar {...toolbar} classes={{ root: clsx(styles.root, { [styles.selected]: numSelected > 0 }) }}>
-      { (numSelected > 0) ? (
-        <Typography classes={{ root: styles.title }} color="inherit" variant="subtitle1">{numSelected} sélectionné(s)</Typography>
+    <MaterialToolbar {...toolbar} classes={{ root: clsx(styles.root, { [styles.selected]: selectedCount > 0 }) }}>
+      { (selectedCount > 0) ? (
+        <Typography classes={{ root: styles.title }} color="inherit" variant="subtitle1">{selectedCount} sélectionné(s)</Typography>
       ) : (
         <Typography classes={{ root: styles.title }} variant="h6">{title}</Typography>
       ) }
-      {children}
+      { children }
     </MaterialToolbar>
   );
 };
 
-export default Toolbar;
+export default TableToolbar;

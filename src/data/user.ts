@@ -1,9 +1,9 @@
-import Token from 'data/token';
+import Document from './document';
+import Token from './token';
 
 // Interface
-interface User {
+interface User extends Document {
   // Attributes
-  readonly _id: string,
   email: string,
   admin: boolean,
   tokens: Token[]

@@ -1,21 +1,16 @@
 import React, { FC } from 'react';
 import moment from 'moment';
 
-import {
-  Checkbox, Switch,
-  Link,
-  TableCell, TableRow,
-  TableRowProps
-} from '@material-ui/core';
+import { Link, Switch, TableCell } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 
 import User from 'data/user';
 
+import TableRow, { TableRowProps } from 'components/basics/TableRow';
+
 // Types
-export interface UserRowProps extends TableRowProps {
+export interface UserRowProps extends Omit<TableRowProps, 'doc'> {
   user: User,
-  selected?: boolean,
-  onSelect: () => void
   onToggleAdmin: () => void
 }
 
@@ -23,9 +18,7 @@ export interface UserRowProps extends TableRowProps {
 const UserRow: FC<UserRowProps> = (props) => {
   // Props
   const {
-    user,
-    selected = false,
-    onSelect, onToggleAdmin,
+    user, onToggleAdmin,
     ...row
   } = props;
 
@@ -39,10 +32,7 @@ const UserRow: FC<UserRowProps> = (props) => {
   }
 
   return (
-    <TableRow {...row} selected={selected}>
-      <TableCell padding="checkbox">
-        <Checkbox checked={selected} onChange={onSelect} />
-      </TableCell>
+    <TableRow {...row} doc={user}>
       <TableCell>
         <Link component={RouterLink} to={`/admin/user/${user._id}`}>
           {user.email}

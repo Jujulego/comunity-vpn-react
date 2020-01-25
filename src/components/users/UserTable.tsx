@@ -1,19 +1,20 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 
 import User from 'data/user';
 
 import {
-  Checkbox,
-  Table, TableContainer, TableHead, TableBody, TableRow, TableCell,
+  Table, TableContainer, TableHead, TableBody, TableCell,
   TableProps, Paper
 } from '@material-ui/core';
 
+import TableContext from 'contexts/TableContext';
+
+import DataTable from 'components/basics/DataTable';
+import TableRow from 'components/basics/TableRow';
 import UserRow from 'components/users/UserRow';
 import UserToolbar from 'components/users/UserToolbar';
 
 // Types
-interface SelectedState { [id: string]: boolean }
-
 export interface UserTableProps extends TableProps {
   title: string, users: User[],
   onLoad: () => void, onRefresh: () => void,
@@ -32,13 +33,8 @@ const UserTable: FC<UserTableProps> = (props) => {
     ...table
   } = props;
 
-  // State
-  const [selected, setSelected] = useState<SelectedState>({});
-
-  const numSelected = users.reduce((acc, user) => {
-    if (selected[user._id]) acc++;
-    return acc;
-  }, 0);
+  // Context
+  const { selected } = useContext(TableContext);
 
   // Effects
   useEffect(() => {
@@ -46,21 +42,6 @@ const UserTable: FC<UserTableProps> = (props) => {
   }, [onLoad]);
 
   // Handlers
-  const handleSelect = (id: string) => () => {
-    setSelected(old => ({ ...old, [id]: !old[id] }));
-  };
-
-  const handleSelectAll = () => {
-    if (numSelected === users.length) {
-      setSelected({});
-    } else {
-      setSelected(users.reduce<SelectedState>((acc, server) => {
-        acc[server._id] = true;
-        return acc;
-      }, {}));
-    }
-  };
-
   const handleDelete = onDeleteUser && (() => {
     users.forEach(user => {
       if (selected[user._id]) onDeleteUser(user._id);
@@ -70,39 +51,32 @@ const UserTable: FC<UserTableProps> = (props) => {
   // Render
   return (
     <Paper>
-      <UserToolbar
-        title={title} numSelected={numSelected}
-        onDelete={handleDelete} onRefresh={onRefresh}
-      />
-      <TableContainer>
-        <Table {...table}>
-          <TableHead>
-            <TableRow>
-              <TableCell padding="checkbox">
-                <Checkbox
-                  indeterminate={numSelected > 0 && numSelected < users.length}
-                  checked={numSelected > 0 && numSelected === users.length}
-                  onChange={handleSelectAll}
+      <DataTable data={users}>
+        <UserToolbar
+          title={title}
+          onDelete={handleDelete} onRefresh={onRefresh}
+        />
+        <TableContainer>
+          <Table {...table}>
+            <TableHead>
+              <TableRow>
+                <TableCell>Email</TableCell>
+                <TableCell>Connexions</TableCell>
+                <TableCell>Dernière connexion</TableCell>
+                <TableCell>Admin</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              { users.map(user => (
+                <UserRow
+                  key={user._id} user={user} hover
+                  onToggleAdmin={() => onToggleAdmin(user._id)}
                 />
-              </TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Connexions</TableCell>
-              <TableCell>Dernière connexion</TableCell>
-              <TableCell>Admin</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            { users.map(user => (
-              <UserRow
-                key={user._id}
-                hover user={user} selected={selected[user._id]}
-                onSelect={handleSelect(user._id)}
-                onToggleAdmin={() => onToggleAdmin(user._id)}
-              />
-            )) }
-          </TableBody>
-        </Table>
-      </TableContainer>
+              )) }
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </DataTable>
     </Paper>
   );
 };

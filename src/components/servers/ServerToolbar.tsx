@@ -1,13 +1,15 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 
-import { IconButton, Tooltip } from '@material-ui/core';
 import {
   Add as AddIcon,
   Delete as DeleteIcon,
   Refresh as RefreshIcon
 } from '@material-ui/icons';
 
-import Toolbar, { ToolbarProps } from 'components/basics/Toolbar';
+import TableContext from 'contexts/TableContext';
+
+import TableToolbar, { ToolbarProps } from 'components/basics/TableToolbar';
+import ToolbarAction from 'components/basics/ToolbarAction';
 
 // Types
 export interface ServerToolbarProps extends ToolbarProps {
@@ -24,32 +26,31 @@ const ServerToolbar: FC<ServerToolbarProps> = (props) => {
     ...toolbar
   } = props;
 
-  // Render
-  const selected = toolbar.numSelected > 0;
-  const color = selected ? "inherit" : undefined;
+  // Context
+  const { selectedCount } = useContext(TableContext);
 
   return (
-    <Toolbar {...toolbar}>
-      { onDelete && selected && (
-        <Tooltip title="Supprimer les serveurs sélectionnés">
-          <IconButton color={color} onClick={onDelete}>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
+    <TableToolbar {...toolbar}>
+      { onDelete && selectedCount > 0 && (
+        <ToolbarAction
+          icon={<DeleteIcon />}
+          tooltip="Supprimer les serveurs sélectionnés"
+          onClick={onDelete}
+        />
       ) }
       { onAdd && (
-        <Tooltip title="Ajouter un serveur">
-          <IconButton color={color} onClick={onAdd}>
-            <AddIcon />
-          </IconButton>
-        </Tooltip>
+        <ToolbarAction
+            icon={<AddIcon />}
+            tooltip="Ajouter un serveur"
+            onClick={onAdd}
+        />
       ) }
-      <Tooltip title="Rafraîchir">
-        <IconButton color={color} onClick={onRefresh}>
-          <RefreshIcon />
-        </IconButton>
-      </Tooltip>
-    </Toolbar>
+      <ToolbarAction
+        icon={<RefreshIcon />}
+        tooltip="Rafraîchir"
+        onClick={onRefresh}
+      />
+    </TableToolbar>
   );
 };
 
