@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import {
   Checkbox,
@@ -15,7 +15,6 @@ interface SelectedState { [id: string]: boolean }
 
 export interface TokenTableProps extends TableProps {
   title: string, tokens: Token[],
-  onLoad: () => void, onRefresh: () => void,
   onDeleteToken?: (id: string) => void,
 }
 
@@ -24,7 +23,6 @@ const TokenTable: FC<TokenTableProps> = (props) => {
   // Props
   const {
     title, tokens,
-    onLoad, onRefresh,
     onDeleteToken,
     ...table
   } = props;
@@ -36,11 +34,6 @@ const TokenTable: FC<TokenTableProps> = (props) => {
     if (selected[token._id]) acc++;
     return acc;
   }, 0);
-
-  // Effects
-  useEffect(() => {
-    onLoad();
-  }, [onLoad]);
 
   // Handlers
   const handleSelect = (id: string) => () => {
@@ -69,7 +62,7 @@ const TokenTable: FC<TokenTableProps> = (props) => {
     <Paper>
       <TokenToolbar
         title={title} numSelected={numSelected}
-        onDelete={handleDelete} onRefresh={onRefresh}
+        onDelete={handleDelete}
       />
       <TableContainer>
         <Table {...table}>

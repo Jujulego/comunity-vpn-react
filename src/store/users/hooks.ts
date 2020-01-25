@@ -14,7 +14,6 @@ export const useUser = (id: string) => {
   const user = useSelector<AppState,UserState | undefined>((state) => getUserState(id, () => state.users));
 
   // If no users => get users
-  console.log(id, user, !user || (user.data == null && !user.loading));
   if (!user || (user.data == null && !user.loading)) {
     dispatch(refreshUser(id));
   }

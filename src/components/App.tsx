@@ -16,6 +16,8 @@ import SignInForm from './auth/SignInForm';
 import AdminApp from './admin/AdminApp';
 import AdminRoute from './admin/AdminRoute';
 
+import UserPage from './users/UserPage';
+
 import AppBar from './AppBar';
 import Forbidden from './Forbidden';
 import Home from './Home';
@@ -34,6 +36,9 @@ const App: FC = () => {
                 <AdminApp />
               </AdminRoute>
               <Route path="/forbidden" component={Forbidden} />
+              <Route path="/profile">
+                <UserPage id="me" />
+              </Route>
               <Route path="/servers">
                 <UserServerTable title="Mes serveurs" user="me" />
               </Route>

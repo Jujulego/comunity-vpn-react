@@ -3,9 +3,11 @@ import moment from 'moment';
 
 import {
   Checkbox, Switch,
+  Link,
   TableCell, TableRow,
   TableRowProps
 } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 
 import User from 'data/user';
 
@@ -41,7 +43,11 @@ const UserRow: FC<UserRowProps> = (props) => {
       <TableCell padding="checkbox">
         <Checkbox checked={selected} onChange={onSelect} />
       </TableCell>
-      <TableCell>{user.email}</TableCell>
+      <TableCell>
+        <Link component={RouterLink} to={`/admin/user/${user._id}`}>
+          {user.email}
+        </Link>
+      </TableCell>
       <TableCell>{user.tokens.length}</TableCell>
       <TableCell>{connection}</TableCell>
       <TableCell padding="none">

@@ -1,5 +1,10 @@
 import React, { FC } from 'react';
-import { TableCell, TableCellProps } from '@material-ui/core';
+
+import {
+  Link,
+  TableCell, TableCellProps
+} from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { useUser } from 'store/users/hooks';
 
@@ -19,7 +24,9 @@ const UserCell: FC<UserCellProps> = (props) => {
   // Render
   return (
     <TableCell {...cell}>
-      { user ? user.email : id }
+      <Link component={RouterLink} to={`/admin/user/${id}`}>
+        { user ? user.email : id }
+      </Link>
     </TableCell>
   );
 };
