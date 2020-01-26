@@ -19,6 +19,7 @@ import TokenToolbar from './TokenToolbar';
 export interface TokenTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
   title: string, tokens: Token[],
   onDeleteToken?: (id: string) => void,
+  onRefresh: () => void
 }
 
 // Component
@@ -27,6 +28,7 @@ const TokenTable: FC<TokenTableProps> = (props) => {
   const {
     title, tokens,
     onDeleteToken,
+    onRefresh,
     ...table
   } = props;
 
@@ -46,7 +48,11 @@ const TokenTable: FC<TokenTableProps> = (props) => {
           {...table}
           data={tokens} blacklist={[current]}
           toolbar={
-            <TokenToolbar title={title} onDelete={handleDelete} />
+            <TokenToolbar
+              title={title}
+              onDelete={handleDelete}
+              onRefresh={onRefresh}
+            />
           }
         >
           <TableHead>

@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { deleteUserToken } from 'store/users/thunks';
+import { refreshUser, deleteUserToken } from 'store/users/thunks';
 import { useUser } from 'store/users/hooks';
 
 import TokenTable from 'components/tokens/TokenTable';
@@ -36,6 +36,10 @@ const UserPage: FC<UserPageProps> = (props) => {
   const user = useUser(id);
 
   // Handlers
+  const handleRefresh = () => {
+    dispatch(refreshUser(id));
+  };
+
   const handleDeleteToken = (token: string) => {
     dispatch(deleteUserToken(id, token));
   };
@@ -71,6 +75,7 @@ const UserPage: FC<UserPageProps> = (props) => {
           title="Tokens"
           tokens={user?.tokens || []}
           onDeleteToken={handleDeleteToken}
+          onRefresh={handleRefresh}
         />
       </Grid>
     </Grid>
