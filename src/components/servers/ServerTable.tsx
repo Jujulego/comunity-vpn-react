@@ -1,11 +1,10 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import {
   TableContainer, TableHead, TableBody, TableCell,
   Paper, Switch
 } from '@material-ui/core';
 
-import TableContext from 'contexts/TableContext';
 import Server from 'data/server';
 
 import Table, { TableProps } from 'components/basics/Table';
@@ -41,9 +40,6 @@ const ServerTable: FC<ServerTableProps> = (props) => {
     ...table
   } = props;
 
-  // Context
-  const { selected } = useContext(TableContext);
-
   // State
   const [dialog, setDialog] = useState(false);
 
@@ -56,10 +52,8 @@ const ServerTable: FC<ServerTableProps> = (props) => {
   const handleOpen = onAddServer && (() => setDialog(true));
   const handleClose = () => setDialog(false);
 
-  const handleDelete = onDeleteServer && (() => {
-    servers.forEach(server => {
-      if (selected[server._id]) onDeleteServer(server._id);
-    });
+  const handleDelete = onDeleteServer && ((ids: string[]) => {
+    ids.forEach(onDeleteServer);
   });
 
   // Render

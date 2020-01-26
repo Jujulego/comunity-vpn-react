@@ -1,6 +1,9 @@
 import React, { FC, useContext } from 'react';
 
-import { Delete as DeleteIcon } from '@material-ui/icons';
+import {
+  Delete as DeleteIcon,
+  Refresh as RefreshIcon
+} from '@material-ui/icons';
 
 import TableContext from 'contexts/TableContext';
 
@@ -9,14 +12,15 @@ import ToolbarAction from 'components/basics/ToolbarAction';
 
 // Types
 export interface TokenToolbarProps extends ToolbarProps {
-  onDelete?: (ids: string[]) => void
+  onDelete?: (ids: string[]) => void,
+  onRefresh: () => void
 }
 
 // Component
 const TokenToolbar: FC<TokenToolbarProps> = (props) => {
   // Props
   const {
-    onDelete,
+    onDelete, onRefresh,
     ...toolbar
   } = props;
 
@@ -38,6 +42,11 @@ const TokenToolbar: FC<TokenToolbarProps> = (props) => {
           onClick={handleDelete}
         />
       ) }
+      <ToolbarAction
+        icon={<RefreshIcon />}
+        tooltip="Rafraîchir"
+        onClick={onRefresh}
+      />
     </TableToolbar>
   );
 };

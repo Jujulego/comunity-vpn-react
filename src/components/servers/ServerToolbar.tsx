@@ -14,7 +14,7 @@ import ToolbarAction from 'components/basics/ToolbarAction';
 // Types
 export interface ServerToolbarProps extends ToolbarProps {
   onAdd?: () => void,
-  onDelete?: () => void,
+  onDelete?: (ids: string[]) => void,
   onRefresh: () => void
 }
 
@@ -27,15 +27,20 @@ const ServerToolbar: FC<ServerToolbarProps> = (props) => {
   } = props;
 
   // Context
-  const { selectedCount } = useContext(TableContext);
+  const { selected, selectedCount } = useContext(TableContext);
+
+  // Handlers
+  const handleDelete = onDelete && (() => {
+    onDelete(Object.keys(selected).filter(id => selected[id]))
+  });
 
   return (
     <TableToolbar {...toolbar}>
-      { onDelete && selectedCount > 0 && (
+      { handleDelete && selectedCount > 0 && (
         <ToolbarAction
           icon={<DeleteIcon />}
           tooltip="Supprimer les serveurs sélectionnés"
-          onClick={onDelete}
+          onClick={handleDelete}
         />
       ) }
       { onAdd && (
