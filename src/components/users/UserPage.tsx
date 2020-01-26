@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -9,12 +9,16 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { refreshUser, deleteUserToken } from 'store/users/thunks';
+import { refreshUser, updateUser, deleteUserToken } from 'store/users/thunks';
 import { useUser } from 'store/users/hooks';
 
 import TokenTable from 'components/tokens/TokenTable';
 
 // Types
+interface FormState {
+  email: string
+}
+
 export interface UserPageProps {
   id: string
 }
@@ -31,9 +35,21 @@ const UserPage: FC<UserPageProps> = (props) => {
   // Props
   const { id } = props;
 
+  // State
+  const [form, setForm] = useState<FormState>({
+    email: ''
+  });
+
   // Redux
   const dispatch = useDispatch();
   const user = useUser(id);
+
+  // Effects
+  useEffect(() => {
+    if (user) {
+      setForm({ email: user.email });
+    }
+  }, [user]);
 
   // Handlers
   const handleRefresh = () => {
@@ -44,20 +60,41 @@ const UserPage: FC<UserPageProps> = (props) => {
     dispatch(deleteUserToken(id, token));
   };
 
+  const handleChange = (field: keyof FormState) => (event: ChangeEvent<{ value: unknown }>) => {
+    event.persist();
+    setForm(old => ({ ...old, [field]: event.target.value as string }));
+  };
+
+  const handleReset = (event: FormEvent<HTMLDivElement>) => {
+    event.preventDefault();
+
+    if (user) {
+      setForm({ email: user.email });
+    }
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLDivElement>) => {
+    event.preventDefault();
+
+    dispatch(updateUser(id, form));
+  };
+
   // Render
   const styles = useStyles();
   const title = (id === 'me') ? "Moi" : `Utilisateur ${id}`;
 
+  const changed = form.email !== user?.email;
+
   return (
     <Grid container spacing={2}>
       <Grid item lg={5}>
-        <Card>
+        <Card component="form" onSubmit={handleSubmit} onReset={handleReset}>
           <CardHeader title={title} titleTypographyProps={{ variant: "h6" }} />
           <CardContent>
             { user && (
               <Grid container direction="column" spacing={2}>
                 <Grid item>
-                  <TextField label="Email" value={user.email} fullWidth disabled />
+                  <TextField label="Email" value={form.email} onChange={handleChange('email')} fullWidth />
                 </Grid>
                 <Grid item>
                   <TextField label="Mot de passe" value="secretpassword!" type="password" fullWidth disabled />
@@ -66,7 +103,8 @@ const UserPage: FC<UserPageProps> = (props) => {
             ) }
           </CardContent>
           <CardActions classes={{ root: styles.actions }}>
-            <Button color="primary" disabled>Enregistrer</Button>
+            <Button color="secondary" type="reset" disabled={!changed}>Annuler</Button>
+            <Button color="primary" type="submit" disabled={!changed}>Enregistrer</Button>
           </CardActions>
         </Card>
       </Grid>
