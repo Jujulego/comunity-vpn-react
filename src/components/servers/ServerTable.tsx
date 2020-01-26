@@ -1,22 +1,22 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
 
 import {
-  Table, TableContainer, TableHead, TableBody, TableCell,
-  TableProps, Paper
+  TableContainer, TableHead, TableBody, TableCell,
+  Paper, Switch
 } from '@material-ui/core';
 
 import TableContext from 'contexts/TableContext';
 import Server from 'data/server';
 
-import DataTable from 'components/basics/DataTable';
+import Table, { TableProps } from 'components/basics/Table';
 import TableRow from 'components/basics/TableRow';
+import UserCell from 'components/users/UserCell';
 
 import AddServerDialog from './AddServerDialog';
-import ServerRow from './ServerRow';
 import ServerToolbar from './ServerToolbar';
 
 // Types
-export interface ServerTableProps extends TableProps {
+export interface ServerTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
   title: string, servers: Server[], showUsers?: boolean,
   onLoad: () => void, onRefresh: () => void,
   onAddServer?: (ip: string) => void,
@@ -65,36 +65,42 @@ const ServerTable: FC<ServerTableProps> = (props) => {
   // Render
   return (
     <Paper>
-      <DataTable data={servers}>
-        <ServerToolbar
-          title={title}
-          onAdd={handleOpen} onDelete={handleDelete} onRefresh={onRefresh}
-        />
-        <TableContainer>
-          <Table {...table}>
-            <TableHead>
-              <TableRow>
-                <TableCell>Adresse</TableCell>
-                <TableCell>Port</TableCell>
-                <TableCell>Pays</TableCell>
-                { showUsers && (
-                  <TableCell>Utilisateur</TableCell>
-                ) }
-                <TableCell>Actif</TableCell>
+      <TableContainer>
+        <Table
+          {...table} data={servers}
+          toolbar={
+            <ServerToolbar
+              title={title}
+              onAdd={handleOpen} onDelete={handleDelete} onRefresh={onRefresh}
+            />
+          }
+        >
+          <TableHead>
+            <TableRow>
+              <TableCell>Adresse</TableCell>
+              <TableCell>Port</TableCell>
+              <TableCell>Pays</TableCell>
+              { showUsers && (
+                <TableCell>Utilisateur</TableCell>
+              ) }
+              <TableCell>Actif</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            { servers.map(server => (
+              <TableRow key={server._id} doc={server} hover>
+                <TableCell>{server.ip}</TableCell>
+                <TableCell>{server.port}</TableCell>
+                <TableCell>{server.country}</TableCell>
+                { showUsers && <UserCell id={server.user} /> }
+                <TableCell padding="none">
+                  <Switch checked={server.available} onChange={() => onToggleServer(server._id, randomPort())} />
+                </TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              { servers.map(server => (
-                <ServerRow
-                    key={server._id} server={server}
-                    hover showUser={showUsers}
-                    onToggleServer={() => onToggleServer(server._id, randomPort())}
-                />
-              )) }
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </DataTable>
+            )) }
+          </TableBody>
+        </Table>
+      </TableContainer>
       { onAddServer && (
         <AddServerDialog open={dialog} onClose={handleClose} onAddServer={onAddServer} />
       )}

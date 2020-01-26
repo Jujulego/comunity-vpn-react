@@ -1,17 +1,25 @@
-import React, { FC, useState } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
+
+import MaterialTable, {
+  TableProps as MaterialTableProps
+} from '@material-ui/core/Table';
 
 import TableContext, { SelectedState } from 'contexts/TableContext';
 import Document from 'data/document';
 
 // Types
-export interface DataTableProps {
-  data: Document[]
+export interface TableProps extends MaterialTableProps {
+  data: Document[],
+  toolbar?: ReactNode
 }
 
 // Component
-const DataTable: FC<DataTableProps> = (props) => {
+const Table: FC<TableProps> = (props) => {
   // Props
-  const { data, children } = props;
+  const {
+    data, toolbar, children,
+    ...table
+  } = props;
 
   // State
   const [selected, setSelected] = useState<SelectedState>({});
@@ -32,14 +40,17 @@ const DataTable: FC<DataTableProps> = (props) => {
     <TableContext.Provider
       value={{
         selected, selectedCount,
-        selectedAll: selectedCount === data.length,
+        selectedAll: data.length > 0 && selectedCount === data.length,
         onSelect,
         onSelectAll
       }}
     >
-      { children }
+      { toolbar }
+      <MaterialTable {...table}>
+        { children }
+      </MaterialTable>
     </TableContext.Provider>
   );
 };
 
-export default DataTable;
+export default Table;

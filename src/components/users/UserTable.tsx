@@ -3,19 +3,19 @@ import React, { FC, useContext, useEffect } from 'react';
 import User from 'data/user';
 
 import {
-  Table, TableContainer, TableHead, TableBody, TableCell,
-  TableProps, Paper
+  TableContainer, TableHead, TableBody, TableCell,
+  Paper
 } from '@material-ui/core';
 
 import TableContext from 'contexts/TableContext';
 
-import DataTable from 'components/basics/DataTable';
+import Table, { TableProps } from 'components/basics/Table';
 import TableRow from 'components/basics/TableRow';
 import UserRow from 'components/users/UserRow';
 import UserToolbar from 'components/users/UserToolbar';
 
 // Types
-export interface UserTableProps extends TableProps {
+export interface UserTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
   title: string, users: User[],
   onLoad: () => void, onRefresh: () => void,
   onDeleteUser?: (id: string) => void,
@@ -51,32 +51,34 @@ const UserTable: FC<UserTableProps> = (props) => {
   // Render
   return (
     <Paper>
-      <DataTable data={users}>
-        <UserToolbar
-          title={title}
-          onDelete={handleDelete} onRefresh={onRefresh}
-        />
-        <TableContainer>
-          <Table {...table}>
-            <TableHead>
-              <TableRow>
-                <TableCell>Email</TableCell>
-                <TableCell>Connexions</TableCell>
-                <TableCell>Dernière connexion</TableCell>
-                <TableCell>Admin</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              { users.map(user => (
-                <UserRow
-                  key={user._id} user={user} hover
-                  onToggleAdmin={() => onToggleAdmin(user._id)}
-                />
-              )) }
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </DataTable>
+      <TableContainer>
+        <Table
+          data={users} {...table}
+          toolbar={
+            <UserToolbar
+              title={title}
+              onDelete={handleDelete} onRefresh={onRefresh}
+            />
+          }
+        >
+          <TableHead>
+            <TableRow>
+              <TableCell>Email</TableCell>
+              <TableCell>Connexions</TableCell>
+              <TableCell>Dernière connexion</TableCell>
+              <TableCell>Admin</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            { users.map(user => (
+              <UserRow
+                key={user._id} user={user} hover
+                onToggleAdmin={() => onToggleAdmin(user._id)}
+              />
+            )) }
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Paper>
   );
 };

@@ -2,18 +2,18 @@ import React, { FC } from 'react';
 import moment from 'moment';
 
 import {
-  Table, TableContainer, TableHead, TableBody, TableCell,
-  TableProps, Paper
+  TableContainer, TableHead, TableBody, TableCell,
+  Paper
 } from '@material-ui/core';
 
 import Token from 'data/token';
 
-import DataTable from 'components/basics/DataTable';
+import Table, { TableProps } from 'components/basics/Table';
 import TableRow from 'components/basics/TableRow';
 import TableToolbar from 'components/basics/TableToolbar';
 
 // Types
-export interface TokenTableProps extends TableProps {
+export interface TokenTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
   title: string, tokens: Token[],
   onDeleteToken?: (id: string) => void,
 }
@@ -29,27 +29,27 @@ const TokenTable: FC<TokenTableProps> = (props) => {
   // Render
   return (
     <Paper>
-      <DataTable data={tokens}>
-        <TableToolbar title={title} />
-        <TableContainer>
-          <Table {...table}>
-            <TableHead>
-              <TableRow>
-                <TableCell>Adresse</TableCell>
-                <TableCell>Date</TableCell>
+      <TableContainer>
+        <Table
+          data={tokens} {...table}
+          toolbar={<TableToolbar title={title} />}
+        >
+          <TableHead>
+            <TableRow>
+              <TableCell>Adresse</TableCell>
+              <TableCell>Date</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            { tokens.map(token => (
+              <TableRow key={token._id} doc={token} hover>
+                <TableCell>{token.from}</TableCell>
+                <TableCell>{moment.utc(token.createdAt).format('LLLL')}</TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              { tokens.map(token => (
-                <TableRow key={token._id} doc={token} hover>
-                  <TableCell>{token.from}</TableCell>
-                  <TableCell>{moment.utc(token.createdAt).format('LLLL')}</TableCell>
-                </TableRow>
-              )) }
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </DataTable>
+            )) }
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Paper>
   );
 };
