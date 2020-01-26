@@ -4,20 +4,22 @@ import { ThunkDispatch } from 'redux-thunk';
 
 import { env } from 'env';
 import { AppState } from 'store';
-import { setUserData, setUserServers } from 'store/users/actions';
+import { globalReset } from 'store/actions';
 
-import { setError, setToken } from './actions';
+import { setError, setToken, setTokenId } from './actions';
 import { authError, authHeaders } from './utils';
 
 // Thunks
 export const login = (email: string, password: string) => async (dispatch: Dispatch) => {
   try {
     // Make login request
-    const loginRes = await axios.post(`${env.API_BASE_URL}/users/login`, { email, password });
-    const token = loginRes.data.token as string;
+    const res = await axios.post(`${env.API_BASE_URL}/users/login`, { email, password });
+    const token = res.data.token as string;
+    const tokenId = res.data._id as string;
 
     // Store data
     dispatch(setToken(token));
+    dispatch(setTokenId(tokenId));
   } catch (error) {
     dispatch(setError(error.response.data.error));
 
@@ -47,8 +49,7 @@ export const logout = () => async (dispatch: Dispatch, getState: () => AppState)
 
     // Remove token and user
     dispatch(setToken(null));
-    dispatch(setUserData('me', null));
-    dispatch(setUserServers('me', []));
+    dispatch(globalReset());
   } catch (error) {
     if (authError(error, dispatch)) return;
     throw error;

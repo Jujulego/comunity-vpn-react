@@ -54,7 +54,7 @@ const AccountMenu: FC = () => {
         open={anchor != null}
         onClose={handleClose}
       >
-        <MenuItem disabled
+        <MenuItem
           component={Link} to="/profile"
           onClick={handleClose}
         >

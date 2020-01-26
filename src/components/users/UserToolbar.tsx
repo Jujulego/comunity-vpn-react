@@ -1,21 +1,17 @@
-import React, { FC } from 'react';
-import clsx from 'clsx';
+import React, { FC, useContext } from 'react';
 
-import {
-  IconButton,
-  Toolbar, Tooltip,
-  Typography
-} from '@material-ui/core';
 import {
   Delete as DeleteIcon,
   Refresh as RefreshIcon
 } from '@material-ui/icons';
 
-import styles from 'components/users/UserToolbar.module.scss';
+import TableContext from 'contexts/TableContext';
+
+import TableToolbar, { ToolbarProps } from 'components/basics/TableToolbar';
+import ToolbarAction from 'components/basics/ToolbarAction';
 
 // Types
-export interface UserToolbarProps {
-  title: string, numSelected: number,
+export interface UserToolbarProps extends ToolbarProps {
   onDelete?: () => void,
   onRefresh: () => void
 }
@@ -24,31 +20,29 @@ export interface UserToolbarProps {
 const UserToolbar: FC<UserToolbarProps> = (props) => {
   // Props
   const {
-    title, numSelected,
-    onDelete, onRefresh
+    onDelete, onRefresh,
+    ...toolbar
   } = props;
+
+  // Context
+  const { selectedCount } = useContext(TableContext);
 
   // Render
   return (
-    <Toolbar classes={{ root: clsx(styles.toolbar, { [styles.selected]: numSelected > 0 }) }}>
-      { (numSelected > 0) ? (
-        <Typography classes={{ root: styles.title }} color="inherit" variant="subtitle1">{numSelected} sélectionné(s)</Typography>
-      ) : (
-        <Typography classes={{ root: styles.title }} variant="h6">{title}</Typography>
+    <TableToolbar {...toolbar}>
+      { onDelete && selectedCount > 0 && (
+        <ToolbarAction
+          icon={<DeleteIcon />}
+          tooltip="Supprimer les utilistateurs sélectionnés"
+          onClick={onDelete}
+        />
       ) }
-      { onDelete && (numSelected > 0) && (
-        <Tooltip title="Supprimer les utilistateurs sélectionnés">
-          <IconButton onClick={onDelete}>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      ) }
-      <Tooltip title="Rafraîchir">
-        <IconButton onClick={onRefresh}>
-          <RefreshIcon />
-        </IconButton>
-      </Tooltip>
-    </Toolbar>
+      <ToolbarAction
+        icon={<RefreshIcon />}
+        tooltip="Rafraîchir"
+        onClick={onRefresh}
+      />
+    </TableToolbar>
   );
 };
 

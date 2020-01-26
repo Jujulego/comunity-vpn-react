@@ -4,12 +4,12 @@ import { ThunkDispatch } from 'redux-thunk';
 import User from 'data/user';
 import { AppState } from 'store';
 import { refreshAllUsers } from 'store/admin/thunks';
-import { toggleAdmin } from 'store/users/thunks';
+import { deleteUser, toggleAdmin } from 'store/users/thunks';
 
 import UserTable, { UserTableProps } from 'components/users/UserTable';
 
 // Type
-type DefinedProps = 'users' | 'onLoad' | 'onRefresh' | 'onToggleAdmin';
+type DefinedProps = 'users' | 'onLoad' | 'onRefresh' | 'onToggleAdmin' | 'onDeleteUser';
 export type AllUserTableProps = Omit<UserTableProps, DefinedProps>;
 
 // Component
@@ -30,7 +30,8 @@ function mapDispatchToProps(dispatch: ThunkDispatch<AppState, {}, any>, _: AllUs
   return {
     onLoad: () => dispatch(refreshAllUsers()),
     onRefresh: () => dispatch(refreshAllUsers()),
-    onToggleAdmin: (id: string) => dispatch(toggleAdmin(id))
+    onToggleAdmin: (id: string) => dispatch(toggleAdmin(id)),
+    onDeleteUser: (id: string) => dispatch(deleteUser(id))
   };
 }
 

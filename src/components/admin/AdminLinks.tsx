@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   Collapse,
@@ -13,7 +14,12 @@ import {
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
-import styles from './AdminLinks.module.scss';
+// Styles
+const useStyles = makeStyles(({ spacing }) => ({
+  nested: {
+    paddingLeft: spacing(2)
+  }
+}));
 
 // Component
 const AdminLinks: FC = () => {
@@ -26,6 +32,8 @@ const AdminLinks: FC = () => {
   };
 
   // Render
+  const styles = useStyles();
+
   return (
     <>
       <ListItem button onClick={handleClick}>

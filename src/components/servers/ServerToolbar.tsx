@@ -1,22 +1,18 @@
-import React, { FC } from 'react';
-import clsx from 'clsx';
+import React, { FC, useContext } from 'react';
 
-import {
-  IconButton,
-  Toolbar, Tooltip,
-  Typography
-} from '@material-ui/core';
 import {
   Add as AddIcon,
   Delete as DeleteIcon,
   Refresh as RefreshIcon
 } from '@material-ui/icons';
 
-import styles from './ServerToolbar.module.scss';
+import TableContext from 'contexts/TableContext';
+
+import TableToolbar, { ToolbarProps } from 'components/basics/TableToolbar';
+import ToolbarAction from 'components/basics/ToolbarAction';
 
 // Types
-export interface ServerToolbarProps {
-  title: string, numSelected: number,
+export interface ServerToolbarProps extends ToolbarProps {
   onAdd?: () => void,
   onDelete?: () => void,
   onRefresh: () => void
@@ -26,38 +22,35 @@ export interface ServerToolbarProps {
 const ServerToolbar: FC<ServerToolbarProps> = (props) => {
   // Props
   const {
-    title, numSelected,
-    onAdd, onDelete, onRefresh
+    onAdd, onDelete, onRefresh,
+    ...toolbar
   } = props;
 
-  // Render
+  // Context
+  const { selectedCount } = useContext(TableContext);
+
   return (
-    <Toolbar classes={{ root: clsx(styles.toolbar, { [styles.selected]: numSelected > 0 }) }}>
-      { (numSelected > 0) ? (
-        <Typography classes={{ root: styles.title }} color="inherit" variant="subtitle1">{numSelected} sélectionné(s)</Typography>
-      ) : (
-        <Typography classes={{ root: styles.title }} variant="h6">{title}</Typography>
-      ) }
-      { onDelete && (numSelected > 0) && (
-        <Tooltip title="Supprimer les serveurs sélectionnés">
-          <IconButton onClick={onDelete}>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
+    <TableToolbar {...toolbar}>
+      { onDelete && selectedCount > 0 && (
+        <ToolbarAction
+          icon={<DeleteIcon />}
+          tooltip="Supprimer les serveurs sélectionnés"
+          onClick={onDelete}
+        />
       ) }
       { onAdd && (
-        <Tooltip title="Ajouter un serveur">
-          <IconButton onClick={onAdd}>
-            <AddIcon />
-          </IconButton>
-        </Tooltip>
+        <ToolbarAction
+            icon={<AddIcon />}
+            tooltip="Ajouter un serveur"
+            onClick={onAdd}
+        />
       ) }
-      <Tooltip title="Rafraîchir">
-        <IconButton onClick={onRefresh}>
-          <RefreshIcon />
-        </IconButton>
-      </Tooltip>
-    </Toolbar>
+      <ToolbarAction
+        icon={<RefreshIcon />}
+        tooltip="Rafraîchir"
+        onClick={onRefresh}
+      />
+    </TableToolbar>
   );
 };
 

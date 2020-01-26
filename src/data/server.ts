@@ -1,7 +1,8 @@
+import Document from './document';
+
 // Interface
-interface Server {
+interface Server extends Document {
   // Attributes
-  readonly _id: string,
   ip: string,
   port: number,
   country: string,

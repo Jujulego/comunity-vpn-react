@@ -4,16 +4,17 @@ import { AppState } from 'store';
 
 import { refreshUser } from './thunks';
 import { UserState } from './types';
+import { getUserState } from './utils';
 
 // Hooks
 export const useMe = () => useUser('me');
-export const useUser = (id: string, refresh: boolean = false) => {
+export const useUser = (id: string) => {
   // Redux
   const dispatch = useDispatch();
-  const user = useSelector<AppState,UserState>((state) => state.users[id]);
+  const user = useSelector<AppState,UserState | undefined>((state) => getUserState(id, () => state.users));
 
   // If no users => get users
-  if (!user || ((refresh || user.data == null) && !user.loading)) {
+  if (!user || (user.data == null && !user.loading)) {
     dispatch(refreshUser(id));
   }
 

@@ -1,19 +1,21 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 
 import User from 'data/user';
 
 import {
-  Checkbox, Switch,
-  Table, TableContainer, TableHead, TableBody, TableRow, TableCell,
-  TableProps, Paper
+  TableContainer, TableHead, TableBody, TableCell,
+  Paper
 } from '@material-ui/core';
 
+import TableContext from 'contexts/TableContext';
+
+import Table, { TableProps } from 'components/basics/Table';
+import TableRow from 'components/basics/TableRow';
+import UserRow from 'components/users/UserRow';
 import UserToolbar from 'components/users/UserToolbar';
 
 // Types
-interface SelectedState { [id: string]: boolean }
-
-export interface UserTableProps extends TableProps {
+export interface UserTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
   title: string, users: User[],
   onLoad: () => void, onRefresh: () => void,
   onDeleteUser?: (id: string) => void,
@@ -31,13 +33,8 @@ const UserTable: FC<UserTableProps> = (props) => {
     ...table
   } = props;
 
-  // State
-  const [selected, setSelected] = useState<SelectedState>({});
-
-  const numSelected = users.reduce((acc, user) => {
-    if (selected[user._id]) acc++;
-    return acc;
-  }, 0);
+  // Context
+  const { selected } = useContext(TableContext);
 
   // Effects
   useEffect(() => {
@@ -45,65 +42,39 @@ const UserTable: FC<UserTableProps> = (props) => {
   }, [onLoad]);
 
   // Handlers
-  const handleSelect = (id: string) => () => {
-    setSelected(old => ({ ...old, [id]: !old[id] }));
-  };
-
-  const handleSelectAll = () => {
-    if (numSelected === users.length) {
-      setSelected({});
-    } else {
-      setSelected(users.reduce<SelectedState>((acc, server) => {
-        acc[server._id] = true;
-        return acc;
-      }, {}));
-    }
-  };
-
   const handleDelete = onDeleteUser && (() => {
-    users.forEach(server => {
-      if (selected[server._id]) onDeleteUser(server._id);
+    users.forEach(user => {
+      if (selected[user._id]) onDeleteUser(user._id);
     });
   });
 
   // Render
   return (
     <Paper>
-      <UserToolbar
-        title={title} numSelected={numSelected}
-        onDelete={handleDelete} onRefresh={onRefresh}
-      />
       <TableContainer>
-        <Table {...table}>
+        <Table
+          data={users} {...table}
+          toolbar={
+            <UserToolbar
+              title={title}
+              onDelete={handleDelete} onRefresh={onRefresh}
+            />
+          }
+        >
           <TableHead>
             <TableRow>
-              <TableCell padding="checkbox">
-                <Checkbox
-                  indeterminate={numSelected > 0 && numSelected < users.length}
-                  checked={numSelected > 0 && numSelected === users.length}
-                  onChange={handleSelectAll}
-                />
-              </TableCell>
-              <TableCell>Id</TableCell>
               <TableCell>Email</TableCell>
+              <TableCell>Connexions</TableCell>
+              <TableCell>Dernière connexion</TableCell>
               <TableCell>Admin</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            { users && users.map(user => (
-              <TableRow
-                key={user._id}
-                hover selected={selected[user._id]}
-              >
-                <TableCell padding="checkbox">
-                  <Checkbox checked={selected[user._id] || false} onChange={handleSelect(user._id)} />
-                </TableCell>
-                <TableCell>{user._id}</TableCell>
-                <TableCell>{user.email}</TableCell>
-                <TableCell padding="none">
-                  <Switch checked={user.admin} onChange={() => onToggleAdmin(user._id)} />
-                </TableCell>
-              </TableRow>
+            { users.map(user => (
+              <UserRow
+                key={user._id} user={user} hover
+                onToggleAdmin={() => onToggleAdmin(user._id)}
+              />
             )) }
           </TableBody>
         </Table>
