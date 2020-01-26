@@ -17,21 +17,27 @@ export interface TableRowProps extends Omit<MaterialTableRowProps, 'selected'> {
 // Component
 const TableRow: FC<TableRowProps> = (props) => {
   // Props
-  const { doc, children, ...row } = props;
+  const {
+    doc, children,
+    ...row
+  } = props;
 
   // Contexts
   const ctx = useContext(TableContext);
 
   // Render
+  const selectable = doc ? ctx.blacklist.indexOf(doc._id) === -1 : true;
   const selected = doc ? (ctx.selected[doc._id] || false) : ctx.selectedAll;
   const indeterminate = !doc && ctx.selectedCount > 0 && !ctx.selectedAll;
 
   const handleChange = doc ? () => ctx.onSelect(doc._id) : ctx.onSelectAll;
 
   return (
-    <MaterialTableRow {...row}>
+    <MaterialTableRow {...row} selected={selectable && selected}>
       <TableCell padding="checkbox">
-        <Checkbox checked={selected} indeterminate={indeterminate} onChange={handleChange} />
+        { selectable && (
+          <Checkbox checked={selected} indeterminate={indeterminate} onChange={handleChange} />
+        ) }
       </TableCell>
       { children }
     </MaterialTableRow>

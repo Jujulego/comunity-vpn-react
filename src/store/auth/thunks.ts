@@ -6,18 +6,20 @@ import { env } from 'env';
 import { AppState } from 'store';
 import { globalReset } from 'store/actions';
 
-import { setError, setToken } from './actions';
+import { setError, setToken, setTokenId } from './actions';
 import { authError, authHeaders } from './utils';
 
 // Thunks
 export const login = (email: string, password: string) => async (dispatch: Dispatch) => {
   try {
     // Make login request
-    const loginRes = await axios.post(`${env.API_BASE_URL}/users/login`, { email, password });
-    const token = loginRes.data.token as string;
+    const res = await axios.post(`${env.API_BASE_URL}/users/login`, { email, password });
+    const token = res.data.token as string;
+    const tokenId = res.data._id as string;
 
     // Store data
     dispatch(setToken(token));
+    dispatch(setTokenId(tokenId));
   } catch (error) {
     dispatch(setError(error.response.data.error));
 

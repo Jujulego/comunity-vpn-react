@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
 
 import {
@@ -7,6 +8,7 @@ import {
 } from '@material-ui/core';
 
 import Token from 'data/token';
+import { AppState } from 'store';
 
 import Table, { TableProps } from 'components/basics/Table';
 import TableRow from 'components/basics/TableRow';
@@ -26,12 +28,16 @@ const TokenTable: FC<TokenTableProps> = (props) => {
     ...table
   } = props;
 
+  // Redux
+  const current = useSelector((state: AppState) => state.auth.tokenId!);
+
   // Render
   return (
     <Paper>
       <TableContainer>
         <Table
-          data={tokens} {...table}
+          {...table}
+          data={tokens} blacklist={[current]}
           toolbar={<TableToolbar title={title} />}
         >
           <TableHead>
