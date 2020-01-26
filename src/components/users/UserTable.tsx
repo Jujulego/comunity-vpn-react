@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import User from 'data/user';
 
@@ -6,8 +6,6 @@ import {
   TableContainer, TableHead, TableBody, TableCell,
   Paper
 } from '@material-ui/core';
-
-import TableContext from 'contexts/TableContext';
 
 import Table, { TableProps } from 'components/basics/Table';
 import TableRow from 'components/basics/TableRow';
@@ -33,19 +31,14 @@ const UserTable: FC<UserTableProps> = (props) => {
     ...table
   } = props;
 
-  // Context
-  const { selected } = useContext(TableContext);
-
   // Effects
   useEffect(() => {
     onLoad();
   }, [onLoad]);
 
   // Handlers
-  const handleDelete = onDeleteUser && (() => {
-    users.forEach(user => {
-      if (selected[user._id]) onDeleteUser(user._id);
-    });
+  const handleDelete = onDeleteUser && ((ids: string[]) => {
+    ids.forEach(onDeleteUser);
   });
 
   // Render
