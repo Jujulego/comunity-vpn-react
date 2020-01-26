@@ -9,11 +9,12 @@ import {
   Grid,
   TextField
 } from '@material-ui/core';
-
 import { Redirect } from 'react-router';
 
 import { AppState } from 'store';
 import { signIn } from 'store/auth/thunks';
+
+import PasswordField from 'components/basics/PasswordField';
 
 // Types
 interface FormState {
@@ -97,14 +98,14 @@ const SignInForm: FC = () => {
               />
             </Grid>
             <Grid item xs>
-              <TextField
-                label="Mot de passe" fullWidth required type="password"
+              <PasswordField
+                label="Mot de passe" fullWidth required
                 value={form.password} onChange={handleChange('password')}
               />
             </Grid>
             <Grid item xs>
-              <TextField
-                label="Confirmez le mot de passe" fullWidth required type="password"
+              <PasswordField
+                label="Confirmez le mot de passe" fullWidth required
                 value={form.confirm} onChange={handleChange('confirm')}
                 error={confirmError} helperText={confirmError && confirmText}
               />

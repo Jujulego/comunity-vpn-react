@@ -10,12 +10,13 @@ import {
   TextField
 } from '@material-ui/core';
 import { PersonAdd as PersonAddIcon } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
-
 import { Redirect, RouteChildrenProps } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { AppState } from 'store';
 import { login } from 'store/auth/thunks';
+
+import PasswordField from 'components/basics/PasswordField';
 
 // Types
 interface FormState {
@@ -107,8 +108,8 @@ const LoginForm: FC<LoginProps> = (props) => {
               />
             </Grid>
             <Grid item xs>
-              <TextField
-                label="Mot de passe" fullWidth required type="password"
+              <PasswordField
+                label="Mot de passe" fullWidth required
                 value={form.password} onChange={handleChange('password')}
                 error={error != null}
               />
