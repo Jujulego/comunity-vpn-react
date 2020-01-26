@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useDispatch } from 'react-redux';
 
 import {
   Button,
@@ -8,6 +9,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { deleteUserToken } from 'store/users/thunks';
 import { useUser } from 'store/users/hooks';
 
 import TokenTable from 'components/tokens/TokenTable';
@@ -30,7 +32,13 @@ const UserPage: FC<UserPageProps> = (props) => {
   const { id } = props;
 
   // Redux
+  const dispatch = useDispatch();
   const user = useUser(id);
+
+  // Handlers
+  const handleDeleteToken = (token: string) => {
+    dispatch(deleteUserToken(id, token));
+  };
 
   // Render
   const styles = useStyles();
@@ -59,7 +67,11 @@ const UserPage: FC<UserPageProps> = (props) => {
         </Card>
       </Grid>
       <Grid item xs>
-        <TokenTable title="Mes tokens" tokens={user?.tokens || []} />
+        <TokenTable
+          title="Tokens"
+          tokens={user?.tokens || []}
+          onDeleteToken={handleDeleteToken}
+        />
       </Grid>
     </Grid>
   );

@@ -7,7 +7,7 @@ import { AuthActions, AuthState } from './types';
 // Persist config
 const config = {
   key: 'auth',
-  whitelist: ['token', 'token_id'],
+  whitelist: ['token', 'tokenId'],
   storage
 };
 

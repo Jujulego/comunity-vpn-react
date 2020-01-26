@@ -12,7 +12,8 @@ import { AppState } from 'store';
 
 import Table, { TableProps } from 'components/basics/Table';
 import TableRow from 'components/basics/TableRow';
-import TableToolbar from 'components/basics/TableToolbar';
+
+import TokenToolbar from './TokenToolbar';
 
 // Types
 export interface TokenTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
@@ -25,11 +26,17 @@ const TokenTable: FC<TokenTableProps> = (props) => {
   // Props
   const {
     title, tokens,
+    onDeleteToken,
     ...table
   } = props;
 
   // Redux
   const current = useSelector((state: AppState) => state.auth.tokenId!);
+
+  // Handlers
+  const handleDelete = onDeleteToken && ((ids: string[]) => {
+    ids.forEach(onDeleteToken);
+  });
 
   // Render
   return (
@@ -38,7 +45,9 @@ const TokenTable: FC<TokenTableProps> = (props) => {
         <Table
           {...table}
           data={tokens} blacklist={[current]}
-          toolbar={<TableToolbar title={title} />}
+          toolbar={
+            <TokenToolbar title={title} onDelete={handleDelete} />
+          }
         >
           <TableHead>
             <TableRow>
@@ -50,7 +59,7 @@ const TokenTable: FC<TokenTableProps> = (props) => {
             { tokens.map(token => (
               <TableRow key={token._id} doc={token} hover>
                 <TableCell>{token.from}</TableCell>
-                <TableCell>{moment.utc(token.createdAt).format('LLLL')}</TableCell>
+                <TableCell>{moment.utc(token.createdAt).local().format('LLLL')}</TableCell>
               </TableRow>
             )) }
           </TableBody>

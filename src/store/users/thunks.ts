@@ -14,6 +14,7 @@ import {
   addUserServer as addUserServerAction,
   deleteUserServer as deleteUserServerAction,
   deleteUser as deleteUserAction,
+  deleteUserToken as deleteUserTokenAction,
   setUserLoading, setUserData, setUserServers
 } from './actions';
 import { getUserState } from './utils';
@@ -111,6 +112,20 @@ export const deleteUser = (user: string) => async (dispatch: Dispatch, getState:
 
     dispatch(setAllUsers(getState().admin.users.filter(id => id !== user)));
     dispatch(deleteUserAction(user));
+  } catch (error) {
+    if (authError(error, dispatch)) return;
+    throw error;
+  }
+};
+
+export const deleteUserToken = (user: string, id: string) => async (dispatch: Dispatch, getState: () => AppState) => {
+  try {
+    const { token } = getState().auth;
+    if (token == null) return;
+
+    await axios.delete(`${env.API_BASE_URL}/user/${user}/token/${id}`, { headers: authHeaders(token) });
+
+    dispatch(deleteUserTokenAction(user, id));
   } catch (error) {
     if (authError(error, dispatch)) return;
     throw error;

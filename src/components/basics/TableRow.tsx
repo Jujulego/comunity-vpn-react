@@ -33,7 +33,7 @@ const TableRow: FC<TableRowProps> = (props) => {
   const handleChange = doc ? () => ctx.onSelect(doc._id) : ctx.onSelectAll;
 
   return (
-    <MaterialTableRow {...row} selected={selectable && selected}>
+    <MaterialTableRow {...row} selected={selectable && doc && selected}>
       <TableCell padding="checkbox">
         { selectable && (
           <Checkbox checked={selected} indeterminate={indeterminate} onChange={handleChange} />

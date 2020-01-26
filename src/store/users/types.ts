@@ -3,8 +3,8 @@ import { Action } from 'redux';
 import User from 'data/user';
 
 import {
-  ADD_SERVER, DEL_SERVER,
-  DEL_USER,
+  ADD_SERVER,
+  DEL_SERVER, DEL_USER, DEL_TOKEN,
   SET_DATA, SET_LOADING, SET_SERVERS
 } from './constants';
 
@@ -30,8 +30,13 @@ export interface UserServerAction<A> extends UserAction<A> {
   readonly server: string
 }
 
+export interface UserTokenAction<A> extends UserAction<A> {
+  readonly token: string
+}
+
 export type UserActions = |
   UserAction<typeof DEL_USER> |
+  UserTokenAction<typeof DEL_TOKEN> |
   UserServerAction<typeof ADD_SERVER> |
   UserServerAction<typeof DEL_SERVER> |
   UserSetAction<typeof SET_LOADING, UserState['loading']> |

@@ -1,4 +1,4 @@
-import { ADD_SERVER, DEL_SERVER, DEL_USER, SET_DATA, SET_LOADING, SET_SERVERS } from './constants';
+import { ADD_SERVER, DEL_SERVER, DEL_TOKEN, DEL_USER, SET_DATA, SET_LOADING, SET_SERVERS } from './constants';
 import { UserActions, UserSetAction } from './types';
 
 // Action creator
@@ -26,4 +26,9 @@ export const deleteUserServer = (user: string, server: string): UserActions => (
 export const deleteUser = (user: string): UserActions => ({
   type: DEL_USER,
   user
+});
+
+export const deleteUserToken = (user: string, token: string): UserActions => ({
+  type: DEL_TOKEN,
+  user, token
 });

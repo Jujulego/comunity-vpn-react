@@ -6,3 +6,4 @@ export const SET_SERVERS = 'users/SET_SERVERS';
 export const ADD_SERVER = 'users/ADD_SERVER';
 export const DEL_SERVER = 'users/DEL_SERVER';
 export const DEL_USER   = 'users/DEL_USER';
+export const DEL_TOKEN  = 'users/DEL_TOKEN';

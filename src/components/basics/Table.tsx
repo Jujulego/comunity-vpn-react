@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useState } from 'react';
 
 import MaterialTable, {
   TableProps as MaterialTableProps
@@ -27,6 +27,11 @@ const Table: FC<TableProps> = (props) => {
   // State
   const [selected, setSelected] = useState<SelectedState>({});
 
+  // Effects
+  useEffect(() => {
+    setSelected({});
+  }, [data]);
+
   // Render
   const selectedCount = data.reduce((acc, doc) => selected[doc._id] ? acc + 1 : acc, 0);
   const selectedAll = selectedCount >= (data.length - blacklist.length);
@@ -51,7 +56,7 @@ const Table: FC<TableProps> = (props) => {
       value={{
         blacklist,
         selected, selectedCount,
-        selectedAll: data.length > 0 && selectedAll,
+        selectedAll: selectedCount > 0 && selectedAll,
         onSelect,
         onSelectAll
       }}
