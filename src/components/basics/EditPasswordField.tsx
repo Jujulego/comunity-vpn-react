@@ -35,7 +35,7 @@ const EditPasswordField: FC<EditPasswordFieldProps> = (props) => {
     editable: pEditable,
     onChangeEditable = () => {},
 
-    disabled, value,
+    disabled, required, value,
     InputProps = {},
     ...field
   } = props;
@@ -79,6 +79,8 @@ const EditPasswordField: FC<EditPasswordFieldProps> = (props) => {
     <TextField
       {...field}
       disabled={disabled || !editable}
+      required={editable && required}
+
       type={(editable && visible) ? 'text' : 'password'}
       value={editable ? value : 'secretpassword!'}
 
