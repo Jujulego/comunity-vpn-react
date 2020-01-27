@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/LoginForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/SignInForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/SignInForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/users/CredentialsCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/CredentialsCard.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,14 +136,7 @@
       <workItem from="1580031864861" duration="7242000" />
       <workItem from="1580044248040" duration="1657000" />
       <workItem from="1580062613931" duration="10006000" />
-      <workItem from="1580120958214" duration="6809000" />
-    </task>
-    <task id="LOCAL-00015" summary="add: update user data management">
-      <created>1579541935813</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1579541935813</updated>
+      <workItem from="1580120958214" duration="7906000" />
     </task>
     <task id="LOCAL-00016" summary="add: api's url in production">
       <created>1579542220693</created>
@@ -481,14 +474,20 @@
       <option name="project" value="LOCAL" />
       <updated>1580131690043</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="add: validation in LoginForm">
+      <created>1580132322646</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1580132322646</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update: use &lt;form&gt; in login form" />
     <MESSAGE value="add: sign in" />
     <MESSAGE value="update: version 0.3.0" />
     <MESSAGE value="update: delete user (admin)" />
@@ -513,7 +512,8 @@
     <MESSAGE value="update: edit passwords" />
     <MESSAGE value="update: split Credentials form in an other component" />
     <MESSAGE value="add: validation in CredentialsCard" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: validation in CredentialsCard" />
+    <MESSAGE value="add: validation in LoginForm" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: validation in LoginForm" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-2839" y="-716" key="#Docker_Image" timestamp="1579352518769">
@@ -534,12 +534,12 @@
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579773341708" />
     <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579960517937" />
-    <state x="888" y="27" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580131689290">
+    <state x="888" y="27" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580132321907">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
     <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580084573270" />
-    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580131689290" />
+    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580132321907" />
     <state x="219" y="79" key="DiffContextDialog" timestamp="1579987938687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -81,7 +81,7 @@ const CredentialsCard: FC<CredentialsCardProps> = (props) => {
                 inputRef={register({ validate: validator.isEmail })}
 
                 label="Email" fullWidth
-                error={!!errors.email} helperText={errors.email && "Doit être une adresse email valide"}
+                error={!!errors.email} helperText={errors.email && "Adresse email valide"}
               />
             </Grid>
             <Grid item>

@@ -1,6 +1,8 @@
-import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import validator from 'validator';
 
 import {
   Button,
@@ -52,24 +54,21 @@ const useStyles = makeStyles(({ palette }) => {
 
 // Component
 const SignInForm: FC = () => {
-  // State
-  const [form, setForm] = useState<FormState>({
-    email: '', password: '', confirm: ''
-  });
+  // Form
+  const { errors, formState, handleSubmit, getValues, register } = useForm<FormState>({ mode: 'onBlur' });
 
   // Redux
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: AppState) => state.auth.token != null);
 
-  // Callbacks
-  const handleChange = (field: keyof FormState) => (event: ChangeEvent<{ value: unknown }>) => {
-    event.persist();
-    setForm(old => ({ ...old, [field]: event.target.value }));
+  // Handlers
+  const samePassword = (confirm: string) => {
+    const { password } = getValues();
+    return confirm === password || 'Les mots de passe ne correspondent pas';
   };
 
-  const handleSignIn = (event: FormEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    dispatch(signIn(form.email, form.password));
+  const handleSignIn = (data: FormState) => {
+    dispatch(signIn(data.email, data.password));
   };
 
   // Render
@@ -79,12 +78,9 @@ const SignInForm: FC = () => {
     return <Redirect to="/" />;
   }
 
-  const confirmError = !!form.confirm && form.password !== form.confirm;
-  const confirmText  = "Les mots de passe ne correspondent pas";
-
   return (
     <Container classes={{ root: styles.container }} fixed maxWidth="sm">
-      <Card component="form" onSubmit={handleSignIn}>
+      <Card component="form" onSubmit={handleSubmit(handleSignIn)}>
         <CardHeader
           classes={{ root: styles.header }}
           title="Community VPN" titleTypographyProps={{ variant: "body1" }}
@@ -94,27 +90,41 @@ const SignInForm: FC = () => {
             <Grid item xs>
               <TextField
                 label="Email" fullWidth required
-                value={form.email} onChange={handleChange('email')}
+                error={!!errors.email} helperText={errors.email?.message}
+                name="email" inputRef={
+                  register({
+                    validate: (value: string) => validator.isEmail(value) || "Adresse email invalide"
+                  })
+                }
               />
             </Grid>
             <Grid item xs>
               <PasswordField
                 label="Mot de passe" fullWidth required
-                value={form.password} onChange={handleChange('password')}
+                error={!!errors.password} helperText={errors.password?.message}
+                name="password" inputRef={
+                  register({
+                    minLength: { value: 8, message: "8 caractères minimum" }
+                  })
+                }
               />
             </Grid>
             <Grid item xs>
               <PasswordField
                 label="Confirmez le mot de passe" fullWidth required
-                value={form.confirm} onChange={handleChange('confirm')}
-                error={confirmError} helperText={confirmError && confirmText}
+                error={!!errors.confirm} helperText={errors.confirm?.message}
+                name="confirm" inputRef={
+                  register({
+                    validate: samePassword
+                  })
+                }
               />
             </Grid>
           </Grid>
         </CardContent>
         <CardActions classes={{ root: styles.actions }}>
           <Button
-            color="primary" variant="contained" disabled={!form.email || !form.password || !form.confirm || confirmError}
+            color="primary" variant="contained" disabled={!formState.dirty}
             type="submit"
           >
             Inscription
