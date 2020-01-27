@@ -55,7 +55,8 @@ export const refreshUserServers = (id: string) => async (dispatch: Dispatch, get
   }
 };
 
-export const updateUser = (id: string, values: Partial<User>) => async (dispatch: Dispatch, getState: () => AppState) => {
+type EditedUser = Partial<User & { password: string }>;
+export const updateUser = (id: string, values: EditedUser) => async (dispatch: Dispatch, getState: () => AppState) => {
   try {
     const { token } = getState().auth;
     if (token == null) return;

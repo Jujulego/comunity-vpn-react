@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   Button,
@@ -7,16 +8,17 @@ import {
   Grid,
   TextField
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { refreshUser, updateUser, deleteUserToken } from 'store/users/thunks';
 import { useUser } from 'store/users/hooks';
 
+import EditPasswordField from 'components/basics/EditPasswordField';
 import TokenTable from 'components/tokens/TokenTable';
 
 // Types
 interface FormState {
-  email: string
+  email: string,
+  password: string
 }
 
 export interface UserPageProps {
@@ -36,8 +38,9 @@ const UserPage: FC<UserPageProps> = (props) => {
   const { id } = props;
 
   // State
+  const [editPassword, setEditPassword] = useState(false);
   const [form, setForm] = useState<FormState>({
-    email: ''
+    email: '', password: ''
   });
 
   // Redux
@@ -47,7 +50,11 @@ const UserPage: FC<UserPageProps> = (props) => {
   // Effects
   useEffect(() => {
     if (user) {
-      setForm({ email: user.email });
+      setEditPassword(false);
+      setForm({
+        email: user.email,
+        password: ''
+      });
     }
   }, [user]);
 
@@ -62,15 +69,18 @@ const UserPage: FC<UserPageProps> = (props) => {
 
   const handleChange = (field: keyof FormState) => (event: ChangeEvent<{ value: unknown }>) => {
     event.persist();
+
     setForm(old => ({ ...old, [field]: event.target.value as string }));
   };
 
   const handleReset = (event: FormEvent<HTMLDivElement>) => {
     event.preventDefault();
 
-    if (user) {
-      setForm({ email: user.email });
-    }
+    setEditPassword(false);
+    setForm({
+      email: user ? user.email : '',
+      password: ''
+    });
   };
 
   const handleSubmit = (event: FormEvent<HTMLDivElement>) => {
@@ -83,7 +93,7 @@ const UserPage: FC<UserPageProps> = (props) => {
   const styles = useStyles();
   const title = (id === 'me') ? "Moi" : `Utilisateur ${id}`;
 
-  const changed = form.email !== user?.email;
+  const changed = form.email !== user?.email || form.password !== '';
 
   return (
     <Grid container spacing={2}>
@@ -94,10 +104,17 @@ const UserPage: FC<UserPageProps> = (props) => {
             { user && (
               <Grid container direction="column" spacing={2}>
                 <Grid item>
-                  <TextField label="Email" value={form.email} onChange={handleChange('email')} fullWidth />
+                  <TextField
+                    label="Email" fullWidth
+                    value={form.email} onChange={handleChange('email')}
+                  />
                 </Grid>
                 <Grid item>
-                  <TextField label="Mot de passe" value="secretpassword!" type="password" fullWidth disabled />
+                  <EditPasswordField
+                    label="Mot de passe" fullWidth
+                    editable={editPassword} onChangeEditable={setEditPassword}
+                    value={form.password} onChange={handleChange('password')}
+                  />
                 </Grid>
               </Grid>
             ) }
