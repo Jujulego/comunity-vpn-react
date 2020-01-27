@@ -1,30 +1,19 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
-import {
-  Button,
-  Card, CardHeader, CardContent, CardActions,
-  Grid,
-  TextField
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core';
 
-import { refreshUser, deleteUserToken } from 'store/users/thunks';
+import { Credentials } from 'data/user';
+import { refreshUser, updateUser, deleteUserToken } from 'store/users/thunks';
 import { useUser } from 'store/users/hooks';
 
 import TokenTable from 'components/tokens/TokenTable';
+import CredentialsCard from 'components/users/CredentialsCard';
 
 // Types
 export interface UserPageProps {
   id: string
 }
-
-// Style
-const useStyles = makeStyles({
-  actions: {
-    justifyContent: 'end'
-  }
-});
 
 // Components
 const UserPage: FC<UserPageProps> = (props) => {
@@ -44,31 +33,15 @@ const UserPage: FC<UserPageProps> = (props) => {
     dispatch(deleteUserToken(id, token));
   };
 
-  // Render
-  const styles = useStyles();
-  const title = (id === 'me') ? "Moi" : `Utilisateur ${id}`;
+  const handleUpdate = (cred: Partial<Credentials>) => {
+    dispatch(updateUser(id, cred));
+  };
 
+  // Render
   return (
     <Grid container spacing={2}>
       <Grid item lg={5}>
-        <Card>
-          <CardHeader title={title} titleTypographyProps={{ variant: "h6" }} />
-          <CardContent>
-            { user && (
-              <Grid container direction="column" spacing={2}>
-                <Grid item>
-                  <TextField label="Email" value={user.email} fullWidth disabled />
-                </Grid>
-                <Grid item>
-                  <TextField label="Mot de passe" value="secretpassword!" type="password" fullWidth disabled />
-                </Grid>
-              </Grid>
-            ) }
-          </CardContent>
-          <CardActions classes={{ root: styles.actions }}>
-            <Button color="primary" disabled>Enregistrer</Button>
-          </CardActions>
-        </Card>
+        <CredentialsCard user={user} onUpdate={handleUpdate} />
       </Grid>
       <Grid item xs>
         <TokenTable

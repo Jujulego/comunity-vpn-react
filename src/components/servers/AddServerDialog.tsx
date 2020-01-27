@@ -1,4 +1,6 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { FC } from 'react';
+import { useForm } from 'react-hook-form';
+import validator from 'validator';
 
 import {
   Button,
@@ -7,6 +9,10 @@ import {
 } from '@material-ui/core';
 
 // Types
+interface FormState {
+  ip: string
+}
+
 export interface AddServerDialogProps {
   open: boolean, onClose: () => void,
   onAddServer: (ip: string) => void
@@ -20,33 +26,38 @@ const AddServerDialog: FC<AddServerDialogProps> = (props) => {
     onAddServer
   } = props;
 
-  // State
-  const [ip, setIp] = useState('');
+  // Form
+  const { errors, formState, handleSubmit, register } = useForm<FormState>();
 
   // Handlers
-  const handleChange = (event: ChangeEvent<{ value: string }>) => {
-    event.persist();
-    setIp(event.target.value);
-  };
-
-  const handleAdd = () => {
+  const handleAdd = ({ ip }: FormState) => {
     onAddServer(ip);
     onClose();
   };
 
   // Render
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog
+      open={open} onClose={onClose}
+      maxWidth="xs" fullWidth
+    >
       <DialogTitle>Ajout de serveur</DialogTitle>
       <DialogContent>
         <TextField
-          label="Adresse" fullWidth
-          value={ip} onChange={handleChange}
+          label="Adresse IP" fullWidth
+          error={!!errors.ip} helperText={errors.ip?.message}
+          name="ip" inputRef={
+            register({
+              validate: (value: string) => validator.isIP(value) || "Adresse IP invalide"
+            })
+          }
         />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">Annuler</Button>
-        <Button onClick={handleAdd} color="primary" disabled={!ip}>Ajouter</Button>
+        <Button onClick={handleSubmit(handleAdd)} color="primary" disabled={!formState.dirty}>
+          Ajouter
+        </Button>
       </DialogActions>
     </Dialog>
   );

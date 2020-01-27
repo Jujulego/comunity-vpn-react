@@ -55,6 +55,22 @@ export const refreshUserServers = (id: string) => async (dispatch: Dispatch, get
   }
 };
 
+type EditedUser = Partial<User & { password: string }>;
+export const updateUser = (id: string, values: EditedUser) => async (dispatch: Dispatch, getState: () => AppState) => {
+  try {
+    const { token } = getState().auth;
+    if (token == null) return;
+
+    const res = await axios.put(`${env.API_BASE_URL}/user/${id}`, values, { headers: authHeaders(token) });
+    const user = res.data as User;
+
+    dispatch(setUserData(id, user));
+  } catch (error) {
+    if (authError(error, dispatch)) return;
+    throw error;
+  }
+};
+
 export const toggleAdmin = (id: string) => async (dispatch: Dispatch, getState: () => AppState) => {
   try {
     const { token } = getState().auth;
@@ -88,21 +104,6 @@ export const addUserServer = (user: string, ip: string) => async (dispatch: Disp
   }
 };
 
-export const deleteUserServer = (user: string, id: string) => async (dispatch: Dispatch, getState: () => AppState) => {
-  try {
-    const { token } = getState().auth;
-    if (token == null) return;
-
-    await axios.delete(`${env.API_BASE_URL}/server/${id}`, { headers: authHeaders(token) });
-
-    dispatch(deleteUserServerAction(user, id));
-    dispatch(deleteServer(id));
-  } catch (error) {
-    if (authError(error, dispatch)) return;
-    throw error;
-  }
-};
-
 export const deleteUser = (user: string) => async (dispatch: Dispatch, getState: () => AppState) => {
   try {
     const { token } = getState().auth;
@@ -112,6 +113,21 @@ export const deleteUser = (user: string) => async (dispatch: Dispatch, getState:
 
     dispatch(setAllUsers(getState().admin.users.filter(id => id !== user)));
     dispatch(deleteUserAction(user));
+  } catch (error) {
+    if (authError(error, dispatch)) return;
+    throw error;
+  }
+};
+
+export const deleteUserServer = (user: string, id: string) => async (dispatch: Dispatch, getState: () => AppState) => {
+  try {
+    const { token } = getState().auth;
+    if (token == null) return;
+
+    await axios.delete(`${env.API_BASE_URL}/server/${id}`, { headers: authHeaders(token) });
+
+    dispatch(deleteUserServerAction(user, id));
+    dispatch(deleteServer(id));
   } catch (error) {
     if (authError(error, dispatch)) return;
     throw error;
