@@ -12,11 +12,11 @@ import {
 
 // Types
 type TextToPassword<T extends TextFieldProps> =
-  Omit<T, 'type' | 'inputRef' | 'InputProps'> &
+  Omit<T, 'type' | 'InputProps'> &
   {
     editable?: boolean,
     onChangeEditable?: (editable: boolean) => void,
-    InputProps?: Omit<T['InputProps'], 'endAdornment'>
+    InputProps?: Omit<T['InputProps'], 'endAdornment' | 'inputRef'>
   }
 
 export type FilledPasswordFieldProps   = TextToPassword<FilledTextFieldProps>;
@@ -84,8 +84,11 @@ const EditPasswordField: FC<EditPasswordFieldProps> = (props) => {
       type={(editable && visible) ? 'text' : 'password'}
       value={editable ? value : 'secretpassword!'}
 
-      inputRef={input}
-      InputProps={{ ...InputProps, endAdornment }}
+      InputProps={{
+        ...InputProps,
+        inputRef: input,
+        endAdornment
+      }}
     />
   );
 };

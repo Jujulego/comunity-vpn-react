@@ -1,5 +1,7 @@
-import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
+import React, { FC, FormEvent, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Controller, useForm } from 'react-hook-form';
+import validator from 'validator';
 
 import {
   Button,
@@ -13,7 +15,6 @@ import User, { Credentials } from 'data/user';
 import EditPasswordField from 'components/basics/EditPasswordField';
 
 // Types
-type FormState = Credentials;
 export interface CredentialsCardProps extends Omit<CardProps, 'component'> {
   user: User | null,
   onUpdate: (cred: Partial<Credentials>) => void
@@ -36,46 +37,25 @@ const CredentialsCard: FC<CredentialsCardProps> = (props) => {
 
   // State
   const [editPassword, setEditPassword] = useState(false);
-  const [form, setForm] = useState<FormState>({
-    email: '', password: ''
-  });
-
-  // Effects
-  useEffect(() => {
-    if (user) {
-      setEditPassword(false);
-      setForm({
-        email: user.email,
-        password: ''
-      });
-    }
-  }, [user]);
+  const { control, errors, formState, handleSubmit, register, reset } = useForm<Credentials>({ mode: 'onBlur' });
 
   // Handlers
-  const handleChange = (field: keyof FormState) => (event: ChangeEvent<{ value: unknown }>) => {
-    event.persist();
-
-    setForm(old => ({ ...old, [field]: event.target.value as string }));
-  };
-
   const handleReset = (event: FormEvent<HTMLDivElement>) => {
     event.preventDefault();
 
     setEditPassword(false);
-    setForm({
-      email: user ? user.email : '',
+    reset({
+      email: user?.email || '',
       password: ''
     });
   };
 
-  const handleSubmit = (event: FormEvent<HTMLDivElement>) => {
-    event.preventDefault();
-
+  const handleUpdate = (cred: Credentials) => {
     if (user) {
       const update: Partial<Credentials> = {};
 
-      if (form.email !== user.email) update.email = form.email;
-      if (form.password !== '') update.password = form.password;
+      if (cred.email !== user.email) update.email    = cred.email;
+      if (cred.password !== '')      update.password = cred.password;
 
       if (Object.keys(update).length > 0) {
         onUpdate(update);
@@ -85,33 +65,39 @@ const CredentialsCard: FC<CredentialsCardProps> = (props) => {
 
   // Render
   const styles = useStyles();
-  const changed = form.email !== user?.email || form.password !== '';
 
   return (
-    <Card {...card} component="form" onSubmit={handleSubmit} onReset={handleReset}>
+    <Card {...card} component="form" onSubmit={handleSubmit(handleUpdate)} onReset={handleReset}>
       <CardHeader title="Identifiants" titleTypographyProps={{ variant: "h6" }} />
       <CardContent>
         { user && (
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <TextField
+                name="email"
+                defaultValue={user?.email || ''}
+                inputRef={register({ validate: validator.isEmail })}
+
                 label="Email" fullWidth
-                value={form.email} onChange={handleChange('email')}
+                error={!!errors.email} helperText={errors.email && "Doit être une adresse email valide"}
               />
             </Grid>
             <Grid item>
-              <EditPasswordField
+              <Controller
+                name="password" defaultValue="" as={EditPasswordField}
+                control={control} rules={{ minLength: 8 }}
+
                 label="Mot de passe" fullWidth required
+                error={!!errors.password} helperText={errors.password && "8 caractères minimum"}
                 editable={editPassword} onChangeEditable={setEditPassword}
-                value={form.password} onChange={handleChange('password')}
               />
             </Grid>
           </Grid>
         ) }
       </CardContent>
       <CardActions classes={{ root: styles.actions }}>
-        <Button color="secondary" type="reset" disabled={!changed}>Annuler</Button>
-        <Button color="primary" type="submit" disabled={!changed && (form.password === '')}>Enregistrer</Button>
+        <Button color="secondary" type="reset" disabled={!formState.dirty}>Annuler</Button>
+        <Button color="primary" type="submit" disabled={!formState.dirty}>Enregistrer</Button>
       </CardActions>
     </Card>
   )
