@@ -37,6 +37,8 @@ const CredentialsCard: FC<CredentialsCardProps> = (props) => {
 
   // State
   const [editPassword, setEditPassword] = useState(false);
+
+  // Form
   const { control, errors, formState, handleSubmit, register, reset } = useForm<Credentials>({ mode: 'onBlur' });
 
   // Handlers

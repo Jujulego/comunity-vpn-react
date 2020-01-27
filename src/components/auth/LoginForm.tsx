@@ -1,6 +1,7 @@
-import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FC, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Button, IconButton,
@@ -13,17 +14,13 @@ import { PersonAdd as PersonAddIcon } from '@material-ui/icons';
 import { Redirect, RouteChildrenProps } from 'react-router';
 import { Link } from 'react-router-dom';
 
+import { Credentials } from 'data/user';
 import { AppState } from 'store';
 import { login } from 'store/auth/thunks';
 
 import PasswordField from 'components/basics/PasswordField';
 
 // Types
-interface FormState {
-  email: string,
-  password: string
-}
-
 export type LoginProps = RouteChildrenProps<{}, { from?: string }>;
 
 // Style
@@ -58,25 +55,27 @@ const LoginForm: FC<LoginProps> = (props) => {
   // Props
   const { location } = props;
 
-  // State
-  const [form, setForm] = useState<FormState>({
-    email: '', password: ''
-  });
+  // Form
+  const { errors, formState, handleSubmit, register, setError } = useForm<Credentials>();
 
   // Redux
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: AppState) => state.auth.token != null);
   const error = useSelector((state: AppState) => state.auth.error);
 
-  // Callbacks
-  const handleChange = (field: keyof FormState) => (event: ChangeEvent<{ value: unknown }>) => {
-    event.persist();
-    setForm(old => ({ ...old, [field]: event.target.value }));
-  };
+  // Effects
+  useEffect(() => {
+    if (error) {
+      setError([
+        { type: 'loginFailed', name: 'email', message: error },
+        { type: 'loginFailed', name: 'password', message: '' },
+      ]);
+    }
+  }, [error, setError]);
 
-  const handleLogin = (event: FormEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    dispatch(login(form.email, form.password));
+  // Handlers
+  const handleLogin = (cred: Credentials) => {
+    dispatch(login(cred.email, cred.password));
   };
 
   // Render
@@ -88,7 +87,7 @@ const LoginForm: FC<LoginProps> = (props) => {
 
   return (
     <Container classes={{ root: styles.container }} fixed maxWidth="sm">
-      <Card component="form" onSubmit={handleLogin}>
+      <Card component="form" onSubmit={handleSubmit(handleLogin)}>
         <CardHeader
           classes={{ root: styles.header, action: styles.action }}
           title="Community VPN" titleTypographyProps={{ variant: "body1" }}
@@ -103,22 +102,22 @@ const LoginForm: FC<LoginProps> = (props) => {
             <Grid item xs>
               <TextField
                 label="Email" fullWidth required
-                value={form.email} onChange={handleChange('email')}
-                error={error != null} helperText={error}
+                error={!!errors.email} helperText={errors.email?.message}
+                name="email" inputRef={register({ required: true })}
               />
             </Grid>
             <Grid item xs>
               <PasswordField
                 label="Mot de passe" fullWidth required
-                value={form.password} onChange={handleChange('password')}
-                error={error != null}
+                error={!!errors.password} helperText={errors.password?.message}
+                name="password" inputRef={register({ required: true })}
               />
             </Grid>
           </Grid>
         </CardContent>
         <CardActions classes={{ root: styles.actions }}>
           <Button
-            color="primary" variant="contained" disabled={!form.email || !form.password}
+            color="primary" variant="contained" disabled={!formState.dirty}
             type="submit"
           >
             Connexion
