@@ -12,7 +12,7 @@ import {
 
 // Types
 type TextToPassword<T extends TextFieldProps> =
-  Omit<T, 'type' | 'InputProps'> &
+  Omit<T, 'type' | 'inputRef' | 'InputProps'> &
   {
     editable?: boolean,
     onChangeEditable?: (editable: boolean) => void,

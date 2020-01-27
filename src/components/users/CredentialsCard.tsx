@@ -78,19 +78,26 @@ const CredentialsCard: FC<CredentialsCardProps> = (props) => {
               <TextField
                 name="email"
                 defaultValue={user?.email || ''}
-                inputRef={register({ validate: validator.isEmail })}
+                inputRef={
+                  register({
+                    validate: (value: string) => validator.isEmail(value) || "Adresse email invalide"
+                  })
+                }
 
                 label="Email" fullWidth
-                error={!!errors.email} helperText={errors.email && "Adresse email valide"}
+                error={!!errors.email} helperText={errors.email?.message}
               />
             </Grid>
             <Grid item>
               <Controller
-                name="password" defaultValue="" as={EditPasswordField}
-                control={control} rules={{ minLength: 8 }}
+                name="password" defaultValue=""
+                control={control} as={EditPasswordField}
+                rules={{
+                  minLength: { value: 8, message: "8 caractères minimum"}
+                }}
 
                 label="Mot de passe" fullWidth required
-                error={!!errors.password} helperText={errors.password && "8 caractères minimum"}
+                error={!!errors.password} helperText={errors.password?.message}
                 editable={editPassword} onChangeEditable={setEditPassword}
               />
             </Grid>

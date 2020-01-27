@@ -56,7 +56,7 @@ const LoginForm: FC<LoginProps> = (props) => {
   const { location } = props;
 
   // Form
-  const { errors, formState, handleSubmit, register, setError } = useForm<Credentials>();
+  const { errors, handleSubmit, register, setError } = useForm<Credentials>();
 
   // Redux
   const dispatch = useDispatch();
@@ -103,23 +103,20 @@ const LoginForm: FC<LoginProps> = (props) => {
               <TextField
                 label="Email" fullWidth required
                 error={!!errors.email} helperText={errors.email?.message}
-                name="email" inputRef={register({ required: true })}
+                name="email" inputRef={register}
               />
             </Grid>
             <Grid item xs>
               <PasswordField
                 label="Mot de passe" fullWidth required
                 error={!!errors.password} helperText={errors.password?.message}
-                name="password" inputRef={register({ required: true })}
+                name="password" inputRef={register}
               />
             </Grid>
           </Grid>
         </CardContent>
         <CardActions classes={{ root: styles.actions }}>
-          <Button
-            color="primary" variant="contained" disabled={!formState.dirty}
-            type="submit"
-          >
+          <Button color="primary" variant="contained" type="submit">
             Connexion
           </Button>
         </CardActions>
