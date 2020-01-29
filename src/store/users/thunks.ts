@@ -8,11 +8,9 @@ import User from 'data/user';
 import { AppState } from 'store';
 import { setAllUsers } from 'store/admin/actions';
 import { authError, authHeaders } from 'store/auth/utils';
-import { deleteServer, setServerData } from 'store/servers/actions';
+import { setServerData } from 'store/servers/actions';
 
 import {
-  addUserServer as addUserServerAction,
-  deleteUserServer as deleteUserServerAction,
   deleteUser as deleteUserAction,
   deleteUserToken as deleteUserTokenAction,
   setUserLoading, setUserData, setUserServers
@@ -88,16 +86,14 @@ export const toggleAdmin = (id: string) => async (dispatch: Dispatch, getState: 
   }
 };
 
-export const addUserServer = (user: string, ip: string) => async (dispatch: Dispatch, getState: () => AppState) => {
+export const deleteUserToken = (user: string, id: string) => async (dispatch: Dispatch, getState: () => AppState) => {
   try {
     const { token } = getState().auth;
     if (token == null) return;
 
-    const res = await axios.post(`${env.API_BASE_URL}/server/`, { ip }, { headers: authHeaders(token) });
-    const server = res.data as Server;
+    await axios.delete(`${env.API_BASE_URL}/user/${user}/token/${id}`, { headers: authHeaders(token) });
 
-    dispatch(setServerData(server._id, server));
-    dispatch(addUserServerAction(user, server._id));
+    dispatch(deleteUserTokenAction(user, id));
   } catch (error) {
     if (authError(error, dispatch)) return;
     throw error;
@@ -113,35 +109,6 @@ export const deleteUser = (user: string) => async (dispatch: Dispatch, getState:
 
     dispatch(setAllUsers(getState().admin.users.filter(id => id !== user)));
     dispatch(deleteUserAction(user));
-  } catch (error) {
-    if (authError(error, dispatch)) return;
-    throw error;
-  }
-};
-
-export const deleteUserServer = (user: string, id: string) => async (dispatch: Dispatch, getState: () => AppState) => {
-  try {
-    const { token } = getState().auth;
-    if (token == null) return;
-
-    await axios.delete(`${env.API_BASE_URL}/server/${id}`, { headers: authHeaders(token) });
-
-    dispatch(deleteUserServerAction(user, id));
-    dispatch(deleteServer(id));
-  } catch (error) {
-    if (authError(error, dispatch)) return;
-    throw error;
-  }
-};
-
-export const deleteUserToken = (user: string, id: string) => async (dispatch: Dispatch, getState: () => AppState) => {
-  try {
-    const { token } = getState().auth;
-    if (token == null) return;
-
-    await axios.delete(`${env.API_BASE_URL}/user/${user}/token/${id}`, { headers: authHeaders(token) });
-
-    dispatch(deleteUserTokenAction(user, id));
   } catch (error) {
     if (authError(error, dispatch)) return;
     throw error;

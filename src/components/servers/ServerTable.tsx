@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import {
-  TableContainer, TableHead, TableBody, TableCell,
-  Paper, Switch
+  Paper,
+  TableContainer, TableHead, TableBody, TableCell
 } from '@material-ui/core';
 
 import Server from 'data/server';
@@ -18,14 +18,8 @@ import ServerToolbar from './ServerToolbar';
 export interface ServerTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
   title: string, servers: Server[], showUsers?: boolean,
   onLoad: () => void, onRefresh: () => void,
-  onAddServer?: (ip: string) => void,
-  onDeleteServer?: (id: string) => void,
-  onToggleServer: (id: string, port: number) => void
-}
-
-// Utils
-function randomPort() {
-  return 1024 + Math.round(Math.random() * (65535 - 1024))
+  onAddServer?: (ip: string, port: number) => void,
+  onDeleteServer?: (id: string) => void
 }
 
 // Component
@@ -36,7 +30,6 @@ const ServerTable: FC<ServerTableProps> = (props) => {
     onLoad, onRefresh,
     onAddServer,
     onDeleteServer,
-    onToggleServer,
     ...table
   } = props;
 
@@ -77,7 +70,6 @@ const ServerTable: FC<ServerTableProps> = (props) => {
               { showUsers && (
                 <TableCell>Utilisateur</TableCell>
               ) }
-              <TableCell>Actif</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -87,9 +79,6 @@ const ServerTable: FC<ServerTableProps> = (props) => {
                 <TableCell>{server.port}</TableCell>
                 <TableCell>{server.country}</TableCell>
                 { showUsers && <UserCell id={server.user} /> }
-                <TableCell padding="none">
-                  <Switch checked={server.available} onChange={() => onToggleServer(server._id, randomPort())} />
-                </TableCell>
               </TableRow>
             )) }
           </TableBody>

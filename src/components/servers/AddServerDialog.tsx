@@ -10,12 +10,12 @@ import {
 
 // Types
 interface FormState {
-  ip: string
+  ip: string, port: string
 }
 
 export interface AddServerDialogProps {
   open: boolean, onClose: () => void,
-  onAddServer: (ip: string) => void
+  onAddServer: (ip: string, port: number) => void
 }
 
 // Component
@@ -30,8 +30,8 @@ const AddServerDialog: FC<AddServerDialogProps> = (props) => {
   const { errors, formState, handleSubmit, register } = useForm<FormState>();
 
   // Handlers
-  const handleAdd = ({ ip }: FormState) => {
-    onAddServer(ip);
+  const handleAdd = ({ ip, port }: FormState) => {
+    onAddServer(ip, parseInt(port));
     onClose();
   };
 
@@ -49,6 +49,15 @@ const AddServerDialog: FC<AddServerDialogProps> = (props) => {
           name="ip" inputRef={
             register({
               validate: (value: string) => validator.isIP(value) || "Adresse IP invalide"
+            })
+          }
+        />
+        <TextField
+          label="Port" fullWidth
+          error={!!errors.port} helperText={errors.port?.message}
+          name="port" type="number" inputRef={
+            register({
+              validate: (value: string) => validator.isNumeric(value) || "Port invalide"
             })
           }
         />
