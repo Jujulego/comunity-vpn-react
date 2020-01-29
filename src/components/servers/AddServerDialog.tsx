@@ -3,10 +3,13 @@ import { useForm } from 'react-hook-form';
 import validator from 'validator';
 
 import {
-  Button,
+  Button, IconButton,
   Dialog, DialogTitle, DialogContent, DialogActions,
+  Grid,
+  InputAdornment,
   TextField
 } from '@material-ui/core';
+import { Casino as CasinoIcon } from '@material-ui/icons';
 
 // Types
 interface FormState {
@@ -27,7 +30,7 @@ const AddServerDialog: FC<AddServerDialogProps> = (props) => {
   } = props;
 
   // Form
-  const { errors, formState, handleSubmit, register } = useForm<FormState>();
+  const { errors, formState, getValues, handleSubmit, register, setValue } = useForm<FormState>();
 
   // Handlers
   const handleAdd = ({ ip, port }: FormState) => {
@@ -35,7 +38,20 @@ const AddServerDialog: FC<AddServerDialogProps> = (props) => {
     onClose();
   };
 
+  const handleRandomPort = () => {
+    const port = 1024 + Math.floor(Math.random() * (65535 - 1024));
+    setValue('port', port.toString());
+  };
+
   // Render
+  const randomButton = (
+    <InputAdornment position="end">
+      <IconButton onClick={handleRandomPort}>
+        <CasinoIcon />
+      </IconButton>
+    </InputAdornment>
+  );
+
   return (
     <Dialog
       open={open} onClose={onClose}
@@ -43,24 +59,32 @@ const AddServerDialog: FC<AddServerDialogProps> = (props) => {
     >
       <DialogTitle>Ajout de serveur</DialogTitle>
       <DialogContent>
-        <TextField
-          label="Adresse IP" fullWidth
-          error={!!errors.ip} helperText={errors.ip?.message}
-          name="ip" inputRef={
-            register({
-              validate: (value: string) => validator.isIP(value) || "Adresse IP invalide"
-            })
-          }
-        />
-        <TextField
-          label="Port" fullWidth
-          error={!!errors.port} helperText={errors.port?.message}
-          name="port" type="number" inputRef={
-            register({
-              validate: (value: string) => validator.isNumeric(value) || "Port invalide"
-            })
-          }
-        />
+        <Grid container spacing={2} direction="column">
+          <Grid item>
+            <TextField
+              label="Adresse IP" fullWidth required
+              error={!!errors.ip} helperText={errors.ip?.message}
+              name="ip" inputRef={
+                register({
+                  validate: (value: string) => validator.isIP(value) || "Adresse IP invalide"
+                })
+              }
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              label="Port" fullWidth required
+              error={!!errors.port} helperText={errors.port?.message}
+              name="port" inputRef={
+                register({
+                  validate: (value: string) => validator.isNumeric(value) || "Port invalide"
+                })
+              }
+              InputLabelProps={{ shrink: !!getValues().port || undefined }}
+              InputProps={{ endAdornment: randomButton }}
+            />
+          </Grid>
+        </Grid>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">Annuler</Button>
