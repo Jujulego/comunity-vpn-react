@@ -3,13 +3,13 @@ import { ThunkDispatch } from 'redux-thunk';
 
 import Server from 'data/server';
 import { AppState } from 'store';
-import { refreshUserServers, addUserServer, deleteUserServer } from 'store/users/thunks';
-import { toggleServer } from 'store/servers/thunks';
+import { downServer, upServer } from 'store/servers/thunks';
+import { refreshUserServers } from 'store/users/thunks';
 
 import ServerTable, { ServerTableProps } from 'components/servers/ServerTable';
 
 // Type
-type DefinedProps = 'servers' | 'showUsers' | 'onLoad' | 'onRefresh' | 'onAddServer' | 'onToggleServer' | 'onDeleteServer';
+type DefinedProps = 'servers' | 'showUsers' | 'onLoad' | 'onRefresh' | 'onAddServer' | 'onDeleteServer';
 export interface UserServerTableProps extends Omit<ServerTableProps, DefinedProps> {
   user: string,
 }
@@ -33,9 +33,8 @@ function mapDispatchToProps(dispatch: ThunkDispatch<AppState, {}, any>, own: Use
   return {
     onLoad: () => dispatch(refreshUserServers(own.user)),
     onRefresh: () => dispatch(refreshUserServers(own.user)),
-    onAddServer: (ip: string) => dispatch(addUserServer(own.user, ip)),
-    onDeleteServer: (id: string) => dispatch(deleteUserServer(own.user, id)),
-    onToggleServer: (id: string, port: number) => dispatch(toggleServer(id, port))
+    onAddServer: (ip: string, port: number) => dispatch(upServer(ip, port, own.user)),
+    onDeleteServer: (id: string) => dispatch(downServer(id))
   };
 }
 

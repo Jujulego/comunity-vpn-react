@@ -4,12 +4,12 @@ import { ThunkDispatch } from 'redux-thunk';
 import Server from 'data/server';
 import { AppState } from 'store';
 import { refreshAllServers } from 'store/admin/thunks';
-import { toggleServer } from 'store/servers/thunks';
+import { downServer } from 'store/servers/thunks';
 
 import ServerTable, { ServerTableProps } from 'components/servers/ServerTable';
 
 // Type
-type DefinedProps = 'servers' | 'onLoad' | 'onRefresh' | 'onToggleServer';
+type DefinedProps = 'servers' | 'onLoad' | 'onRefresh' | 'onDeleteServer';
 export type AllServerTableProps = Omit<ServerTableProps, DefinedProps>;
 
 // Component
@@ -30,7 +30,7 @@ function mapDispatchToProps(dispatch: ThunkDispatch<AppState, {}, any>, _: AllSe
   return {
     onLoad: () => dispatch(refreshAllServers()),
     onRefresh: () => dispatch(refreshAllServers()),
-    onToggleServer: (id: string, port: number) => dispatch(toggleServer(id, port))
+    onDeleteServer: (id: string) => dispatch(downServer(id))
   };
 }
 

@@ -6,7 +6,6 @@ interface Server extends Document {
   ip: string,
   port: number,
   country: string,
-  available: boolean,
   user: string
 }
 
