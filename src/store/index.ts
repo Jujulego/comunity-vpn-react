@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 
 import { adminReducer } from './admin/reducers';
 import { authReducer } from './auth/reducers';
+import { errorsReducer } from './errors/reducers';
 import { serversReducer } from './servers/reducers';
 import { usersReducer } from './users/reducers';
 
@@ -14,6 +15,7 @@ import { GLOBAL_RESET } from './constants';
 const rootReducer = combineReducers({
   admin: adminReducer,
   auth: authReducer,
+  errors: errorsReducer,
   servers: serversReducer,
   users: usersReducer
 });

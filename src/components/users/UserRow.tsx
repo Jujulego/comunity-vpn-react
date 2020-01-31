@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Link, Switch, TableCell } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 
-import User from 'data/user';
+import User from 'data/User';
 
 import TableRow, { TableRowProps } from 'components/basics/TableRow';
 

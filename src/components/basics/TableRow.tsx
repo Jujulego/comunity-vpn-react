@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 
 import TableContext from 'contexts/TableContext';
-import Document from 'data/document';
+import Document from 'data/Document';
 
 // Types
 export interface TableRowProps extends Omit<MaterialTableRowProps, 'selected'> {

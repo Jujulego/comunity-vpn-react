@@ -7,7 +7,7 @@ import {
   Paper
 } from '@material-ui/core';
 
-import Token from 'data/token';
+import Token from 'data/Token';
 import { AppState } from 'store';
 
 import Table, { TableProps } from 'components/basics/Table';

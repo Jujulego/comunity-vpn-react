@@ -1,5 +1,5 @@
-import Document from './document';
-import Token from './token';
+import Document from 'data/Document';
+import Token from 'data/Token';
 
 // Interfaces
 interface User extends Document {

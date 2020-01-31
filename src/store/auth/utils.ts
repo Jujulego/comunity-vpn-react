@@ -9,9 +9,11 @@ export const authHeaders = (token: string) => ({
 
 export const authError = (error: any, dispatch: Dispatch) => {
   if (error.response && error.response.status === 401) {
-    // Token error
+    // Token errors
     dispatch(setToken(null));
     dispatch(setUserData('me', null));
+
+    return true;
   }
 
   return false;

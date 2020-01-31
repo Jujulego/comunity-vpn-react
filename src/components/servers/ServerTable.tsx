@@ -5,7 +5,7 @@ import {
   TableContainer, TableHead, TableBody, TableCell
 } from '@material-ui/core';
 
-import Server from 'data/server';
+import Server from 'data/Server';
 
 import Table, { TableProps } from 'components/basics/Table';
 import TableRow from 'components/basics/TableRow';

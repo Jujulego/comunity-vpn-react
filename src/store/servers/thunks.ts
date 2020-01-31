@@ -2,11 +2,12 @@ import axios from 'axios';
 import { Dispatch } from 'redux';
 
 import { env } from 'env';
-import Server from 'data/server';
+import Server from 'data/Server';
 
 import { AppState } from 'store';
 import { deleteAdminServer } from 'store/admin/actions';
 import { authError, authHeaders } from 'store/auth/utils';
+import { httpError } from 'store/errors/utils';
 import {
   addUserServer as addUserServerAction,
   deleteUserServer as deleteUserServerAction
@@ -28,6 +29,7 @@ export const getServer = (id: string) => async (dispatch: Dispatch, getState: ()
     dispatch(setServerData(id, server));
   } catch (error) {
     if (authError(error, dispatch)) return;
+    if (httpError(error, dispatch)) return;
     throw error;
   }
 };
@@ -44,6 +46,7 @@ export const upServer = (ip: string, port: number, user: string) => async (dispa
     dispatch(addUserServerAction(user, server._id));
   } catch (error) {
     if (authError(error, dispatch)) return;
+    if (httpError(error, dispatch)) return;
     throw error;
   }
 };
@@ -63,6 +66,7 @@ export const downServer = (id: string) => async (dispatch: Dispatch, getState: (
     dispatch(deleteServer(id));
   } catch (error) {
     if (authError(error, dispatch)) return;
+    if (httpError(error, dispatch)) return;
     throw error;
   }
 };

@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 
-import User from 'data/user';
+import User from 'data/User';
 
 import {
   TableContainer, TableHead, TableBody, TableCell,

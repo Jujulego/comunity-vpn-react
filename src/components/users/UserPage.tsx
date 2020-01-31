@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { Grid } from '@material-ui/core';
 
-import { Credentials } from 'data/user';
+import { Credentials } from 'data/User';
 import { refreshUser, updateUser, deleteUserToken } from 'store/users/thunks';
 import { useUser } from 'store/users/hooks';
 

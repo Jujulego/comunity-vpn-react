@@ -1,4 +1,4 @@
-import Document from './document';
+import Document from 'data/Document';
 
 // Interface
 interface Token extends Document {

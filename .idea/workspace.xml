@@ -2,11 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/data/HttpError.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/errors/actions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/errors/constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/errors/reducers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/errors/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/errors/utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/env.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/env.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/LoginForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basics/Table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/Table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basics/TableRow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/TableRow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/servers/ServerTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/servers/ServerTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tokens/TokenTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tokens/TokenTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/CredentialsCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/CredentialsCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/UserPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/UserPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/UserRow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/UserRow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/UserTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/UserTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/servers/AllServerTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/servers/AllServerTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/servers/UserServerTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/servers/UserServerTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/users/AllUserTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/users/AllUserTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/document.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Document.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/token.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Token.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/admin/thunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/admin/thunks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/auth/thunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth/thunks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/auth/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/servers/thunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/servers/thunks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/servers/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/servers/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/users/thunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users/thunks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/users/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +46,8 @@
       <list>
         <option value="CSS File" />
         <option value="SCSS File" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -42,7 +70,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/basics" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store/errors" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -55,16 +83,16 @@
     <property name="ts.external.directory.path" value="C:\Users\julie\WebstormProjects\community-vpn-react\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\auth" />
-      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\store\errors" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\basics" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\utils\hooks" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\tokens" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components" />
-      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\data" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\auth" />
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -119,11 +147,6 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Docker" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Docker" type="9fbbdea:ServiceModel$ServiceNode" />
-                <item name="Containers" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
             </expand>
             <select />
           </treeState>
@@ -162,14 +185,7 @@
       <workItem from="1580316829916" duration="4910000" />
       <workItem from="1580322434036" duration="23000" />
       <workItem from="1580335857624" duration="1562000" />
-      <workItem from="1580421887732" duration="7581000" />
-    </task>
-    <task id="LOCAL-00023" summary="update: use npm">
-      <created>1579570503402</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1579570503402</updated>
+      <workItem from="1580421887732" duration="10507000" />
     </task>
     <task id="LOCAL-00024" summary="add: servers data management">
       <created>1579603131273</created>
@@ -507,7 +523,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580337417593</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="update: nginx configuration">
+      <created>1580430807359</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1580430807359</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -517,7 +540,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: user page" />
     <MESSAGE value="update: use Material UI's style solution instead of SASS" />
     <MESSAGE value="add: dark mode" />
     <MESSAGE value="update: reduced table select logic" />
@@ -542,7 +564,8 @@
     <MESSAGE value="update: new server management" />
     <MESSAGE value="update: random port generation" />
     <MESSAGE value="update: version 0.6.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: version 0.6.1" />
+    <MESSAGE value="update: nginx configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: nginx configuration" />
   </component>
   <component name="WindowStateProjectService">
     <state x="601" y="121" key="#Docker_Image" timestamp="1580424534444">
@@ -565,11 +588,11 @@
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580134379752" />
     <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579960517937" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580337416971">
+    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580430806676">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580337416971" />
+    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580430806676" />
     <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580322361783" />
     <state x="219" y="79" key="DiffContextDialog" timestamp="1579987938687">
       <screen x="0" y="0" width="1536" height="824" />
@@ -579,30 +602,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1579742010787" />
-    <state width="1515" height="247" key="GridCell.Tab.0.bottom" timestamp="1580430781669">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2539" height="465" key="GridCell.Tab.0.bottom" timestamp="1580468563591">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.bottom/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819127" />
     <state width="1515" height="247" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580430781669" />
-    <state width="2539" height="467" key="GridCell.Tab.0.bottom/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580322367552" />
-    <state width="1515" height="247" key="GridCell.Tab.0.center" timestamp="1580430781669">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2539" height="465" key="GridCell.Tab.0.bottom/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580468563591" />
+    <state width="2539" height="465" key="GridCell.Tab.0.center" timestamp="1580468563591">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.center/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819126" />
     <state width="1515" height="247" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580430781669" />
-    <state width="2539" height="467" key="GridCell.Tab.0.center/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580322367552" />
-    <state width="1515" height="247" key="GridCell.Tab.0.left" timestamp="1580430781669">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2539" height="465" key="GridCell.Tab.0.center/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580468563591" />
+    <state width="2539" height="465" key="GridCell.Tab.0.left" timestamp="1580468563590">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.left/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819126" />
     <state width="1515" height="247" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580430781669" />
-    <state width="2539" height="467" key="GridCell.Tab.0.left/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580322367552" />
-    <state width="1515" height="247" key="GridCell.Tab.0.right" timestamp="1580430781669">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2539" height="465" key="GridCell.Tab.0.left/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580468563590" />
+    <state width="2539" height="465" key="GridCell.Tab.0.right" timestamp="1580468563591">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.right/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819127" />
     <state width="1515" height="247" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580430781669" />
-    <state width="2539" height="467" key="GridCell.Tab.0.right/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580322367552" />
+    <state width="2539" height="465" key="GridCell.Tab.0.right/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580468563591" />
     <state x="1047" y="413" key="RollbackChangesDialog" timestamp="1580318791194">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

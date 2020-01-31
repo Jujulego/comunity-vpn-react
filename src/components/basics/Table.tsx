@@ -5,7 +5,7 @@ import MaterialTable, {
 } from '@material-ui/core/Table';
 
 import TableContext, { SelectedState } from 'contexts/TableContext';
-import Document from 'data/document';
+import Document from 'data/Document';
 
 // Types
 export interface TableProps extends MaterialTableProps {
