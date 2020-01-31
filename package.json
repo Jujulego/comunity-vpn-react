@@ -2,7 +2,7 @@
   "name": "comunity-vpn-react",
   "version": "0.6.1",
   "private": true,
-  "homepage": ".",
+  "homepage": "/community-vpn/",
   "dependencies": {
     "@material-ui/core": "^4.8.3",
     "@material-ui/icons": "^4.5.1",
