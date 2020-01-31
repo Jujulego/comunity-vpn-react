@@ -17,6 +17,7 @@ import { useMe } from 'store/users/hooks';
 
 import AdminLinks from './admin/AdminLinks';
 import AccountMenu from './auth/AccountMenu';
+import ErrorSnackbar from './errors/ErrorSnackbar';
 
 // Styles
 const useStyles = makeStyles(({ spacing, zIndex }) => ({
@@ -80,6 +81,7 @@ const AppBar: FC = ({ children }) => {
         <Toolbar disableGutters />
         { children }
       </main>
+      <ErrorSnackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} />
     </div>
   );
 };
