@@ -40,7 +40,7 @@ const UserPage: FC<UserPageProps> = (props) => {
   // Render
   return (
     <Grid container spacing={2}>
-      <Grid item lg={5}>
+      <Grid item xs lg={5}>
         <CredentialsCard user={user} onUpdate={handleUpdate} />
       </Grid>
       <Grid item xs>
