@@ -24,7 +24,7 @@ import AccountMenu from './auth/AccountMenu';
 import ErrorSnackbar from './errors/ErrorSnackbar';
 
 // Styles
-const useStyles = makeStyles(({ spacing, zIndex }) => ({
+const useStyles = makeStyles(({ breakpoints, spacing, zIndex }) => ({
   root: {
     display: 'flex'
   },
@@ -47,7 +47,10 @@ const useStyles = makeStyles(({ spacing, zIndex }) => ({
   },
   content: {
     flexGrow: 1,
-    padding: spacing(3)
+    padding: spacing(3),
+    [breakpoints.down('sm')]: {
+      padding: spacing(1)
+    }
   }
 }));
 

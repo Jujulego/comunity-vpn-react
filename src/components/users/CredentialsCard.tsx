@@ -15,7 +15,7 @@ import User, { Credentials } from 'data/User';
 import EditPasswordField from 'components/basics/EditPasswordField';
 
 // Types
-export interface CredentialsCardProps extends Omit<CardProps, 'component'> {
+export interface CredentialsCardProps extends Omit<CardProps, 'component' | 'onSubmit' | 'onReset'> {
   user: User | null,
   onUpdate: (cred: Partial<Credentials>) => void
 }

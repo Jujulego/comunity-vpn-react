@@ -1,4 +1,6 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, MouseEvent, useContext } from 'react';
+import { Theme, useMediaQuery } from '@material-ui/core';
+
 import { TableRowProps as MaterialTableRowProps } from '@material-ui/core/TableRow';
 
 import {
@@ -10,7 +12,7 @@ import TableContext from 'contexts/TableContext';
 import Document from 'data/Document';
 
 // Types
-export interface TableRowProps extends Omit<MaterialTableRowProps, 'selected'> {
+export interface TableRowProps extends Omit<MaterialTableRowProps, 'selected' | 'onClick'> {
   doc?: Document
 }
 
@@ -25,20 +27,34 @@ const TableRow: FC<TableRowProps> = (props) => {
   // Contexts
   const ctx = useContext(TableContext);
 
+  // Handlers
+  const handleChange = doc ? () => ctx.onSelect(doc._id) : ctx.onSelectAll;
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+  };
+
   // Render
+  const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('sm'));
+
   const selectable = doc ? ctx.blacklist.indexOf(doc._id) === -1 : true;
   const selected = doc ? (ctx.selected[doc._id] || false) : ctx.selectedAll;
   const indeterminate = !doc && ctx.selectedCount > 0 && !ctx.selectedAll;
 
-  const handleChange = doc ? () => ctx.onSelect(doc._id) : ctx.onSelectAll;
-
   return (
-    <MaterialTableRow {...row} selected={selectable && doc && selected}>
-      <TableCell padding="checkbox">
-        { selectable && (
-          <Checkbox checked={selected} indeterminate={indeterminate} onChange={handleChange} />
-        ) }
-      </TableCell>
+    <MaterialTableRow
+      {...row} selected={selectable && doc && selected}
+      onClick={(!selectable || (!doc && small)) ? undefined : handleChange}
+    >
+      { !small && (
+        <TableCell padding="checkbox">
+          { selectable && (
+            <Checkbox
+              checked={selected} indeterminate={indeterminate}
+              onChange={handleChange} onClick={handleClick}
+            />
+          ) }
+        </TableCell>
+      ) }
       { children }
     </MaterialTableRow>
   )

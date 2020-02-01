@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
+import { Theme, useMediaQuery } from '@material-ui/core';
 
 import {
   Paper,
@@ -50,6 +51,8 @@ const ServerTable: FC<ServerTableProps> = (props) => {
   });
 
   // Render
+  const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('sm'));
+
   return (
     <Paper>
       <TableContainer>
@@ -65,7 +68,7 @@ const ServerTable: FC<ServerTableProps> = (props) => {
           <TableHead>
             <TableRow>
               <TableCell>Adresse</TableCell>
-              <TableCell>Port</TableCell>
+              { !small && (<TableCell>Port</TableCell>) }
               <TableCell>Pays</TableCell>
               { showUsers && (
                 <TableCell>Utilisateur</TableCell>
@@ -76,7 +79,7 @@ const ServerTable: FC<ServerTableProps> = (props) => {
             { servers.map(server => (
               <TableRow key={server._id} doc={server} hover>
                 <TableCell>{server.ip}</TableCell>
-                <TableCell>{server.port}</TableCell>
+                { !small && (<TableCell>{server.port}</TableCell>) }
                 <TableCell>{server.country}</TableCell>
                 { showUsers && <UserCell id={server.user} /> }
               </TableRow>

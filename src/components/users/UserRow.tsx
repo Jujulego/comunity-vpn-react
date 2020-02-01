@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEvent } from 'react';
+import { Theme, useMediaQuery } from '@material-ui/core';
 import moment from 'moment';
 
 import { Link, Switch, TableCell } from '@material-ui/core';
@@ -22,13 +23,20 @@ const UserRow: FC<UserRowProps> = (props) => {
     ...row
   } = props;
 
+  // Handlers
+  const handleClick = (event: MouseEvent<HTMLInputElement>) => {
+    event.stopPropagation();
+  };
+
   // Render
+  const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('sm'));
+
   let connection = "Pas connecté";
   if (user.tokens.length > 0) {
     const tokens = user.tokens.sort((a, b) => moment(a.createdAt).diff(b.createdAt)).reverse();
     const last = moment.utc(tokens[0].createdAt);
 
-    connection = `${tokens[0].from} ${last.fromNow()}`
+    connection = small ? last.fromNow() : `${tokens[0].from} ${last.fromNow()}`
   }
 
   return (
@@ -38,11 +46,13 @@ const UserRow: FC<UserRowProps> = (props) => {
           {user.email}
         </Link>
       </TableCell>
-      <TableCell>{user.tokens.length}</TableCell>
+      { !small && (<TableCell>{user.tokens.length}</TableCell>) }
       <TableCell>{connection}</TableCell>
-      <TableCell padding="none">
-        <Switch checked={user.admin} onChange={onToggleAdmin} />
-      </TableCell>
+      { !small && (
+        <TableCell padding="none">
+          <Switch checked={user.admin} onChange={onToggleAdmin} inputProps={{ onClick: handleClick }} />
+        </TableCell>
+      ) }
     </TableRow>
   );
 };
