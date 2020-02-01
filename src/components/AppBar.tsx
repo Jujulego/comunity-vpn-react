@@ -1,14 +1,18 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { Theme, useMediaQuery } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
   AppBar as MaterialAppBar, Toolbar,
-  Drawer,
+  Drawer, Divider,
+  IconButton,
   List, ListItem, ListItemIcon, ListItemText,
   Typography
 } from '@material-ui/core';
 import {
+  ChevronLeft,
   Home as HomeIcon,
+  Menu as MenuIcon,
   Storage as ServersIcon
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
@@ -26,6 +30,9 @@ const useStyles = makeStyles(({ spacing, zIndex }) => ({
   },
   appBar: {
     zIndex: zIndex.drawer + 1
+  },
+  menubtn: {
+    marginRight: spacing(2)
   },
   title: {
     flexGrow: 1
@@ -46,23 +53,61 @@ const useStyles = makeStyles(({ spacing, zIndex }) => ({
 
 // Component
 const AppBar: FC = ({ children }) => {
+  // State
+  const [open, setOpen] = useState(false);
+
   // Redux
   const user = useMe();
   const isAdmin = user && user.admin;
 
+  // Handlers
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   // Render
+  const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('sm'));
   const styles = useStyles();
 
   return (
     <div className={styles.root}>
       <MaterialAppBar classes={{ root: styles.appBar }} position="fixed">
         <Toolbar>
+          { small && (
+            <IconButton
+              classes={{ root: styles.menubtn }}
+              color="inherit" edge="start"
+              onClick={handleOpen}
+            >
+              <MenuIcon />
+            </IconButton>
+          ) }
           <Typography className={ styles.title } variant="h6">Community VPN</Typography>
           <AccountMenu />
         </Toolbar>
       </MaterialAppBar>
-      <Drawer classes={{ root: styles.drawer, paper: styles.paper }} variant="permanent">
-        <Toolbar disableGutters />
+      <Drawer
+        classes={{ root: styles.drawer, paper: styles.paper }} variant={small ? "temporary" : "permanent"}
+        open={open} onClose={handleClose}
+      >
+        <Toolbar disableGutters={!small}>
+          { small && (
+            <>
+              <Typography className={ styles.title } variant="h6">Community VPN</Typography>
+              <IconButton
+              color="inherit" edge="end"
+              onClick={handleClose}
+              >
+                <ChevronLeft />
+              </IconButton>
+            </>
+          ) }
+        </Toolbar>
+        { small && (<Divider />) }
         <List>
           <ListItem button component={Link} to="/">
             <ListItemIcon><HomeIcon /></ListItemIcon>
