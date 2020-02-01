@@ -7,14 +7,13 @@ WORKDIR /app
 
 # Dependencies
 COPY package.json /app
-COPY yarn.lock /app
-RUN yarn install
+RUN npm install
 
 # Build
 COPY src /app/src
 COPY public /app/public
 COPY tsconfig.json /app
-RUN yarn run build --prod
+RUN npm run build -- --prod
 
 # Server
 FROM nginx:latest
