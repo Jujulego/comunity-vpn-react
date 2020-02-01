@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/users/UserPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/UserPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,14 +155,7 @@
       <workItem from="1580322434036" duration="23000" />
       <workItem from="1580335857624" duration="1562000" />
       <workItem from="1580421887732" duration="15470000" />
-      <workItem from="1580550460297" duration="4881000" />
-    </task>
-    <task id="LOCAL-00028" summary="add: refresh server list">
-      <created>1579646989669</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1579646989669</updated>
+      <workItem from="1580550460297" duration="5078000" />
     </task>
     <task id="LOCAL-00029" summary="add: create server">
       <created>1579650215036</created>
@@ -499,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580555657048</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="fix: user page responsiveness">
+      <created>1580555736371</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1580555736371</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +510,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: table blacklist" />
     <MESSAGE value="add: allow to delete tokens" />
     <MESSAGE value="update: version 0.4.0" />
     <MESSAGE value="fix: delete User and Server" />
@@ -534,7 +534,8 @@
     <MESSAGE value="add: snackbar on errors" />
     <MESSAGE value="add: ErrorLog class" />
     <MESSAGE value="update: responsive drawer" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: responsive drawer" />
+    <MESSAGE value="fix: user page responsiveness" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: user page responsiveness" />
   </component>
   <component name="WindowStateProjectService">
     <state x="601" y="121" key="#Docker_Image" timestamp="1580424534444">
@@ -561,11 +562,11 @@
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580134379752" />
     <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476314905" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580555656289">
+    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580555735255">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580555656289" />
+    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580555735255" />
     <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476531431" />
     <state x="219" y="79" key="DiffContextDialog" timestamp="1579987938687">
       <screen x="0" y="0" width="1536" height="824" />
