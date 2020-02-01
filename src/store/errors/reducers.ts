@@ -10,7 +10,7 @@ const initial: ErrorsState = {
 export const errorsReducer = (state = initial, action: ErrorsActions) => {
   switch (action.type) {
     case ADD_ERROR:
-      return { ...state, errors: [action.error, ...state.errors ] };
+      return { ...state, errors: [ action.error, ...state.errors ] };
 
     default:
       return state;

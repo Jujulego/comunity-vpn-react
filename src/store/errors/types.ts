@@ -1,17 +1,17 @@
 import { Action } from 'redux';
 
-import HttpError from 'data/HttpError';
+import ErrorLog from 'data/ErrorLog';
 
 import { ADD_ERROR } from './constants';
 
 // State
 export interface ErrorsState {
-  errors: HttpError[]
+  errors: ErrorLog[]
 }
 
 // Actions
 interface AddErrorAction extends Action<typeof ADD_ERROR> {
-  error: HttpError
+  error: ErrorLog
 }
 
 export type ErrorsActions = AddErrorAction

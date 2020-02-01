@@ -8,7 +8,7 @@ import User from 'data/User';
 import { AppState } from 'store';
 import { setAllUsers } from 'store/admin/actions';
 import { authError, authHeaders } from 'store/auth/utils';
-import { httpError } from 'store/errors/utils';
+import { logError } from 'store/errors/utils';
 import { setServerData } from 'store/servers/actions';
 
 import {
@@ -32,7 +32,7 @@ export const refreshUser = (id: string) => async (dispatch: Dispatch, getState: 
     dispatch(setUserData(id, user));
   } catch (error) {
     if (authError(error, dispatch)) return;
-    if (httpError(error, dispatch)) return;
+    if (logError(error, dispatch)) return;
     throw error;
   }
 };
@@ -51,7 +51,7 @@ export const refreshUserServers = (id: string) => async (dispatch: Dispatch, get
     dispatch(setUserServers(id, servers.map(server => server._id)));
   } catch (error) {
     if (authError(error, dispatch)) return;
-    if (httpError(error, dispatch)) return;
+    if (logError(error, dispatch)) return;
     throw error;
   }
 };
@@ -68,7 +68,7 @@ export const updateUser = (id: string, values: EditedUser) => async (dispatch: D
     dispatch(setUserData(id, user));
   } catch (error) {
     if (authError(error, dispatch)) return;
-    if (httpError(error, dispatch)) return;
+    if (logError(error, dispatch)) return;
     throw error;
   }
 };
@@ -86,7 +86,7 @@ export const toggleAdmin = (id: string) => async (dispatch: Dispatch, getState: 
     dispatch(setUserData(id, user));
   } catch (error) {
     if (authError(error, dispatch)) return;
-    if (httpError(error, dispatch)) return;
+    if (logError(error, dispatch)) return;
     throw error;
   }
 };
@@ -101,7 +101,7 @@ export const deleteUserToken = (user: string, id: string) => async (dispatch: Di
     dispatch(deleteUserTokenAction(user, id));
   } catch (error) {
     if (authError(error, dispatch)) return;
-    if (httpError(error, dispatch)) return;
+    if (logError(error, dispatch)) return;
     throw error;
   }
 };
@@ -117,7 +117,7 @@ export const deleteUser = (user: string) => async (dispatch: Dispatch, getState:
     dispatch(deleteUserAction(user));
   } catch (error) {
     if (authError(error, dispatch)) return;
-    if (httpError(error, dispatch)) return;
+    if (logError(error, dispatch)) return;
     throw error;
   }
 };

@@ -2,10 +2,11 @@ import React, { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Snackbar, { SnackbarProps } from '@material-ui/core/Snackbar';
-import Alert from '@material-ui/lab/Alert';
 
-import HttpError from 'data/HttpError';
+import ErrorLog from 'data/ErrorLog';
 import { AppState } from 'store';
+
+import ErrorAlert from './ErrorAlert';
 
 // Types
 export type ErrorSnackbarProps = Omit<SnackbarProps, 'open' | 'onClose' | 'onExited'>
@@ -14,7 +15,7 @@ export type ErrorSnackbarProps = Omit<SnackbarProps, 'open' | 'onClose' | 'onExi
 const ErrorSnackbar: FC<ErrorSnackbarProps> = (props) => {
   // State
   const [open, setOpen] = useState(false);
-  const [error, setError] = useState<HttpError | undefined>(undefined);
+  const [error, setError] = useState<ErrorLog | undefined>(undefined);
 
   // Redux
   const errors = useSelector((state: AppState) => state.errors.errors);
@@ -51,12 +52,13 @@ const ErrorSnackbar: FC<ErrorSnackbarProps> = (props) => {
       autoHideDuration={6000} {...props}
       open={open} onClose={handleClose} onExited={handleExited}
     >
-      <Alert
-        elevation={6} variant="filled" severity="error"
-        onClose={handleClose}
-      >
-        { error?.status }: { error?.message }
-      </Alert>
+      { error && (
+        <ErrorAlert
+          error={error}
+          elevation={6} variant="filled"
+          onClose={handleClose}
+        />
+      ) }
     </Snackbar>
   )
 };
