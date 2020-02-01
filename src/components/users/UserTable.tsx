@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react';
+import { Theme, useMediaQuery } from '@material-ui/core';
 
 import User from 'data/User';
 
@@ -42,6 +43,8 @@ const UserTable: FC<UserTableProps> = (props) => {
   });
 
   // Render
+  const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('sm'));
+
   return (
     <Paper>
       <TableContainer>
@@ -57,9 +60,9 @@ const UserTable: FC<UserTableProps> = (props) => {
           <TableHead>
             <TableRow>
               <TableCell>Email</TableCell>
-              <TableCell>Connexions</TableCell>
+              { !small && (<TableCell>Connexions</TableCell>) }
               <TableCell>Dernière connexion</TableCell>
-              <TableCell>Admin</TableCell>
+              { !small && (<TableCell>Admin</TableCell>) }
             </TableRow>
           </TableHead>
           <TableBody>
