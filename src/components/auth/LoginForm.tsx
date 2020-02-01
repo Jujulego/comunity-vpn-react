@@ -14,7 +14,7 @@ import { PersonAdd as PersonAddIcon } from '@material-ui/icons';
 import { Redirect, RouteChildrenProps } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import { Credentials } from 'data/user';
+import { Credentials } from 'data/User';
 import { AppState } from 'store';
 import { login } from 'store/auth/thunks';
 

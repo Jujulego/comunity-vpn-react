@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import Server from 'data/server';
+import Server from 'data/Server';
 
 import { DEL_SERVER, SET_LOADING, SET_DATA } from './constants';
 

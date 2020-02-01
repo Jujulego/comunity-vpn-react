@@ -2,11 +2,12 @@ import axios from 'axios';
 import { Dispatch } from 'redux';
 
 import { env } from 'env';
-import Server from 'data/server';
-import User from 'data/user';
+import Server from 'data/Server';
+import User from 'data/User';
 
 import { AppState } from 'store';
 import { authError, authHeaders } from 'store/auth/utils';
+import { logError } from 'store/errors/utils';
 import { setServerData } from 'store/servers/actions';
 import { setUserData } from 'store/users/actions';
 
@@ -25,6 +26,7 @@ export const refreshAllServers = () => async (dispatch: Dispatch, getState: () =
     dispatch(setAllServers(servers.map(server => server._id)));
   } catch (error) {
     if (authError(error, dispatch)) return;
+    if (logError(error, dispatch)) return;
     throw error;
   }
 };
@@ -43,6 +45,7 @@ export const refreshAllUsers = () => async (dispatch: Dispatch, getState: () => 
     dispatch(setAllUsers(users.map(user => user._id === id ? 'me' : user._id)));
   } catch (error) {
     if (authError(error, dispatch)) return;
+    if (logError(error, dispatch)) return;
     throw error;
   }
 };

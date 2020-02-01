@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { Grid } from '@material-ui/core';
 
-import { Credentials } from 'data/user';
+import { Credentials } from 'data/User';
 import { refreshUser, updateUser, deleteUserToken } from 'store/users/thunks';
 import { useUser } from 'store/users/hooks';
 
@@ -40,7 +40,7 @@ const UserPage: FC<UserPageProps> = (props) => {
   // Render
   return (
     <Grid container spacing={2}>
-      <Grid item lg={5}>
+      <Grid item xs lg={5}>
         <CredentialsCard user={user} onUpdate={handleUpdate} />
       </Grid>
       <Grid item xs>

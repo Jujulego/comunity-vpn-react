@@ -5,6 +5,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { env } from 'env';
 import { AppState } from 'store';
 import { globalReset } from 'store/actions';
+import { logError } from 'store/errors/utils';
 
 import { setError, setToken, setTokenId } from './actions';
 import { authError, authHeaders } from './utils';
@@ -52,6 +53,7 @@ export const logout = () => async (dispatch: Dispatch, getState: () => AppState)
     dispatch(globalReset());
   } catch (error) {
     if (authError(error, dispatch)) return;
+    if (logError(error, dispatch)) return;
     throw error;
   }
 };

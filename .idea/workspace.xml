@@ -39,7 +39,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/basics" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/utils/hooks" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -57,18 +57,18 @@
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\basics" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\utils\hooks" />
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\store\errors" />
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\basics" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\tokens" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components" />
-      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\data" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
-    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+    <configuration name="Dockerfile test" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
       <deployment type="dockerfile">
         <settings>
           <option name="buildCliOptions" value="" />
@@ -76,6 +76,14 @@
           <option name="containerName" value="" />
           <option name="entrypoint" value="" />
           <option name="imageTag" value="community-vpn-react" />
+          <option name="portBindings">
+            <list>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="80" />
+                <option name="hostPort" value="3000" />
+              </DockerPortBindingImpl>
+            </list>
+          </option>
           <option name="commandLineOptions" value="" />
           <option name="sourceFilePath" value="Dockerfile" />
         </settings>
@@ -93,7 +101,7 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.Dockerfile" />
+      <item itemvalue="Docker.Dockerfile test" />
       <item itemvalue="JavaScript Debug.Debug Application" />
       <item itemvalue="npm.npm start" />
     </list>
@@ -103,7 +111,12 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Docker" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -140,56 +153,9 @@
       <workItem from="1580251435314" duration="127000" />
       <workItem from="1580316829916" duration="4910000" />
       <workItem from="1580322434036" duration="23000" />
-      <workItem from="1580335857624" duration="1546000" />
-    </task>
-    <task id="LOCAL-00022" summary="update: yarn upgrade">
-      <created>1579569720112</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1579569720112</updated>
-    </task>
-    <task id="LOCAL-00023" summary="update: use npm">
-      <created>1579570503402</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1579570503402</updated>
-    </task>
-    <task id="LOCAL-00024" summary="add: servers data management">
-      <created>1579603131273</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1579603131273</updated>
-    </task>
-    <task id="LOCAL-00025" summary="add: servers data management">
-      <created>1579611255869</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1579611255870</updated>
-    </task>
-    <task id="LOCAL-00026" summary="add: servers data management">
-      <created>1579611549323</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1579611549323</updated>
-    </task>
-    <task id="LOCAL-00027" summary="add: can enable servers">
-      <created>1579645115753</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1579645115753</updated>
-    </task>
-    <task id="LOCAL-00028" summary="add: refresh server list">
-      <created>1579646989669</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1579646989669</updated>
+      <workItem from="1580335857624" duration="1562000" />
+      <workItem from="1580421887732" duration="15470000" />
+      <workItem from="1580550460297" duration="5078000" />
     </task>
     <task id="LOCAL-00029" summary="add: create server">
       <created>1579650215036</created>
@@ -485,20 +451,65 @@
       <option name="project" value="LOCAL" />
       <updated>1580337376777</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="update: version 0.6.1">
+      <created>1580337417592</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1580337417593</updated>
+    </task>
+    <task id="LOCAL-00072" summary="update: nginx configuration">
+      <created>1580430807359</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1580430807359</updated>
+    </task>
+    <task id="LOCAL-00073" summary="add: errors store">
+      <created>1580469030740</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1580469030740</updated>
+    </task>
+    <task id="LOCAL-00074" summary="add: snackbar on errors">
+      <created>1580476532269</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1580476532269</updated>
+    </task>
+    <task id="LOCAL-00075" summary="add: ErrorLog class">
+      <created>1580553814670</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1580553814671</updated>
+    </task>
+    <task id="LOCAL-00076" summary="update: responsive drawer">
+      <created>1580555657047</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1580555657048</updated>
+    </task>
+    <task id="LOCAL-00077" summary="fix: user page responsiveness">
+      <created>1580555736371</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1580555736371</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: token table" />
-    <MESSAGE value="add: user page" />
-    <MESSAGE value="update: use Material UI's style solution instead of SASS" />
-    <MESSAGE value="add: dark mode" />
-    <MESSAGE value="update: reduced table select logic" />
-    <MESSAGE value="update: intergrate toolbar inside table" />
-    <MESSAGE value="add: table blacklist" />
     <MESSAGE value="add: allow to delete tokens" />
     <MESSAGE value="update: version 0.4.0" />
     <MESSAGE value="fix: delete User and Server" />
@@ -517,33 +528,46 @@
     <MESSAGE value="update: version 0.5.0" />
     <MESSAGE value="update: new server management" />
     <MESSAGE value="update: random port generation" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: random port generation" />
+    <MESSAGE value="update: version 0.6.1" />
+    <MESSAGE value="update: nginx configuration" />
+    <MESSAGE value="add: errors store" />
+    <MESSAGE value="add: snackbar on errors" />
+    <MESSAGE value="add: ErrorLog class" />
+    <MESSAGE value="update: responsive drawer" />
+    <MESSAGE value="fix: user page responsiveness" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: user page responsiveness" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-2839" y="-716" key="#Docker_Image" timestamp="1579352518769">
-      <screen x="-3840" y="-1065" width="2560" height="1400" />
+    <state x="601" y="121" key="#Docker_Image" timestamp="1580424534444">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-2839" y="-716" key="#Docker_Image/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579352518769" />
-    <state x="-3104" y="-708" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579352405460">
-      <screen x="-3840" y="-1065" width="2560" height="1400" />
+    <state x="601" y="121" key="#Docker_Image/0.0.1536.824@0.0.1536.824" timestamp="1580424534444" />
+    <state x="320" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580425456165">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-3104" y="-708" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579352405460" />
+    <state x="320" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1580425456165" />
     <state x="542" y="216" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1579526625737">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="216" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1579526625737" />
-    <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580134379752">
+    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser" timestamp="1580552826138">
       <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1580552826138" />
+    <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580476314905">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580134379752" />
-    <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1579960517937" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580337376102">
+    <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476314905" />
+    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580555735255">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580337376102" />
-    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580322361783" />
+    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580555735255" />
+    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476531431" />
     <state x="219" y="79" key="DiffContextDialog" timestamp="1579987938687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -552,30 +576,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1579742010787" />
-    <state width="1515" height="247" key="GridCell.Tab.0.bottom" timestamp="1580336063041">
+    <state width="1515" height="246" key="GridCell.Tab.0.bottom" timestamp="1580550486982">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.bottom/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819127" />
-    <state width="1515" height="247" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580336063041" />
-    <state width="2539" height="467" key="GridCell.Tab.0.bottom/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580322367552" />
-    <state width="1515" height="247" key="GridCell.Tab.0.center" timestamp="1580336063041">
+    <state width="1515" height="246" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580550486982" />
+    <state width="2539" height="465" key="GridCell.Tab.0.bottom/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476554967" />
+    <state width="1515" height="246" key="GridCell.Tab.0.center" timestamp="1580550486982">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.center/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819126" />
-    <state width="1515" height="247" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580336063041" />
-    <state width="2539" height="467" key="GridCell.Tab.0.center/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580322367552" />
-    <state width="1515" height="247" key="GridCell.Tab.0.left" timestamp="1580336063041">
+    <state width="1515" height="246" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580550486982" />
+    <state width="2539" height="465" key="GridCell.Tab.0.center/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476554967" />
+    <state width="1515" height="246" key="GridCell.Tab.0.left" timestamp="1580550486981">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.left/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819126" />
-    <state width="1515" height="247" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580336063041" />
-    <state width="2539" height="467" key="GridCell.Tab.0.left/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580322367552" />
-    <state width="1515" height="247" key="GridCell.Tab.0.right" timestamp="1580336063041">
+    <state width="1515" height="246" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580550486981" />
+    <state width="2539" height="465" key="GridCell.Tab.0.left/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476554967" />
+    <state width="1515" height="246" key="GridCell.Tab.0.right" timestamp="1580550486982">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.right/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819127" />
-    <state width="1515" height="247" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580336063041" />
-    <state width="2539" height="467" key="GridCell.Tab.0.right/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580322367552" />
+    <state width="1515" height="246" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580550486982" />
+    <state width="2539" height="465" key="GridCell.Tab.0.right/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476554967" />
     <state x="1047" y="413" key="RollbackChangesDialog" timestamp="1580318791194">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -592,6 +616,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1579911929228" />
+    <state x="615" y="215" key="com.intellij.docker.deployment.ui.DockerPortBindingsField.v173.dialogSize" timestamp="1580424911438">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="615" y="215" key="com.intellij.docker.deployment.ui.DockerPortBindingsField.v173.dialogSize/0.0.1536.824@0.0.1536.824" timestamp="1580424911438" />
     <state x="462" y="144" width="611" height="536" key="find.popup" timestamp="1579873811341">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

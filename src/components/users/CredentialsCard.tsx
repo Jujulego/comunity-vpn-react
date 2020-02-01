@@ -10,7 +10,7 @@ import {
   TextField
 } from '@material-ui/core';
 
-import User, { Credentials } from 'data/user';
+import User, { Credentials } from 'data/User';
 
 import EditPasswordField from 'components/basics/EditPasswordField';
 

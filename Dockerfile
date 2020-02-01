@@ -1,17 +1,20 @@
 # Builder
 FROM node:12.14.0 as builder
 
-# Copy code
+# Preapare directory
 RUN mkdir /app
 WORKDIR /app
 
 # Dependencies
 COPY package.json /app
-RUN npm install
+COPY yarn.lock /app
+RUN yarn install
 
 # Build
-COPY . /app
-RUN npm run build -- --prod
+COPY src /app/src
+COPY public /app/public
+COPY tsconfig.json /app
+RUN yarn run build --prod
 
 # Server
 FROM nginx:latest

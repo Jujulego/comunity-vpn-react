@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 
-import User from 'data/user';
+import User from 'data/User';
 import { AppState } from 'store';
 import { refreshAllUsers } from 'store/admin/thunks';
 import { deleteUser, toggleAdmin } from 'store/users/thunks';

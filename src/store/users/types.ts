@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import User from 'data/user';
+import User from 'data/User';
 
 import {
   ADD_SERVER,

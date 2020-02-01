@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 
-import Server from 'data/server';
+import Server from 'data/Server';
 import { AppState } from 'store';
 import { downServer, upServer } from 'store/servers/thunks';
 import { refreshUserServers } from 'store/users/thunks';
