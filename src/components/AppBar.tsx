@@ -1,4 +1,5 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Theme, useMediaQuery } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -58,6 +59,7 @@ const useStyles = makeStyles(({ breakpoints, spacing, zIndex }) => ({
 const AppBar: FC = ({ children }) => {
   // State
   const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   // Redux
   const user = useMe();
@@ -71,6 +73,9 @@ const AppBar: FC = ({ children }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  // Effects
+  useEffect(handleClose, [location]);
 
   // Render
   const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('sm'));

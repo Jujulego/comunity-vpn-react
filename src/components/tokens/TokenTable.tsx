@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 
 import {
-  TableContainer, TableHead, TableBody, TableCell,
+  TableContainer, TableHead, TableCell,
   Paper
 } from '@material-ui/core';
 
@@ -11,7 +11,9 @@ import Token from 'data/Token';
 import { AppState } from 'store';
 
 import Table, { TableProps } from 'components/basics/Table';
+import TableBody from 'components/basics/TableBody';
 import TableRow from 'components/basics/TableRow';
+import TableSortCell from 'components/basics/TableSortCell';
 
 import TokenToolbar from './TokenToolbar';
 
@@ -57,17 +59,17 @@ const TokenTable: FC<TokenTableProps> = (props) => {
         >
           <TableHead>
             <TableRow>
-              <TableCell>Adresse</TableCell>
-              <TableCell>Date</TableCell>
+              <TableSortCell field="from">Adresse</TableSortCell>
+              <TableSortCell field="createdAt">Date</TableSortCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            { tokens.map(token => (
+            { (token: Token) => (
               <TableRow key={token._id} doc={token} hover>
                 <TableCell>{token.from}</TableCell>
                 <TableCell>{moment.utc(token.createdAt).local().format('LLLL')}</TableCell>
               </TableRow>
-            )) }
+            ) }
           </TableBody>
         </Table>
       </TableContainer>

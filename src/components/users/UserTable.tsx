@@ -1,17 +1,20 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { Theme, useMediaQuery } from '@material-ui/core';
 
 import User from 'data/User';
 
 import {
-  TableContainer, TableHead, TableBody, TableCell,
+  TableContainer, TableHead, TableCell,
   Paper
 } from '@material-ui/core';
 
 import Table, { TableProps } from 'components/basics/Table';
+import TableBody from 'components/basics/TableBody';
 import TableRow from 'components/basics/TableRow';
+import TableSortCell from 'components/basics/TableSortCell';
 import UserRow from 'components/users/UserRow';
 import UserToolbar from 'components/users/UserToolbar';
+import moment from 'moment';
 
 // Types
 export interface UserTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
@@ -37,6 +40,14 @@ const UserTable: FC<UserTableProps> = (props) => {
     onLoad();
   }, [onLoad]);
 
+  // Memos
+  const enhanced = useMemo(() => users.map(
+    user => ({ ...user,
+      connexions: user.tokens.length,
+      last: moment.max(user.tokens.map(tk => moment(tk.createdAt)))
+    })
+  ), [users]);
+
   // Handlers
   const handleDelete = onDeleteUser && ((ids: string[]) => {
     ids.forEach(onDeleteUser);
@@ -49,7 +60,7 @@ const UserTable: FC<UserTableProps> = (props) => {
     <Paper>
       <TableContainer>
         <Table
-          data={users} {...table}
+          data={enhanced} {...table}
           toolbar={
             <UserToolbar
               title={title}
@@ -59,19 +70,19 @@ const UserTable: FC<UserTableProps> = (props) => {
         >
           <TableHead>
             <TableRow>
-              <TableCell>Email</TableCell>
-              { !small && (<TableCell>Connexions</TableCell>) }
-              <TableCell>Dernière connexion</TableCell>
+              <TableSortCell field="email">Email</TableSortCell>
+              { !small && (<TableSortCell field="connexions">Connexions</TableSortCell>) }
+              <TableSortCell field="last">Dernière connexion</TableSortCell>
               { !small && (<TableCell>Admin</TableCell>) }
             </TableRow>
           </TableHead>
           <TableBody>
-            { users.map(user => (
+            { (user: User) => (
               <UserRow
                 key={user._id} user={user} hover
                 onToggleAdmin={() => onToggleAdmin(user._id)}
               />
-            )) }
+            ) }
           </TableBody>
         </Table>
       </TableContainer>

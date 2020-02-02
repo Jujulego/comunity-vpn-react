@@ -3,13 +3,15 @@ import { Theme, useMediaQuery } from '@material-ui/core';
 
 import {
   Paper,
-  TableContainer, TableHead, TableBody, TableCell
+  TableContainer, TableHead, TableCell
 } from '@material-ui/core';
 
 import Server from 'data/Server';
 
 import Table, { TableProps } from 'components/basics/Table';
+import TableBody from 'components/basics/TableBody';
 import TableRow from 'components/basics/TableRow';
+import TableSortCell from 'components/basics/TableSortCell';
 import UserCell from 'components/users/UserCell';
 
 import AddServerDialog from './AddServerDialog';
@@ -51,13 +53,18 @@ const ServerTable: FC<ServerTableProps> = (props) => {
   });
 
   // Render
-  const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('sm'));
+  const small  = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('sm'));
+  const xsmall = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('xs'));
+
+  const showAddr = !(xsmall && showUsers);
+  const showPort = !small;
 
   return (
     <Paper>
       <TableContainer>
         <Table
-          {...table} data={servers}
+          {...table}
+          data={servers}
           toolbar={
             <ServerToolbar
               title={title}
@@ -67,23 +74,21 @@ const ServerTable: FC<ServerTableProps> = (props) => {
         >
           <TableHead>
             <TableRow>
-              <TableCell>Adresse</TableCell>
-              { !small && (<TableCell>Port</TableCell>) }
-              <TableCell>Pays</TableCell>
-              { showUsers && (
-                <TableCell>Utilisateur</TableCell>
-              ) }
+              { showAddr && <TableSortCell field="ip">Adresse</TableSortCell> }
+              { showPort && <TableCell>Port</TableCell> }
+              <TableSortCell field="country">Pays</TableSortCell>
+              { showUsers && <TableCell>Utilisateur</TableCell> }
             </TableRow>
           </TableHead>
           <TableBody>
-            { servers.map(server => (
+            { (server: Server) => (
               <TableRow key={server._id} doc={server} hover>
-                <TableCell>{server.ip}</TableCell>
-                { !small && (<TableCell>{server.port}</TableCell>) }
+                { showAddr && <TableCell>{server.ip}</TableCell> }
+                { showPort && <TableCell>{server.port}</TableCell> }
                 <TableCell>{server.country}</TableCell>
                 { showUsers && <UserCell id={server.user} /> }
               </TableRow>
-            )) }
+            ) }
           </TableBody>
         </Table>
       </TableContainer>

@@ -4,12 +4,12 @@ import MaterialTable, {
   TableProps as MaterialTableProps
 } from '@material-ui/core/Table';
 
-import TableContext, { SelectedState } from 'contexts/TableContext';
-import Document from 'data/Document';
+import TableContext, { Order, Ordering, SelectedState } from 'contexts/TableContext';
+import { AnyDocument } from 'data/Document';
 
 // Types
 export interface TableProps extends MaterialTableProps {
-  data: Document[],
+  data: AnyDocument[],
   blacklist?: string[],
   toolbar?: ReactNode
 }
@@ -25,6 +25,7 @@ const Table: FC<TableProps> = (props) => {
   } = props;
 
   // State
+  const [ordering, setOrdering] = useState<Ordering>({ order: 'asc' });
   const [selected, setSelected] = useState<SelectedState>({});
 
   // Effects
@@ -35,6 +36,16 @@ const Table: FC<TableProps> = (props) => {
   // Render
   const selectedCount = data.reduce((acc, doc) => selected[doc._id] ? acc + 1 : acc, 0);
   const selectedAll = selectedCount >= (data.length - blacklist.length);
+
+  const onOrderBy = (field: string) => {
+    let order: Order = 'asc';
+
+    if (ordering.field === field && ordering.order === "asc") {
+      order = "desc";
+    }
+
+    setOrdering({ field, order });
+  };
 
   const onSelect = (id: string) => setSelected(old => ({ ...old, [id]: !old[id] }));
   const onSelectAll = () => {
@@ -54,9 +65,10 @@ const Table: FC<TableProps> = (props) => {
   return (
     <TableContext.Provider
       value={{
-        blacklist,
+        blacklist, documents: data, ordering,
         selected, selectedCount,
         selectedAll: selectedCount > 0 && selectedAll,
+        onOrderBy,
         onSelect,
         onSelectAll
       }}
