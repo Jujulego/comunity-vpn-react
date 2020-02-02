@@ -41,4 +41,15 @@ export class HttpErrorLog extends ErrorLog {
   }
 }
 
+export class WSErrorLog extends ErrorLog {
+  // Methods
+  format(): ReactNode {
+    return (
+      <span>
+        <strong>WS</strong>: { this.message }
+      </span>
+    );
+  }
+}
+
 export default ErrorLog;
