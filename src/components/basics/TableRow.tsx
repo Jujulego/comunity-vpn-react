@@ -1,11 +1,10 @@
 import React, { FC, MouseEvent, useContext } from 'react';
 import { Theme, useMediaQuery } from '@material-ui/core';
 
-import { TableRowProps as MaterialTableRowProps } from '@material-ui/core/TableRow';
-
 import {
   Checkbox,
-  TableCell, TableRow as MaterialTableRow
+  TableCell, TableRow as MaterialTableRow,
+  TableRowProps as MaterialTableRowProps
 } from '@material-ui/core';
 
 import TableContext from 'contexts/TableContext';

@@ -4,11 +4,12 @@ import { Theme, useMediaQuery } from '@material-ui/core';
 import User from 'data/User';
 
 import {
-  TableContainer, TableHead, TableBody, TableCell,
+  TableContainer, TableHead, TableCell,
   Paper
 } from '@material-ui/core';
 
 import Table, { TableProps } from 'components/basics/Table';
+import TableBody from 'components/basics/TableBody';
 import TableRow from 'components/basics/TableRow';
 import UserRow from 'components/users/UserRow';
 import UserToolbar from 'components/users/UserToolbar';
@@ -66,12 +67,12 @@ const UserTable: FC<UserTableProps> = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            { users.map(user => (
+            { (user: User) => (
               <UserRow
                 key={user._id} user={user} hover
                 onToggleAdmin={() => onToggleAdmin(user._id)}
               />
-            )) }
+            ) }
           </TableBody>
         </Table>
       </TableContainer>

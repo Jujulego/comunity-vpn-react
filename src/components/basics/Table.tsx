@@ -54,7 +54,7 @@ const Table: FC<TableProps> = (props) => {
   return (
     <TableContext.Provider
       value={{
-        blacklist,
+        blacklist, documents: data,
         selected, selectedCount,
         selectedAll: selectedCount > 0 && selectedAll,
         onSelect,

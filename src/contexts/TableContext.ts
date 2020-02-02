@@ -1,9 +1,12 @@
 import { createContext } from 'react';
 
+import Document from 'data/Document';
+
 // Types
 export interface SelectedState { [id: string]: boolean }
 export interface TableContextProps {
   blacklist: string[],
+  documents: Document[],
 
   selectedAll: boolean,
   selectedCount: number,
@@ -16,6 +19,7 @@ export interface TableContextProps {
 // Default values
 const tableDefaults: TableContextProps = {
   blacklist: [],
+  documents: [],
 
   selectedAll: false,
   selectedCount: 0,

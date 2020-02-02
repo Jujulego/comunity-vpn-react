@@ -3,12 +3,13 @@ import { Theme, useMediaQuery } from '@material-ui/core';
 
 import {
   Paper,
-  TableContainer, TableHead, TableBody, TableCell
+  TableContainer, TableHead, TableCell
 } from '@material-ui/core';
 
 import Server from 'data/Server';
 
 import Table, { TableProps } from 'components/basics/Table';
+import TableBody from 'components/basics/TableBody';
 import TableRow from 'components/basics/TableRow';
 import UserCell from 'components/users/UserCell';
 
@@ -61,7 +62,8 @@ const ServerTable: FC<ServerTableProps> = (props) => {
     <Paper>
       <TableContainer>
         <Table
-          {...table} data={servers}
+          {...table}
+          data={servers}
           toolbar={
             <ServerToolbar
               title={title}
@@ -78,14 +80,14 @@ const ServerTable: FC<ServerTableProps> = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            { servers.map(server => (
+            { (server: Server) => (
               <TableRow key={server._id} doc={server} hover>
                 { showAddr && <TableCell>{server.ip}</TableCell> }
                 { showPort && <TableCell>{server.port}</TableCell> }
                 <TableCell>{server.country}</TableCell>
                 { showUsers && <UserCell id={server.user} /> }
               </TableRow>
-            )) }
+            ) }
           </TableBody>
         </Table>
       </TableContainer>
