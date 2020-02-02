@@ -51,7 +51,11 @@ const ServerTable: FC<ServerTableProps> = (props) => {
   });
 
   // Render
-  const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('sm'));
+  const small  = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('sm'));
+  const xsmall = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('xs'));
+
+  const showAddr = !(xsmall && showUsers);
+  const showPort = !small;
 
   return (
     <Paper>
@@ -67,19 +71,17 @@ const ServerTable: FC<ServerTableProps> = (props) => {
         >
           <TableHead>
             <TableRow>
-              <TableCell>Adresse</TableCell>
-              { !small && (<TableCell>Port</TableCell>) }
+              { showAddr && <TableCell>Adresse</TableCell> }
+              { showPort && <TableCell>Port</TableCell> }
               <TableCell>Pays</TableCell>
-              { showUsers && (
-                <TableCell>Utilisateur</TableCell>
-              ) }
+              { showUsers && <TableCell>Utilisateur</TableCell> }
             </TableRow>
           </TableHead>
           <TableBody>
             { servers.map(server => (
               <TableRow key={server._id} doc={server} hover>
-                <TableCell>{server.ip}</TableCell>
-                { !small && (<TableCell>{server.port}</TableCell>) }
+                { showAddr && <TableCell>{server.ip}</TableCell> }
+                { showPort && <TableCell>{server.port}</TableCell> }
                 <TableCell>{server.country}</TableCell>
                 { showUsers && <UserCell id={server.user} /> }
               </TableRow>
