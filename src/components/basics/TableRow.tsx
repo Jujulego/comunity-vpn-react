@@ -42,7 +42,7 @@ const TableRow: FC<TableRowProps> = (props) => {
   return (
     <MaterialTableRow
       {...row} selected={selectable && doc && selected}
-      onClick={(!selectable || (!doc && small)) ? undefined : handleChange}
+      onClick={(!selectable || !doc) ? undefined : handleChange}
     >
       { !small && (
         <TableCell padding="checkbox">
