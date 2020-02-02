@@ -11,6 +11,7 @@ import {
 import Table, { TableProps } from 'components/basics/Table';
 import TableBody from 'components/basics/TableBody';
 import TableRow from 'components/basics/TableRow';
+import TableSortCell from 'components/basics/TableSortCell';
 import UserRow from 'components/users/UserRow';
 import UserToolbar from 'components/users/UserToolbar';
 
@@ -60,7 +61,7 @@ const UserTable: FC<UserTableProps> = (props) => {
         >
           <TableHead>
             <TableRow>
-              <TableCell>Email</TableCell>
+              <TableSortCell field="email">Email</TableSortCell>
               { !small && (<TableCell>Connexions</TableCell>) }
               <TableCell>Dernière connexion</TableCell>
               { !small && (<TableCell>Admin</TableCell>) }

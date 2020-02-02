@@ -11,6 +11,7 @@ import Server from 'data/Server';
 import Table, { TableProps } from 'components/basics/Table';
 import TableBody from 'components/basics/TableBody';
 import TableRow from 'components/basics/TableRow';
+import TableSortCell from 'components/basics/TableSortCell';
 import UserCell from 'components/users/UserCell';
 
 import AddServerDialog from './AddServerDialog';
@@ -73,9 +74,9 @@ const ServerTable: FC<ServerTableProps> = (props) => {
         >
           <TableHead>
             <TableRow>
-              { showAddr && <TableCell>Adresse</TableCell> }
+              { showAddr && <TableSortCell field="ip">Adresse</TableSortCell> }
               { showPort && <TableCell>Port</TableCell> }
-              <TableCell>Pays</TableCell>
+              <TableSortCell field="country">Pays</TableSortCell>
               { showUsers && <TableCell>Utilisateur</TableCell> }
             </TableRow>
           </TableHead>
