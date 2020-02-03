@@ -2,7 +2,7 @@ import moment from 'moment';
 import React from 'react';
 import { render } from 'react-dom';
 
-import { StylesProvider } from '@material-ui/core';
+import { StylesProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 

@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   Toolbar as MaterialToolbar,

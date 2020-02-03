@@ -1,7 +1,7 @@
 import React, { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import Snackbar, { SnackbarProps } from '@material-ui/core/Snackbar';
+import { Snackbar, SnackbarProps } from '@material-ui/core';
 
 import ErrorLog from 'data/ErrorLog';
 import { AppState } from 'store';

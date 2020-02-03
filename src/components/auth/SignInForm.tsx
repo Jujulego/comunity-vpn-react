@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   Button,

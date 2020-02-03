@@ -1,6 +1,7 @@
 import React, { FC, useMemo } from 'react';
-import { createMuiTheme, useMediaQuery } from '@material-ui/core';
+import { useMediaQuery } from '@material-ui/core';
 import { deepPurple } from '@material-ui/core/colors';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 import { CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';

@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   Button, IconButton,
