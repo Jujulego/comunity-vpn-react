@@ -19,17 +19,17 @@ type TextToPassword<T extends TextFieldProps> =
     InputProps?: Omit<T['InputProps'], 'endAdornment' | 'inputRef'>
   }
 
-export type FilledPasswordFieldProps   = TextToPassword<FilledTextFieldProps>;
-export type OutlinedPasswordFieldProps = TextToPassword<OutlinedTextFieldProps>;
-export type StandardPasswordFieldProps = TextToPassword<StandardTextFieldProps>;
+export type FilledEditPasswordFieldProps   = TextToPassword<FilledTextFieldProps>;
+export type OutlinedEditPasswordFieldProps = TextToPassword<OutlinedTextFieldProps>;
+export type StandardEditPasswordFieldProps = TextToPassword<StandardTextFieldProps>;
 
 export type EditPasswordFieldProps =
-  FilledPasswordFieldProps       |
-  OutlinedPasswordFieldProps     |
-  StandardPasswordFieldProps;
+  FilledEditPasswordFieldProps       |
+  OutlinedEditPasswordFieldProps     |
+  StandardEditPasswordFieldProps;
 
 // Component
-const EditPasswordField: FC<EditPasswordFieldProps> = (props) => {
+export const EditPasswordField: FC<EditPasswordFieldProps> = (props) => {
   // Props
   const {
     editable: pEditable,

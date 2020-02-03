@@ -16,7 +16,7 @@ import { Redirect } from 'react-router';
 import { AppState } from 'store';
 import { signIn } from 'store/auth/thunks';
 
-import PasswordField from 'components/basics/PasswordField';
+import { PasswordField } from 'components/basics/Fields';
 
 // Types
 interface FormState {

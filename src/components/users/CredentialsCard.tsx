@@ -12,7 +12,7 @@ import {
 
 import User, { Credentials } from 'data/User';
 
-import EditPasswordField from 'components/basics/EditPasswordField';
+import { EditPasswordField } from 'components/basics/Fields';
 
 // Types
 export interface CredentialsCardProps extends Omit<CardProps, 'component' | 'onSubmit' | 'onReset'> {
