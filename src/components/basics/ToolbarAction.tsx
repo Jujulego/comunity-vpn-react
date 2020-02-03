@@ -10,7 +10,7 @@ export interface TooolbarActionProps {
 }
 
 // Components
-const ToolbarAction: FC<TooolbarActionProps> = (props) => {
+export const ToolbarAction: FC<TooolbarActionProps> = (props) => {
   // Props
   const { icon, tooltip, onClick } = props;
 

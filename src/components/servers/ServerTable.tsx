@@ -13,7 +13,7 @@ import {
   Table, TableProps,
   TableBody, TableRow,
   TableSortCell
-} from 'components/basics/Table';
+} from 'components/basics';
 import UserCell from 'components/users/UserCell';
 
 import AddServerDialog from './AddServerDialog';

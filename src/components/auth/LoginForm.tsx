@@ -18,7 +18,7 @@ import { Credentials } from 'data/User';
 import { AppState } from 'store';
 import { login } from 'store/auth/thunks';
 
-import { PasswordField } from 'components/basics/Fields';
+import { PasswordField } from 'components/basics';
 
 // Types
 export type LoginProps = RouteChildrenProps<{}, { from?: string }>;

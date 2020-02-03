@@ -14,7 +14,7 @@ import {
   Table, TableProps,
   TableBody, TableRow,
   TableSortCell
-} from 'components/basics/Table';
+} from 'components/basics';
 
 import UserRow from './UserRow';
 import UserToolbar from './UserToolbar';

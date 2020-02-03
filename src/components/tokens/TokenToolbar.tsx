@@ -7,8 +7,10 @@ import {
 
 import TableContext from 'contexts/TableContext';
 
-import { TableToolbar, ToolbarProps } from 'components/basics/Table';
-import ToolbarAction from 'components/basics/ToolbarAction';
+import {
+  TableToolbar, ToolbarProps,
+  ToolbarAction
+} from 'components/basics';
 
 // Types
 export interface TokenToolbarProps extends ToolbarProps {
