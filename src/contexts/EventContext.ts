@@ -50,7 +50,6 @@ export function useEventRoom(room: string | undefined, handler: EventHandler) {
 
     // Callback
     const cb = (event: AppEvents) => {
-      console.log(event.to, room);
       if (event.to === room) handler(event);
     };
 

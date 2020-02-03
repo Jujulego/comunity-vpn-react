@@ -50,7 +50,9 @@ const UserRow: FC<UserRowProps> = (props) => {
       <TableCell>{connection}</TableCell>
       { !small && (
         <TableCell padding="none">
-          <Switch checked={user.admin} onChange={onToggleAdmin} inputProps={{ onClick: handleClick }} />
+          <span onClick={handleClick}>
+            <Switch checked={user.admin} onChange={onToggleAdmin} />
+          </span>
         </TableCell>
       ) }
     </TableRow>

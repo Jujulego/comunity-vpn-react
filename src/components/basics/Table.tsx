@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useMemo, useState } from 'react';
 
 import MaterialTable, {
   TableProps as MaterialTableProps
@@ -33,9 +33,19 @@ const Table: FC<TableProps> = (props) => {
     setSelected({});
   }, [data]);
 
+  // Memos
+  const blacklistCount = useMemo(
+    () => data.reduce((count, doc: AnyDocument) => (blacklist.indexOf(doc._id) === -1) ? count : count + 1, 0),
+    [blacklist, data]
+  );
+
+  const selectedCount = useMemo(
+    () => data.reduce((acc, doc) => selected[doc._id] ? acc + 1 : acc, 0),
+    [data, selected]
+  );
+
   // Render
-  const selectedCount = data.reduce((acc, doc) => selected[doc._id] ? acc + 1 : acc, 0);
-  const selectedAll = selectedCount >= (data.length - blacklist.length);
+  const selectedAll = selectedCount >= (data.length - blacklistCount);
 
   const onOrderBy = (field: string) => {
     let order: Order = 'asc';
