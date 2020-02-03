@@ -9,7 +9,7 @@ import { deleteUser, toggleAdmin } from 'store/users/thunks';
 import UserTable, { UserTableProps } from 'components/users/UserTable';
 
 // Type
-type DefinedProps = 'users' | 'onLoad' | 'onRefresh' | 'onToggleAdmin' | 'onDeleteUser';
+type DefinedProps = 'users' | 'room' | 'onLoad' | 'onRefresh' | 'onToggleAdmin' | 'onDeleteUser';
 export type AllUserTableProps = Omit<UserTableProps, DefinedProps>;
 
 // Component
@@ -17,6 +17,7 @@ function mapStateToProps(state: AppState, _: AllUserTableProps) {
   const { users } = state.admin;
 
   return {
+    room: 'admin',
     users: users.reduce<User[]>((acc, id) => {
       const { data } = state.users[id];
       if (data) acc.push(data);

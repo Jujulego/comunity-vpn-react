@@ -1,12 +1,14 @@
 import React, { FC, useEffect, useMemo } from 'react';
+import moment from 'moment';
 import { Theme, useMediaQuery } from '@material-ui/core';
-
-import User from 'data/User';
 
 import {
   TableContainer, TableHead, TableCell,
   Paper
 } from '@material-ui/core';
+
+import { useEventRoom } from 'contexts/EventContext';
+import User from 'data/User';
 
 import Table, { TableProps } from 'components/basics/Table';
 import TableBody from 'components/basics/TableBody';
@@ -14,11 +16,10 @@ import TableRow from 'components/basics/TableRow';
 import TableSortCell from 'components/basics/TableSortCell';
 import UserRow from 'components/users/UserRow';
 import UserToolbar from 'components/users/UserToolbar';
-import moment from 'moment';
 
 // Types
 export interface UserTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
-  title: string, users: User[],
+  title: string, room?: string, users: User[],
   onLoad: () => void, onRefresh: () => void,
   onDeleteUser?: (id: string) => void,
   onToggleAdmin: (id: string) => void
@@ -28,7 +29,7 @@ export interface UserTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
 const UserTable: FC<UserTableProps> = (props) => {
   // Props
   const {
-    title, users,
+    title, room, users,
     onLoad, onRefresh,
     onDeleteUser,
     onToggleAdmin,
@@ -39,6 +40,13 @@ const UserTable: FC<UserTableProps> = (props) => {
   useEffect(() => {
     onLoad();
   }, [onLoad]);
+
+  // Events
+  useEventRoom(room, event => {
+    if (event.scope === "users") {
+      onRefresh();
+    }
+  });
 
   // Memos
   const enhanced = useMemo(() => users.map(
