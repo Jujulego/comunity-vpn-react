@@ -8,7 +8,7 @@ import {
 
 import TableContext from 'contexts/TableContext';
 
-import TableToolbar, { ToolbarProps } from 'components/basics/TableToolbar';
+import TableToolbar, { ToolbarProps } from 'components/basics/Table/TableToolbar';
 import ToolbarAction from 'components/basics/ToolbarAction';
 
 // Types

@@ -39,7 +39,7 @@ const useStyles = makeStyles(({ shape, palette, spacing }) => {
 });
 
 // Component
-const TableToolbar: FC<ToolbarProps> = (props) => {
+export const TableToolbar: FC<ToolbarProps> = (props) => {
   // Props
   const {
     title,

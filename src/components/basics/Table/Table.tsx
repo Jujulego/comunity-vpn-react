@@ -15,7 +15,7 @@ export interface TableProps extends MaterialTableProps {
 }
 
 // Component
-const Table: FC<TableProps> = (props) => {
+export const Table: FC<TableProps> = (props) => {
   // Props
   const {
     data, blacklist = [],

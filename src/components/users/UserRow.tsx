@@ -7,7 +7,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import User from 'data/User';
 
-import TableRow, { TableRowProps } from 'components/basics/TableRow';
+import { TableRow, TableRowProps } from 'components/basics/Table';
 
 // Types
 export interface UserRowProps extends Omit<TableRowProps, 'doc'> {
