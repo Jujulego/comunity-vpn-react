@@ -25,6 +25,7 @@ import UserPage from './users/UserPage';
 import AppBar from './AppBar';
 import Forbidden from './Forbidden';
 import Home from './Home';
+import EventProvider from './EventProvider';
 
 // Component
 const App: FC = () => {
@@ -52,21 +53,23 @@ const App: FC = () => {
           <Route path="/login" component={LoginForm} />
           <Route path="/signin" component={SignInForm} />
           <PrivateRoute>
-            <AppBar>
-              <Switch>
-                <AdminRoute path="/admin">
-                  <AdminApp />
-                </AdminRoute>
-                <Route path="/forbidden" component={Forbidden} />
-                <Route path="/profile">
-                  <UserPage id="me" />
-                </Route>
-                <Route path="/servers">
-                  <UserServerTable title="Mes serveurs" user="me" />
-                </Route>
-                <Route component={Home} />
-              </Switch>
-            </AppBar>
+            <EventProvider>
+              <AppBar>
+                <Switch>
+                  <AdminRoute path="/admin">
+                    <AdminApp />
+                  </AdminRoute>
+                  <Route path="/forbidden" component={Forbidden} />
+                  <Route path="/profile">
+                    <UserPage id="me" />
+                  </Route>
+                  <Route path="/servers">
+                    <UserServerTable title="Mes serveurs" user="me" />
+                  </Route>
+                  <Route component={Home} />
+                </Switch>
+              </AppBar>
+            </EventProvider>
           </PrivateRoute>
         </Switch>
       </Router>

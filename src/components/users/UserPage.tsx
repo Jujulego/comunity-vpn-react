@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Grid } from '@material-ui/core';
@@ -6,6 +6,7 @@ import { Grid } from '@material-ui/core';
 import { Credentials } from 'data/User';
 import { refreshUser, updateUser, deleteUserToken, toggleAdmin } from 'store/users/thunks';
 import { useMe, useUser } from 'store/users/hooks';
+import { useEventRoom } from 'contexts/EventContext';
 
 import TokenTable from 'components/tokens/TokenTable';
 
@@ -27,11 +28,19 @@ const UserPage: FC<UserPageProps> = (props) => {
   const user = useUser(id);
   const me = useMe();
 
-  // Handlers
-  const handleRefresh = () => {
+  // Callbacks
+  const handleRefresh = useCallback(() => {
     dispatch(refreshUser(id));
-  };
+  }, [dispatch, id]);
 
+  // Events
+  useEventRoom(user?._id, event => {
+    if (event.scope === 'users') {
+      handleRefresh();
+    }
+  });
+
+  // Handlers
   const handleUpdate = (cred: Partial<Credentials>) => {
     dispatch(updateUser(id, cred));
   };

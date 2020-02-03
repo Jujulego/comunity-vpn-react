@@ -9,7 +9,7 @@ import { downServer } from 'store/servers/thunks';
 import ServerTable, { ServerTableProps } from 'components/servers/ServerTable';
 
 // Type
-type DefinedProps = 'servers' | 'onLoad' | 'onRefresh' | 'onDeleteServer';
+type DefinedProps = 'servers' | 'room' | 'onLoad' | 'onRefresh' | 'onDeleteServer';
 export type AllServerTableProps = Omit<ServerTableProps, DefinedProps>;
 
 // Component
@@ -17,6 +17,7 @@ function mapStateToProps(state: AppState, _: AllServerTableProps) {
   const { servers } = state.admin;
 
   return {
+    room: 'admin',
     servers: servers.reduce<Server[]>((acc, id) => {
       const { data } = state.servers[id];
       if (data) acc.push(data);

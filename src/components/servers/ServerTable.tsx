@@ -6,6 +6,7 @@ import {
   TableContainer, TableHead, TableCell
 } from '@material-ui/core';
 
+import { useEventRoom } from 'contexts/EventContext';
 import Server from 'data/Server';
 
 import Table, { TableProps } from 'components/basics/Table';
@@ -19,7 +20,7 @@ import ServerToolbar from './ServerToolbar';
 
 // Types
 export interface ServerTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
-  title: string, servers: Server[], showUsers?: boolean,
+  title: string, room?: string, servers: Server[], showUsers?: boolean,
   onLoad: () => void, onRefresh: () => void,
   onAddServer?: (ip: string, port: number) => void,
   onDeleteServer?: (id: string) => void
@@ -29,7 +30,7 @@ export interface ServerTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
 const ServerTable: FC<ServerTableProps> = (props) => {
   // Props
   const {
-    title, servers, showUsers = false,
+    title, room, servers, showUsers = false,
     onLoad, onRefresh,
     onAddServer,
     onDeleteServer,
@@ -43,6 +44,13 @@ const ServerTable: FC<ServerTableProps> = (props) => {
   useEffect(() => {
     onLoad();
   }, [onLoad]);
+
+  // Events
+  useEventRoom(room, event => {
+    if (event.scope === 'servers') {
+      onRefresh();
+    }
+  });
 
   // Handlers
   const handleOpen = onAddServer && (() => setDialog(true));
