@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 
 import { env } from 'env';
-import EventContext, { AppEvents, EventHandler } from 'contexts/EventContext';
+import EventContext, { EventHandler } from 'contexts/EventContext';
 import ErrorLog, { WSErrorLog } from 'data/ErrorLog';
 
 import { AppState } from 'store';
@@ -27,9 +27,6 @@ const EventProvider: FC = ({ children }) => {
 
     // Connect
     socket.current = io.connect(env.API_BASE_URL, { query: { token }});
-    socket.current.on('event', (event: AppEvents) => {
-      console.log(event);
-    });
     socket.current.on('error', (error: any) => {
       if (typeof error === 'string') {
         dispatch(addError(new WSErrorLog(error)));
