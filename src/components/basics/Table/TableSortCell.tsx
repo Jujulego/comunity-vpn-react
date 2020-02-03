@@ -13,7 +13,7 @@ export interface TableSortCellProps extends Omit<TableCellProps, 'sortDirection'
 }
 
 // Component
-const TableSortCell: FC<TableSortCellProps> = (props) => {
+export const TableSortCell: FC<TableSortCellProps> = (props) => {
   // Props
   const {
     field, children,

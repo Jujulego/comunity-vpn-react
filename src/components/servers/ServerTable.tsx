@@ -9,10 +9,11 @@ import {
 import { useEventRoom } from 'contexts/EventContext';
 import Server from 'data/Server';
 
-import Table, { TableProps } from 'components/basics/Table';
-import TableBody from 'components/basics/TableBody';
-import TableRow from 'components/basics/TableRow';
-import TableSortCell from 'components/basics/TableSortCell';
+import {
+  Table, TableProps,
+  TableBody, TableRow,
+  TableSortCell
+} from 'components/basics';
 import UserCell from 'components/users/UserCell';
 
 import AddServerDialog from './AddServerDialog';

@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 
 import { Grid } from '@material-ui/core';
 
+import { useEventRoom } from 'contexts/EventContext';
 import { Credentials } from 'data/User';
 import { refreshUser, updateUser, deleteUserToken, toggleAdmin } from 'store/users/thunks';
 import { useMe, useUser } from 'store/users/hooks';
-import { useEventRoom } from 'contexts/EventContext';
 
 import TokenTable from 'components/tokens/TokenTable';
 

@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   Toolbar as MaterialToolbar,
@@ -39,7 +39,7 @@ const useStyles = makeStyles(({ shape, palette, spacing }) => {
 });
 
 // Component
-const TableToolbar: FC<ToolbarProps> = (props) => {
+export const TableToolbar: FC<ToolbarProps> = (props) => {
   // Props
   const {
     title,

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   Button,
@@ -16,7 +16,7 @@ import { Redirect } from 'react-router';
 import { AppState } from 'store';
 import { signIn } from 'store/auth/thunks';
 
-import PasswordField from 'components/basics/PasswordField';
+import { PasswordField } from 'components/basics';
 
 // Types
 interface FormState {

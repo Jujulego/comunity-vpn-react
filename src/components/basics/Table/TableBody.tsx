@@ -20,7 +20,7 @@ function getSorting<K extends keyof AnyDocument>(field: K, order: Order): Compar
 }
 
 // Component
-const TableBody: FC<TableBodyProps> = (props) => {
+export const TableBody: FC<TableBodyProps> = (props) => {
   // Props
   const { children, ...body } = props;
 

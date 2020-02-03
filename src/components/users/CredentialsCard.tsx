@@ -1,6 +1,6 @@
 import React, { FC, FormEvent, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import validator from 'validator';
 
 import {
@@ -9,10 +9,11 @@ import {
   Grid,
   TextField
 } from '@material-ui/core';
+import { Controller } from 'react-hook-form';
 
 import User, { Credentials } from 'data/User';
 
-import EditPasswordField from 'components/basics/EditPasswordField';
+import { EditPasswordField } from 'components/basics';
 
 // Types
 export interface CredentialsCardProps extends Omit<CardProps, 'component' | 'onSubmit' | 'onReset'> {

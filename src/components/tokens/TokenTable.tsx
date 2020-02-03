@@ -10,10 +10,11 @@ import {
 import Token from 'data/Token';
 import { AppState } from 'store';
 
-import Table, { TableProps } from 'components/basics/Table';
-import TableBody from 'components/basics/TableBody';
-import TableRow from 'components/basics/TableRow';
-import TableSortCell from 'components/basics/TableSortCell';
+import {
+  Table, TableProps,
+  TableBody, TableRow,
+  TableSortCell
+} from 'components/basics';
 
 import TokenToolbar from './TokenToolbar';
 

@@ -16,7 +16,7 @@ export interface TableRowProps extends Omit<MaterialTableRowProps, 'selected' | 
 }
 
 // Component
-const TableRow: FC<TableRowProps> = (props) => {
+export const TableRow: FC<TableRowProps> = (props) => {
   // Props
   const {
     doc, children,

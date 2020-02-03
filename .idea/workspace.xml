@@ -2,10 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.babelrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config-overrides.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EventProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EventProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/UserRow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/UserRow.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/EventContext.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/EventContext.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/LoginForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/SignInForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/SignInForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basics/Table/Table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/Table/Table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basics/Table/TableToolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/Table/TableToolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/errors/ErrorSnackbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/errors/ErrorSnackbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/CredentialsCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/CredentialsCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +28,7 @@
         <option value="SCSS File" />
         <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -54,15 +64,17 @@
     <property name="ts.external.directory.path" value="C:\Users\julie\WebstormProjects\community-vpn-react\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\basics\Fields" />
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\basics\Table" />
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\auth" />
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\utils\hooks" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\store\errors" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\basics" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\tokens" />
-      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\auth" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components" />
     </key>
   </component>
@@ -163,42 +175,8 @@
       <workItem from="1580660435752" duration="4931000" />
       <workItem from="1580683711558" duration="3370000" />
       <workItem from="1580690072581" duration="8868000" />
-      <workItem from="1580740260297" duration="2252000" />
-    </task>
-    <task id="LOCAL-00045" summary="add: user page">
-      <created>1579911923243</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1579911923243</updated>
-    </task>
-    <task id="LOCAL-00046" summary="update: use Material UI's style solution instead of SASS">
-      <created>1579960575474</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1579960575474</updated>
-    </task>
-    <task id="LOCAL-00047" summary="add: dark mode">
-      <created>1579961929867</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1579961929867</updated>
-    </task>
-    <task id="LOCAL-00048" summary="add: dark mode">
-      <created>1579987944393</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1579987944393</updated>
-    </task>
-    <task id="LOCAL-00049" summary="update: reduced table select logic">
-      <created>1579995058808</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1579995058808</updated>
+      <workItem from="1580740260297" duration="2916000" />
+      <workItem from="1580769319830" duration="4390000" />
     </task>
     <task id="LOCAL-00050" summary="update: intergrate toolbar inside table">
       <created>1580033547036</created>
@@ -508,7 +486,42 @@
       <option name="project" value="LOCAL" />
       <updated>1580741347103</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="update: remove event logging">
+      <created>1580742557800</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1580742557800</updated>
+    </task>
+    <task id="LOCAL-00095" summary="fix: UserRow Switch onClick error">
+      <created>1580742579084</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1580742579084</updated>
+    </task>
+    <task id="LOCAL-00096" summary="update: folder for Table components">
+      <created>1580770341034</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1580770341034</updated>
+    </task>
+    <task id="LOCAL-00097" summary="update: folder for Field components">
+      <created>1580770647159</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1580770647159</updated>
+    </task>
+    <task id="LOCAL-00098" summary="update: basics index">
+      <created>1580771015792</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1580771015792</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,11 +531,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: validation in AddServerDialog" />
-    <MESSAGE value="update: version 0.5.0" />
-    <MESSAGE value="update: new server management" />
-    <MESSAGE value="update: random port generation" />
-    <MESSAGE value="update: version 0.6.1" />
     <MESSAGE value="update: nginx configuration" />
     <MESSAGE value="add: errors store" />
     <MESSAGE value="add: snackbar on errors" />
@@ -543,7 +551,12 @@
     <MESSAGE value="update: listen for server's events" />
     <MESSAGE value="update: version 0.7.0" />
     <MESSAGE value="fix: compute blacklist count" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: compute blacklist count" />
+    <MESSAGE value="update: remove event logging" />
+    <MESSAGE value="fix: UserRow Switch onClick error" />
+    <MESSAGE value="update: folder for Table components" />
+    <MESSAGE value="update: folder for Field components" />
+    <MESSAGE value="update: basics index" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: basics index" />
   </component>
   <component name="WindowStateProjectService">
     <state x="601" y="121" key="#Docker_Image" timestamp="1580424534444">
@@ -551,6 +564,10 @@
     </state>
     <state x="-2839" y="-716" key="#Docker_Image/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579352518769" />
     <state x="601" y="121" key="#Docker_Image/0.0.1536.824@0.0.1536.824" timestamp="1580424534444" />
+    <state x="1512" y="363" key="#JavaScript" timestamp="1580772184803">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1512" y="363" key="#JavaScript/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580772184803" />
     <state x="320" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580425456165">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -570,12 +587,12 @@
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580134379752" />
     <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476314905" />
-    <state x="888" y="27" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580741346401">
+    <state x="888" y="27" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580771015098">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
     <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580687115358" />
-    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580741346401" />
+    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580771015098" />
     <state x="219" y="79" width="1228" height="685" key="DiffContextDialog" timestamp="1580597579941">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -584,30 +601,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1579742010787" />
-    <state width="2539" height="263" key="GridCell.Tab.0.bottom" timestamp="1580740471366">
+    <state width="1257" height="262" key="GridCell.Tab.0.bottom" timestamp="1580772395811">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.bottom/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819127" />
     <state width="1515" height="245" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580687119765" />
-    <state width="2539" height="263" key="GridCell.Tab.0.bottom/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580740471366" />
-    <state width="2539" height="263" key="GridCell.Tab.0.center" timestamp="1580740471366">
+    <state width="1257" height="262" key="GridCell.Tab.0.bottom/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580772395811" />
+    <state width="1257" height="262" key="GridCell.Tab.0.center" timestamp="1580772395811">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.center/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819126" />
     <state width="1515" height="245" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580687119765" />
-    <state width="2539" height="263" key="GridCell.Tab.0.center/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580740471366" />
-    <state width="2539" height="263" key="GridCell.Tab.0.left" timestamp="1580740471365">
+    <state width="1257" height="262" key="GridCell.Tab.0.center/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580772395811" />
+    <state width="1257" height="262" key="GridCell.Tab.0.left" timestamp="1580772395811">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.left/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819126" />
     <state width="1515" height="245" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580687119765" />
-    <state width="2539" height="263" key="GridCell.Tab.0.left/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580740471365" />
-    <state width="2539" height="263" key="GridCell.Tab.0.right" timestamp="1580740471366">
+    <state width="1257" height="262" key="GridCell.Tab.0.left/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580772395811" />
+    <state width="1257" height="262" key="GridCell.Tab.0.right" timestamp="1580772395811">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.right/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819127" />
     <state width="1515" height="245" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580687119765" />
-    <state width="2539" height="263" key="GridCell.Tab.0.right/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580740471366" />
+    <state width="1257" height="262" key="GridCell.Tab.0.right/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580772395811" />
     <state x="1047" y="413" key="RollbackChangesDialog" timestamp="1580318791194">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   Button, IconButton,
@@ -18,7 +18,7 @@ import { Credentials } from 'data/User';
 import { AppState } from 'store';
 import { login } from 'store/auth/thunks';
 
-import PasswordField from 'components/basics/PasswordField';
+import { PasswordField } from 'components/basics';
 
 // Types
 export type LoginProps = RouteChildrenProps<{}, { from?: string }>;

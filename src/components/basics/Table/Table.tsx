@@ -1,8 +1,9 @@
 import React, { FC, ReactNode, useEffect, useMemo, useState } from 'react';
 
-import MaterialTable, {
+import {
+  Table as MaterialTable,
   TableProps as MaterialTableProps
-} from '@material-ui/core/Table';
+} from '@material-ui/core';
 
 import TableContext, { Order, Ordering, SelectedState } from 'contexts/TableContext';
 import { AnyDocument } from 'data/Document';
@@ -15,7 +16,7 @@ export interface TableProps extends MaterialTableProps {
 }
 
 // Component
-const Table: FC<TableProps> = (props) => {
+export const Table: FC<TableProps> = (props) => {
   // Props
   const {
     data, blacklist = [],

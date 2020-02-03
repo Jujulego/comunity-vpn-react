@@ -10,12 +10,14 @@ import {
 import { useEventRoom } from 'contexts/EventContext';
 import User from 'data/User';
 
-import Table, { TableProps } from 'components/basics/Table';
-import TableBody from 'components/basics/TableBody';
-import TableRow from 'components/basics/TableRow';
-import TableSortCell from 'components/basics/TableSortCell';
-import UserRow from 'components/users/UserRow';
-import UserToolbar from 'components/users/UserToolbar';
+import {
+  Table, TableProps,
+  TableBody, TableRow,
+  TableSortCell
+} from 'components/basics';
+
+import UserRow from './UserRow';
+import UserToolbar from './UserToolbar';
 
 // Types
 export interface UserTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
