@@ -13,8 +13,6 @@ RUN npm install
 COPY src /app/src
 COPY public /app/public
 COPY tsconfig.json /app
-COPY .babelrc.js /app
-COPY config-overrides.js /app
 RUN npm run build -- --prod
 
 # Server
