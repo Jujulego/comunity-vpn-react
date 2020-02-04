@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.babelrc.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-overrides.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,14 +170,8 @@
       <workItem from="1580690072581" duration="8868000" />
       <workItem from="1580740260297" duration="2916000" />
       <workItem from="1580769319830" duration="4928000" />
-      <workItem from="1580775054713" duration="71000" />
-    </task>
-    <task id="LOCAL-00051" summary="add: table blacklist">
-      <created>1580035847553</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1580035847553</updated>
+      <workItem from="1580775054713" duration="105000" />
+      <workItem from="1580823337892" duration="134000" />
     </task>
     <task id="LOCAL-00052" summary="add: allow to delete tokens">
       <created>1580038576421</created>
@@ -512,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580773750837</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="update: Dockerfile&#10;update: version 0.7.1">
+      <created>1580775152537</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1580775152537</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,7 +526,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: errors store" />
     <MESSAGE value="add: snackbar on errors" />
     <MESSAGE value="add: ErrorLog class" />
     <MESSAGE value="update: responsive drawer" />
@@ -547,7 +550,8 @@
     <MESSAGE value="update: folder for Field components" />
     <MESSAGE value="update: basics index" />
     <MESSAGE value="update: optimize bundle" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: optimize bundle" />
+    <MESSAGE value="update: Dockerfile&#10;update: version 0.7.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: Dockerfile&#10;update: version 0.7.1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="601" y="121" key="#Docker_Image" timestamp="1580424534444">
@@ -572,18 +576,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1580552826138" />
-    <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580476314905">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580823464385">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
-    <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580134379752" />
+    <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580823464385" />
     <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476314905" />
-    <state x="888" y="27" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580773750153">
+    <state x="888" y="27" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580775151966">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
     <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580687115358" />
-    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580773750153" />
+    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580775151966" />
     <state x="219" y="79" width="1228" height="685" key="DiffContextDialog" timestamp="1580597579941">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
