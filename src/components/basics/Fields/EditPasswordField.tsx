@@ -11,17 +11,17 @@ import {
 } from '@material-ui/icons';
 
 // Types
-type TextToPassword<T extends TextFieldProps> =
-  Omit<T, 'type' | 'inputRef' | 'InputProps'> &
+type TextToEditPassword<T extends TextFieldProps> =
+  Omit<T, 'type' | 'inputRef' | 'InputProps' | 'select' | 'SelectProps'> &
   {
     editable?: boolean,
     onChangeEditable?: (editable: boolean) => void,
     InputProps?: Omit<T['InputProps'], 'endAdornment' | 'inputRef'>
   }
 
-export type FilledEditPasswordFieldProps   = TextToPassword<FilledTextFieldProps>;
-export type OutlinedEditPasswordFieldProps = TextToPassword<OutlinedTextFieldProps>;
-export type StandardEditPasswordFieldProps = TextToPassword<StandardTextFieldProps>;
+export type FilledEditPasswordFieldProps   = TextToEditPassword<FilledTextFieldProps>;
+export type OutlinedEditPasswordFieldProps = TextToEditPassword<OutlinedTextFieldProps>;
+export type StandardEditPasswordFieldProps = TextToEditPassword<StandardTextFieldProps>;
 
 export type EditPasswordFieldProps =
   FilledEditPasswordFieldProps       |
