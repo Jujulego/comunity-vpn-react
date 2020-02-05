@@ -1,4 +1,6 @@
-import { StyledComponentProps } from '@material-ui/core/styles';
+import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 // Types
-export type StyledProps<ClassKey extends string> = Omit<StyledComponentProps<ClassKey>, 'innerRef'>
+export interface StyledProps<ClassKey extends string> {
+  classes?: ClassNameMap<ClassKey>
+}
