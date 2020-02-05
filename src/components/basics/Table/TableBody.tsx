@@ -7,7 +7,6 @@ import {
 
 import { Order, useTableContext } from 'contexts/TableContext';
 import Document from 'data/Document';
-import { toPredicate } from 'utils/filter';
 import { Comparator, OrderByField, desc, stableSort } from 'utils/sort';
 
 // Types
@@ -26,17 +25,13 @@ const TableBody = <T extends Document> (props: TableBodyProps<T>) => {
   const { children, ...body } = props;
 
   // Contexts
-  const { documents, filter, ordering } = useTableContext<T>();
+  const { filtered, ordering } = useTableContext<T>();
 
   // Memos
   const sorted = useMemo<T[]>(() => {
-    // Filter
-    const filtered = documents.filter(toPredicate(filter));
-
-    // Sort
     if (ordering.field === undefined) return filtered;
     return stableSort(filtered, getSorting(ordering.field, ordering.order));
-  }, [documents, filter, ordering]);
+  }, [filtered, ordering]);
 
   // Render
   return (

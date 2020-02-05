@@ -32,14 +32,14 @@ const ServerToolbar: FC<ServerToolbarProps> = (props) => {
   } = props;
 
   // Context
-  const { selected, selectedCount } = useTableContext();
+  const { filtered, selected, selectedCount } = useTableContext();
 
   // State
   const [open, setOpen] = useState(false);
 
   // Handlers
   const handleDelete = onDelete && (() => {
-    onDelete(Object.keys(selected).filter(id => selected[id]))
+    onDelete(filtered.map(doc => doc._id).filter(id => selected[id]))
   });
 
   return (

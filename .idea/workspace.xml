@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/servers/FilterServerDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/servers/FilterServerDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basics/Table/Table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/Table/Table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basics/Table/TableBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/Table/TableBody.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/servers/ServerToolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/servers/ServerToolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tokens/TokenToolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tokens/TokenToolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/UserToolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/UserToolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/TableContext.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/TableContext.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,14 +199,7 @@
       <workItem from="1580823337892" duration="1664000" />
       <workItem from="1580857730610" duration="4242000" />
       <workItem from="1580862094149" duration="3375000" />
-      <workItem from="1580897585763" duration="14732000" />
-    </task>
-    <task id="LOCAL-00066" summary="update: validation errors messages">
-      <created>1580133730273</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1580133730273</updated>
+      <workItem from="1580897585763" duration="15561000" />
     </task>
     <task id="LOCAL-00067" summary="add: validation in AddServerDialog">
       <created>1580134284981</created>
@@ -539,7 +537,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580921456647</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="update: can clear ip and port fields">
+      <created>1580922288753</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1580922288753</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -549,7 +554,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: user sort on custom fields" />
     <MESSAGE value="add: connect to server websocket" />
     <MESSAGE value="update: listen for user's events" />
     <MESSAGE value="update: listen for server's events" />
@@ -574,7 +578,8 @@
     <MESSAGE value="add: TableFilterAction" />
     <MESSAGE value="add: UserSelect" />
     <MESSAGE value="fix: filter default values for ip and port" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: filter default values for ip and port" />
+    <MESSAGE value="update: can clear ip and port fields" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: can clear ip and port fields" />
   </component>
   <component name="WindowStateProjectService">
     <state x="601" y="121" key="#Docker_Image" timestamp="1580424534444">
@@ -606,12 +611,12 @@
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580823464385" />
     <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476314905" />
-    <state x="888" y="27" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580921455982">
+    <state x="888" y="27" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580922288205">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
     <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580898232092" />
-    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580921455982" />
+    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580922288205" />
     <state x="365" y="134" width="2048" height="1146" key="DiffContextDialog" timestamp="1580920804221">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

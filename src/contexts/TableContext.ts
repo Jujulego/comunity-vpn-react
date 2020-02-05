@@ -16,7 +16,7 @@ export interface Ordering<T extends Document> {
 interface BaseTableContextProps<T extends Document> {
   blacklist: string[],
   documents: T[],
-  filter: Filter<T>,
+  filter: Filter<T>, filtered: T[],
   ordering: Ordering<T>,
 
   selectedAll: boolean,
@@ -40,7 +40,7 @@ type TableContextDefaults = BaseTableContextProps<AnyDocument> & {
 const tableDefaults: TableContextDefaults = {
   blacklist: [],
   documents: [],
-  filter: {},
+  filter: {}, filtered: [],
   ordering: { order: 'asc' },
 
   selectedAll: false,

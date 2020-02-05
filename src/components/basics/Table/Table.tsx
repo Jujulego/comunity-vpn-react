@@ -7,7 +7,7 @@ import {
 
 import TableContext, { Order, Ordering, SelectedState } from 'contexts/TableContext';
 import Document from 'data/Document';
-import { Filter } from 'utils/filter';
+import { Filter, toPredicate } from 'utils/filter';
 
 // Types
 export interface TableProps<T extends Document> extends MaterialTableProps {
@@ -38,18 +38,23 @@ const Table = <T extends Document> (props: TableProps<T>) => {
   }, [data]);
 
   // Memos
+  const filtered = useMemo(
+    () => data.filter(toPredicate(filter)),
+    [data, filter]
+  );
+
   const blacklistCount = useMemo(
-    () => data.reduce((count, doc: T) => (blacklist.indexOf(doc._id) === -1) ? count : count + 1, 0),
-    [blacklist, data]
+    () => filtered.reduce((count, doc: T) => (blacklist.indexOf(doc._id) === -1) ? count : count + 1, 0),
+    [blacklist, filtered]
   );
 
   const selectedCount = useMemo(
-    () => data.reduce((acc, doc) => selected[doc._id] ? acc + 1 : acc, 0),
-    [data, selected]
+    () => filtered.reduce((acc, doc) => selected[doc._id] ? acc + 1 : acc, 0),
+    [filtered, selected]
   );
 
   // Render
-  const selectedAll = selectedCount >= (data.length - blacklistCount);
+  const selectedAll = selectedCount >= (filtered.length - blacklistCount);
 
   const onOrderBy = (field: keyof T) => {
     let order: Order = 'asc';
@@ -66,7 +71,7 @@ const Table = <T extends Document> (props: TableProps<T>) => {
     if (selectedAll) {
       setSelected({});
     } else {
-      setSelected(data.reduce<SelectedState>((acc, doc) => {
+      setSelected(filtered.reduce<SelectedState>((acc, doc) => {
         if (blacklist.indexOf(doc._id) === -1) {
           acc[doc._id] = true;
         }
@@ -79,7 +84,7 @@ const Table = <T extends Document> (props: TableProps<T>) => {
   return (
     <TableContext.Provider
       value={{
-        blacklist, documents: data,
+        blacklist, documents: data, filtered,
         filter, ordering,
         selected, selectedCount,
         selectedAll: selectedCount > 0 && selectedAll,
