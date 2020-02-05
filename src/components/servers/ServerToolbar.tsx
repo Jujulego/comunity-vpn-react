@@ -1,19 +1,16 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useState } from 'react';
 
-import { Badge } from '@material-ui/core';
 import {
   Add as AddIcon,
   Delete as DeleteIcon,
-  FilterList as FilterIcon,
   Refresh as RefreshIcon
 } from '@material-ui/icons';
 
-import Server from 'data/Server';
 import { useTableContext } from 'contexts/TableContext';
 
 import {
   TableToolbar, ToolbarProps,
-  ToolbarAction
+  ToolbarAction, TableFilterAction
 } from 'components/basics';
 import FilterServerDialog from './FilterServerDialog';
 
@@ -35,13 +32,10 @@ const ServerToolbar: FC<ServerToolbarProps> = (props) => {
   } = props;
 
   // Context
-  const { selected, selectedCount, filter } = useTableContext<Server>();
+  const { selected, selectedCount } = useTableContext();
 
   // State
   const [open, setOpen] = useState(false);
-
-  // Memos
-  const count = useMemo(() => Object.keys(filter).length, [filter]);
 
   // Handlers
   const handleDelete = onDelete && (() => {
@@ -69,15 +63,7 @@ const ServerToolbar: FC<ServerToolbarProps> = (props) => {
         tooltip="Rafraîchir"
         onClick={onRefresh}
       />
-      <ToolbarAction
-        icon={
-          <Badge badgeContent={count} color="primary">
-            <FilterIcon />
-          </Badge>
-        }
-        tooltip="Filtrer"
-        onClick={() => setOpen(true)}
-      />
+      <TableFilterAction onClick={() => setOpen(true)} />
       <FilterServerDialog
         filterUser={filterUser}
         open={open} onClose={() => setOpen(false)}

@@ -4,6 +4,9 @@ export * from './Table';
 export { default as TableBody } from './TableBody';
 export * from './TableBody';
 
+export { default as TableFilterAction } from './TableFilterAction';
+export * from './TableFilterAction';
+
 export { default as TableRow } from './TableRow';
 export * from './TableRow';
 
