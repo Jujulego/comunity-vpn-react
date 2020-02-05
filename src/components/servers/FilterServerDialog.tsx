@@ -91,7 +91,7 @@ const FilterServerDialog: FC<FilterServerDialogProps> = (props) => {
         <Grid container spacing={2} direction="column">
           <Grid item>
             <Grid container spacing={2}>
-              <Grid item xs={8}>
+              <Grid item xs={12} sm={8}>
                 <TextField
                   label="Adresse IP" fullWidth
                   error={!!errors.ip} helperText={errors.ip?.message}
@@ -105,7 +105,7 @@ const FilterServerDialog: FC<FilterServerDialogProps> = (props) => {
                   }
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <TextField
                   label="Port" fullWidth
                   error={!!errors.port} helperText={errors.port?.message}
