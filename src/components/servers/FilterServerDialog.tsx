@@ -3,11 +3,12 @@ import { useForm } from 'react-hook-form';
 import validator from 'validator';
 
 import {
-  Button,
+  Button, IconButton,
   Dialog, DialogTitle, DialogContent, DialogActions,
   Grid,
-  TextField, MenuItem
+  TextField, InputAdornment, MenuItem
 } from '@material-ui/core';
+import { Clear as ClearIcon } from '@material-ui/icons';
 import { Controller } from 'react-hook-form';
 
 import { useTableContext } from 'contexts/TableContext';
@@ -52,7 +53,7 @@ const FilterServerDialog: FC<FilterServerDialogProps> = (props) => {
   );
 
   // Form
-  const { control, errors, formState, handleSubmit, register } = useForm<FormState>();
+  const { control, errors, formState, handleSubmit, register, setValue } = useForm<FormState>();
 
   // Handlers
   const handleFilter = ({ ip, port, user, country }: FormState) => {
@@ -72,6 +73,14 @@ const FilterServerDialog: FC<FilterServerDialogProps> = (props) => {
   };
 
   // Render
+  const clearAdornment = (field: keyof FormState) => (
+    <InputAdornment position="end">
+      <IconButton onClick={() => setValue(field, '')}>
+        <ClearIcon />
+      </IconButton>
+    </InputAdornment>
+  );
+
   return (
     <Dialog
       open={open} onClose={onClose}
@@ -86,6 +95,7 @@ const FilterServerDialog: FC<FilterServerDialogProps> = (props) => {
                 <TextField
                   label="Adresse IP" fullWidth
                   error={!!errors.ip} helperText={errors.ip?.message}
+                  InputProps={{ endAdornment: clearAdornment('ip') }}
 
                   defaultValue={filter.ip}
                   name="ip" inputRef={
@@ -99,6 +109,7 @@ const FilterServerDialog: FC<FilterServerDialogProps> = (props) => {
                 <TextField
                   label="Port" fullWidth
                   error={!!errors.port} helperText={errors.port?.message}
+                  InputProps={{ endAdornment: clearAdornment('port') }}
 
                   defaultValue={filter.port?.toString()}
                   name="port" inputRef={
