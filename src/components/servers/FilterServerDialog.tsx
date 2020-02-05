@@ -86,6 +86,8 @@ const FilterServerDialog: FC<FilterServerDialogProps> = (props) => {
                 <TextField
                   label="Adresse IP" fullWidth
                   error={!!errors.ip} helperText={errors.ip?.message}
+
+                  defaultValue={filter.ip}
                   name="ip" inputRef={
                     register({
                       validate: (value: string) => !value || validator.isIP(value) || "Adresse IP invalide"
@@ -97,6 +99,8 @@ const FilterServerDialog: FC<FilterServerDialogProps> = (props) => {
                 <TextField
                   label="Port" fullWidth
                   error={!!errors.port} helperText={errors.port?.message}
+
+                  defaultValue={filter.port?.toString()}
                   name="port" inputRef={
                     register({
                       validate: (value: string) => !value || validator.isNumeric(value) || "Port invalide"
