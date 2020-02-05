@@ -1,16 +1,28 @@
 // Types
+export type FieldGetter<T> = ((obj: T) => any);
+export type OrderByField<T> = keyof T | FieldGetter<T>;
+
 export type Comparator<T> = (a: T, b: T) => number;
 
 // Functions
-export function asc<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] > a[orderBy]) return -1;
-  if (b[orderBy] < a[orderBy]) return 1;
+function toGetter<T>(field: OrderByField<T>): FieldGetter<T> {
+  if (typeof field === 'function') return field;
+  return (obj: T) => obj[field];
+}
+
+export function asc<T>(a: T, b: T, orderBy: OrderByField<T>) {
+  const getter = toGetter(orderBy);
+
+  if (getter(b) > getter(a)) return -1;
+  if (getter(b) < getter(a)) return 1;
   return 0;
 }
 
-export function desc<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) return -1;
-  if (b[orderBy] > a[orderBy]) return 1;
+export function desc<T>(a: T, b: T, orderBy: OrderByField<T>) {
+  const getter = toGetter(orderBy);
+
+  if (getter(b) < getter(a)) return -1;
+  if (getter(b) > getter(a)) return 1;
   return 0;
 }
 

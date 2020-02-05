@@ -1,19 +1,22 @@
-import React, { FC, useContext } from 'react';
+import React, { ReactNode } from 'react';
 
 import {
   TableCell, TableSortLabel,
   TableCellProps
 } from '@material-ui/core';
 
-import TableContext from 'contexts/TableContext';
+import { useTableContext } from 'contexts/TableContext';
+import Document from 'data/Document';
+import { OrderByField } from 'utils/sort';
 
 // Types
-export interface TableSortCellProps extends Omit<TableCellProps, 'sortDirection'> {
-  field: string
+export interface TableSortCellProps<T extends Document> extends Omit<TableCellProps, 'sortDirection'> {
+  field: OrderByField<T>,
+  children: ReactNode
 }
 
 // Component
-export const TableSortCell: FC<TableSortCellProps> = (props) => {
+const TableSortCell = <T extends Document> (props: TableSortCellProps<T>) => {
   // Props
   const {
     field, children,
@@ -21,7 +24,7 @@ export const TableSortCell: FC<TableSortCellProps> = (props) => {
   } = props;
 
   // Context
-  const { ordering, onOrderBy } = useContext(TableContext);
+  const { ordering, onOrderBy } = useTableContext<T>();
 
   // Render
   return (

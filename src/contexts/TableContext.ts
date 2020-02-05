@@ -1,46 +1,64 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 
-import { AnyDocument } from 'data/Document';
+import Document, { AnyDocument } from 'data/Document';
+import { Filter } from 'utils/filter';
+import { OrderByField } from 'utils/sort';
 
 // Types
 export interface SelectedState { [id: string]: boolean }
 
 export type Order = 'asc' | 'desc'
-export interface Ordering {
-  field?: string,
+export interface Ordering<T extends Document> {
+  field?: OrderByField<T>,
   order: Order
 }
 
-export interface TableContextProps {
+interface BaseTableContextProps<T extends Document> {
   blacklist: string[],
-  documents: AnyDocument[],
-  ordering: Ordering,
+  documents: T[],
+  filter: Filter<T>, filtered: T[],
+  ordering: Ordering<T>,
 
   selectedAll: boolean,
   selectedCount: number,
   selected: SelectedState,
 
-  onOrderBy: (field: string) => void,
   onSelect: (id: string) => void,
-  onSelectAll: () => void
+  onSelectAll: () => void,
+  onFilter: (filter: Filter<T>) => void
 }
 
+export type TableContextProps<T extends Document> = BaseTableContextProps<T> & {
+  onOrderBy: (field: OrderByField<T>) => void
+};
+
+type TableContextDefaults = BaseTableContextProps<AnyDocument> & {
+  onOrderBy: (field: any) => void
+};
+
 // Default values
-const tableDefaults: TableContextProps = {
+const tableDefaults: TableContextDefaults = {
   blacklist: [],
   documents: [],
+  filter: {}, filtered: [],
   ordering: { order: 'asc' },
 
   selectedAll: false,
   selectedCount: 0,
   selected: {},
 
-  onOrderBy: () => {},
   onSelect: () => {},
-  onSelectAll: () => {}
+  onSelectAll: () => {},
+  onFilter: () => {},
+  onOrderBy: () => {}
 };
 
 // Context
 const TableContext = createContext(tableDefaults);
+
+// Hook
+export function useTableContext<T extends Document = AnyDocument>(): TableContextProps<T> {
+  return useContext(TableContext);
+}
 
 export default TableContext;

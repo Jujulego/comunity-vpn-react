@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, useContext } from 'react';
+import React, { MouseEvent, ReactNode } from 'react';
 import { Theme, useMediaQuery } from '@material-ui/core';
 
 import {
@@ -7,16 +7,17 @@ import {
   TableRowProps as MaterialTableRowProps
 } from '@material-ui/core';
 
-import TableContext from 'contexts/TableContext';
+import { useTableContext } from 'contexts/TableContext';
 import Document from 'data/Document';
 
 // Types
-export interface TableRowProps extends Omit<MaterialTableRowProps, 'selected' | 'onClick'> {
-  doc?: Document
+export interface TableRowProps<T extends Document> extends Omit<MaterialTableRowProps, 'selected' | 'onClick'> {
+  doc?: T,
+  children?: ReactNode
 }
 
 // Component
-export const TableRow: FC<TableRowProps> = (props) => {
+const TableRow = <T extends Document> (props: TableRowProps<T>) => {
   // Props
   const {
     doc, children,
@@ -24,7 +25,7 @@ export const TableRow: FC<TableRowProps> = (props) => {
   } = props;
 
   // Contexts
-  const ctx = useContext(TableContext);
+  const ctx = useTableContext<T>();
 
   // Handlers
   const handleChange = doc ? () => ctx.onSelect(doc._id) : ctx.onSelectAll;

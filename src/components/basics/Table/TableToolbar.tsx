@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -8,7 +8,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-import TableContext from 'contexts/TableContext';
+import { useTableContext } from 'contexts/TableContext';
 import { StyledProps } from 'utils/style';
 
 // Types
@@ -39,7 +39,7 @@ const useStyles = makeStyles(({ shape, palette, spacing }) => {
 });
 
 // Component
-export const TableToolbar: FC<ToolbarProps> = (props) => {
+const TableToolbar: FC<ToolbarProps> = (props) => {
   // Props
   const {
     title,
@@ -48,7 +48,7 @@ export const TableToolbar: FC<ToolbarProps> = (props) => {
   } = props;
 
   // Context
-  const { selectedCount } = useContext(TableContext);
+  const { selectedCount } = useTableContext();
 
   // Render
   const styles = useStyles(props);

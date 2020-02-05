@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useState } from 'react';
 
 import {
   Add as AddIcon,
@@ -6,15 +6,17 @@ import {
   Refresh as RefreshIcon
 } from '@material-ui/icons';
 
-import TableContext from 'contexts/TableContext';
+import { useTableContext } from 'contexts/TableContext';
 
 import {
   TableToolbar, ToolbarProps,
-  ToolbarAction
+  ToolbarAction, TableFilterAction
 } from 'components/basics';
+import FilterServerDialog from './FilterServerDialog';
 
 // Types
 export interface ServerToolbarProps extends ToolbarProps {
+  filterUser?: boolean,
   onAdd?: () => void,
   onDelete?: (ids: string[]) => void,
   onRefresh: () => void
@@ -24,16 +26,20 @@ export interface ServerToolbarProps extends ToolbarProps {
 const ServerToolbar: FC<ServerToolbarProps> = (props) => {
   // Props
   const {
+    filterUser,
     onAdd, onDelete, onRefresh,
     ...toolbar
   } = props;
 
   // Context
-  const { selected, selectedCount } = useContext(TableContext);
+  const { filtered, selected, selectedCount } = useTableContext();
+
+  // State
+  const [open, setOpen] = useState(false);
 
   // Handlers
   const handleDelete = onDelete && (() => {
-    onDelete(Object.keys(selected).filter(id => selected[id]))
+    onDelete(filtered.map(doc => doc._id).filter(id => selected[id]))
   });
 
   return (
@@ -56,6 +62,11 @@ const ServerToolbar: FC<ServerToolbarProps> = (props) => {
         icon={<RefreshIcon />}
         tooltip="Rafraîchir"
         onClick={onRefresh}
+      />
+      <TableFilterAction onClick={() => setOpen(true)} />
+      <FilterServerDialog
+        filterUser={filterUser}
+        open={open} onClose={() => setOpen(false)}
       />
     </TableToolbar>
   );

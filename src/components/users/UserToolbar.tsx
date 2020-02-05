@@ -27,11 +27,11 @@ const UserToolbar: FC<UserToolbarProps> = (props) => {
   } = props;
 
   // Context
-  const { selected, selectedCount } = useContext(TableContext);
+  const { filtered, selected, selectedCount } = useContext(TableContext);
 
   // Handlers
   const handleDelete = onDelete && (() => {
-    onDelete(Object.keys(selected).filter(id => selected[id]))
+    onDelete(filtered.map(doc => doc._id).filter(id => selected[id]))
   });
 
   // Render

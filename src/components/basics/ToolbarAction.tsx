@@ -3,14 +3,14 @@ import React, { FC, MouseEvent, ReactNode } from 'react';
 import { IconButton, Tooltip } from '@material-ui/core';
 
 // Types
-export interface TooolbarActionProps {
+export interface ToolbarActionProps {
   icon: ReactNode,
   tooltip: string,
   onClick: (event: MouseEvent<HTMLButtonElement>) => void
 }
 
 // Components
-export const ToolbarAction: FC<TooolbarActionProps> = (props) => {
+const ToolbarAction: FC<ToolbarActionProps> = (props) => {
   // Props
   const { icon, tooltip, onClick } = props;
 

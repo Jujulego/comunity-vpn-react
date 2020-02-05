@@ -9,7 +9,10 @@ import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 // Types
 type TextToPassword<T extends TextFieldProps> =
-  Omit<T, 'type' | 'InputProps'> & { InputProps?: Omit<T['InputProps'], 'endAdornment'>}
+  Omit<T, 'type' | 'InputProps' | 'select' | 'SelectProps'> &
+  {
+    InputProps?: Omit<T['InputProps'], 'endAdornment'>
+  }
 
 export type FilledPasswordFieldProps   = TextToPassword<FilledTextFieldProps>;
 export type OutlinedPasswordFieldProps = TextToPassword<OutlinedTextFieldProps>;
@@ -21,7 +24,7 @@ export type PasswordFieldProps =
   StandardPasswordFieldProps;
 
 // Component
-export const PasswordField: FC<PasswordFieldProps> = (props) => {
+const PasswordField: FC<PasswordFieldProps> = (props) => {
   // Props
   const { InputProps = {}, ...field } = props;
 

@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useMemo, useState } from 'react';
+import React, { ReactNode, useEffect, useMemo, useState } from 'react';
 
 import {
   Table as MaterialTable,
@@ -6,17 +6,19 @@ import {
 } from '@material-ui/core';
 
 import TableContext, { Order, Ordering, SelectedState } from 'contexts/TableContext';
-import { AnyDocument } from 'data/Document';
+import Document from 'data/Document';
+import { Filter, toPredicate } from 'utils/filter';
 
 // Types
-export interface TableProps extends MaterialTableProps {
-  data: AnyDocument[],
+export interface TableProps<T extends Document> extends MaterialTableProps {
+  data: T[],
   blacklist?: string[],
-  toolbar?: ReactNode
+  toolbar?: ReactNode,
+  children?: ReactNode
 }
 
 // Component
-export const Table: FC<TableProps> = (props) => {
+const Table = <T extends Document> (props: TableProps<T>) => {
   // Props
   const {
     data, blacklist = [],
@@ -26,7 +28,8 @@ export const Table: FC<TableProps> = (props) => {
   } = props;
 
   // State
-  const [ordering, setOrdering] = useState<Ordering>({ order: 'asc' });
+  const [filter, setFilter]     = useState<Filter<T>>({});
+  const [ordering, setOrdering] = useState<Ordering<T>>({ order: 'asc' });
   const [selected, setSelected] = useState<SelectedState>({});
 
   // Effects
@@ -35,20 +38,25 @@ export const Table: FC<TableProps> = (props) => {
   }, [data]);
 
   // Memos
+  const filtered = useMemo(
+    () => data.filter(toPredicate(filter)),
+    [data, filter]
+  );
+
   const blacklistCount = useMemo(
-    () => data.reduce((count, doc: AnyDocument) => (blacklist.indexOf(doc._id) === -1) ? count : count + 1, 0),
-    [blacklist, data]
+    () => filtered.reduce((count, doc: T) => (blacklist.indexOf(doc._id) === -1) ? count : count + 1, 0),
+    [blacklist, filtered]
   );
 
   const selectedCount = useMemo(
-    () => data.reduce((acc, doc) => selected[doc._id] ? acc + 1 : acc, 0),
-    [data, selected]
+    () => filtered.reduce((acc, doc) => selected[doc._id] ? acc + 1 : acc, 0),
+    [filtered, selected]
   );
 
   // Render
-  const selectedAll = selectedCount >= (data.length - blacklistCount);
+  const selectedAll = selectedCount >= (filtered.length - blacklistCount);
 
-  const onOrderBy = (field: string) => {
+  const onOrderBy = (field: keyof T) => {
     let order: Order = 'asc';
 
     if (ordering.field === field && ordering.order === "asc") {
@@ -63,7 +71,7 @@ export const Table: FC<TableProps> = (props) => {
     if (selectedAll) {
       setSelected({});
     } else {
-      setSelected(data.reduce<SelectedState>((acc, doc) => {
+      setSelected(filtered.reduce<SelectedState>((acc, doc) => {
         if (blacklist.indexOf(doc._id) === -1) {
           acc[doc._id] = true;
         }
@@ -76,12 +84,14 @@ export const Table: FC<TableProps> = (props) => {
   return (
     <TableContext.Provider
       value={{
-        blacklist, documents: data, ordering,
+        blacklist, documents: data, filtered,
+        filter, ordering,
         selected, selectedCount,
         selectedAll: selectedCount > 0 && selectedAll,
-        onOrderBy,
         onSelect,
-        onSelectAll
+        onSelectAll,
+        onFilter: setFilter,
+        onOrderBy
       }}
     >
       { toolbar }

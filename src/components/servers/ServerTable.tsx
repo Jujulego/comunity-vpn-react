@@ -1,29 +1,21 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Theme, useMediaQuery } from '@material-ui/core';
-
-import {
-  Paper,
-  TableContainer, TableHead, TableCell
-} from '@material-ui/core';
+import { Paper, TableCell, TableContainer, TableHead, Theme, useMediaQuery } from '@material-ui/core';
 
 import { useEventRoom } from 'contexts/EventContext';
 import Server from 'data/Server';
 
-import {
-  Table, TableProps,
-  TableBody, TableRow,
-  TableSortCell
-} from 'components/basics';
+import { Table, TableBody, TableProps, TableRow, TableSortCell } from 'components/basics';
 import UserCell from 'components/users/UserCell';
 
 import AddServerDialog from './AddServerDialog';
 import ServerToolbar from './ServerToolbar';
+import { ip2int } from 'utils/ip';
 
 // Types
-export interface ServerTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
+export interface ServerTableProps extends Omit<TableProps<Server>, 'data' | 'toolbar'> {
   title: string, room?: string, servers: Server[], showUsers?: boolean,
   onLoad: () => void, onRefresh: () => void,
-  onAddServer?: (ip: string, port: number) => void,
+  onAddServer?: (ip: string, port: number, user: string) => void,
   onDeleteServer?: (id: string) => void
 }
 
@@ -76,16 +68,16 @@ const ServerTable: FC<ServerTableProps> = (props) => {
           data={servers}
           toolbar={
             <ServerToolbar
-              title={title}
+              title={title} filterUser={showUsers}
               onAdd={handleOpen} onDelete={handleDelete} onRefresh={onRefresh}
             />
           }
         >
           <TableHead>
             <TableRow>
-              { showAddr && <TableSortCell field="ip">Adresse</TableSortCell> }
+              { showAddr && <TableSortCell field={(srv: Server) => ip2int(srv.ip)}>Adresse</TableSortCell> }
               { showPort && <TableCell>Port</TableCell> }
-              <TableSortCell field="country">Pays</TableSortCell>
+              <TableSortCell<Server> field="country">Pays</TableSortCell>
               { showUsers && <TableCell>Utilisateur</TableCell> }
             </TableRow>
           </TableHead>
@@ -102,7 +94,7 @@ const ServerTable: FC<ServerTableProps> = (props) => {
         </Table>
       </TableContainer>
       { onAddServer && (
-        <AddServerDialog open={dialog} onClose={handleClose} onAddServer={onAddServer} />
+        <AddServerDialog open={dialog} selectUser={showUsers} onClose={handleClose} onAddServer={onAddServer} />
       )}
     </Paper>
   );
