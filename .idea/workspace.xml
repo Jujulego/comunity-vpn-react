@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="">
+    <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="update: sort on computed field">
+      <change afterPath="$PROJECT_DIR$/src/utils/ip.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/ip.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/community-vpn-react.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/community-vpn-react.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/basics/Fields/EditPasswordField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/Fields/EditPasswordField.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/basics/Fields/PasswordField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/Fields/PasswordField.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/UserRow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/UserRow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basics/Table/TableBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/Table/TableBody.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basics/Table/TableSortCell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/Table/TableSortCell.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/servers/ServerTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/servers/ServerTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/UserTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/UserTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/TableContext.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/TableContext.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/sort.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/sort.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/style.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +25,8 @@
         <option value="CSS File" />
         <option value="SCSS File" />
         <option value="TypeScript JSX File" />
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -42,11 +49,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/utils/hooks" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/utils/ip.ts" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -55,12 +63,6 @@
     <property name="ts.external.directory.path" value="C:\Users\julie\WebstormProjects\community-vpn-react\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\basics\Fields" />
-      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\basics\Table" />
-      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\auth" />
-      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\utils\hooks" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\store\errors" />
@@ -68,8 +70,31 @@
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\tokens" />
       <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components" />
     </key>
+    <key name="es6.move.members.recent.items">
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\utils\ip.ts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\utils" />
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\tests\utils" />
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\basics\Fields" />
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\basics\Table" />
+      <recent name="C:\Users\julie\WebstormProjects\community-vpn-react\src\components\auth" />
+    </key>
   </component>
-  <component name="RunManager" selected="npm.npm start">
+  <component name="RunManager" selected="Jest.utils/ip">
+    <configuration name="utils/ip" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/utils/ip.test.ts" />
+      <test-names>
+        <test-name value="utils/ip" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
@@ -108,8 +133,14 @@
     <list>
       <item itemvalue="Docker.Dockerfile test" />
       <item itemvalue="JavaScript Debug.Debug Application" />
+      <item itemvalue="Jest.utils/ip" />
       <item itemvalue="npm.npm start" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.utils/ip" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -172,21 +203,7 @@
       <workItem from="1580823337892" duration="1664000" />
       <workItem from="1580857730610" duration="4242000" />
       <workItem from="1580862094149" duration="3375000" />
-      <workItem from="1580897585763" duration="566000" />
-    </task>
-    <task id="LOCAL-00055" summary="fix: delete User and Server">
-      <created>1580044501911</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1580044501912</updated>
-    </task>
-    <task id="LOCAL-00056" summary="add: refresh tokens">
-      <created>1580045152956</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1580045152956</updated>
+      <workItem from="1580897585763" duration="3888000" />
     </task>
     <task id="LOCAL-00057" summary="update: version 0.4.1">
       <created>1580045348655</created>
@@ -517,7 +534,21 @@
       <option name="project" value="LOCAL" />
       <updated>1580865457841</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="update: make all Table components generic">
+      <created>1580898197019</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1580898197020</updated>
+    </task>
+    <task id="LOCAL-00105" summary="update: remove select possibility on password fields">
+      <created>1580898232852</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1580898232852</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -527,8 +558,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: user page responsiveness" />
-    <MESSAGE value="update: version 0.6.2" />
     <MESSAGE value="add: admin card in user page" />
     <MESSAGE value="fix: can select unselectable rows" />
     <MESSAGE value="update: close drawer when location change" />
@@ -552,7 +581,9 @@
     <MESSAGE value="remove: import optimization" />
     <MESSAGE value="update: admin can add server to any user" />
     <MESSAGE value="update: make all Table components generic" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: make all Table components generic" />
+    <MESSAGE value="update: remove select possibility on password fields" />
+    <MESSAGE value="update: sort on computed field" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: sort on computed field" />
   </component>
   <component name="WindowStateProjectService">
     <state x="601" y="121" key="#Docker_Image" timestamp="1580424534444">
@@ -564,11 +595,12 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1512" y="363" key="#JavaScript/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580772184803" />
-    <state x="320" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580425456165">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="533" y="131" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580910354811">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="-3104" y="-708" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579352405460" />
     <state x="320" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1580425456165" />
+    <state x="533" y="131" key="#com.intellij.execution.impl.EditConfigurationsDialog/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580910354811" />
     <state x="542" y="216" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1579526625737">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -583,44 +615,45 @@
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580823464385" />
     <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476314905" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580898196394">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="888" y="27" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580910649322">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
-    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580898196394" />
-    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580775151966" />
+    <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580898232092" />
+    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580910649322" />
     <state x="219" y="79" width="1228" height="685" key="DiffContextDialog" timestamp="1580597579941">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="219" y="79" width="1228" height="685" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1580597579941" />
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1579742010787">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="915" y="285" key="FileChooserDialogImpl" timestamp="1580909569951">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1579742010787" />
-    <state width="1515" height="181" key="GridCell.Tab.0.bottom" timestamp="1580861976593">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="915" y="285" key="FileChooserDialogImpl/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580909569951" />
+    <state width="2539" height="347" key="GridCell.Tab.0.bottom" timestamp="1580910060463">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.bottom/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819127" />
-    <state width="1515" height="181" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580861976593" />
-    <state width="1257" height="262" key="GridCell.Tab.0.bottom/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580774253816" />
-    <state width="1515" height="181" key="GridCell.Tab.0.center" timestamp="1580861976593">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1515" height="181" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580898235670" />
+    <state width="2539" height="347" key="GridCell.Tab.0.bottom/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580910060463" />
+    <state width="2539" height="347" key="GridCell.Tab.0.center" timestamp="1580910060463">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.center/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819126" />
-    <state width="1515" height="181" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580861976593" />
-    <state width="1257" height="262" key="GridCell.Tab.0.center/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580774253816" />
-    <state width="1515" height="181" key="GridCell.Tab.0.left" timestamp="1580861976593">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1515" height="181" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580898235670" />
+    <state width="2539" height="347" key="GridCell.Tab.0.center/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580910060463" />
+    <state width="2539" height="347" key="GridCell.Tab.0.left" timestamp="1580910060463">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.left/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819126" />
-    <state width="1515" height="181" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580861976593" />
-    <state width="1257" height="262" key="GridCell.Tab.0.left/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580774253816" />
-    <state width="1515" height="181" key="GridCell.Tab.0.right" timestamp="1580861976593">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1515" height="181" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580898235670" />
+    <state width="2539" height="347" key="GridCell.Tab.0.left/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580910060463" />
+    <state width="2539" height="347" key="GridCell.Tab.0.right" timestamp="1580910060463">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.right/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819127" />
-    <state width="1515" height="181" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580861976593" />
-    <state width="1257" height="262" key="GridCell.Tab.0.right/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580774253816" />
+    <state width="1515" height="181" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580898235670" />
+    <state width="2539" height="347" key="GridCell.Tab.0.right/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580910060463" />
     <state x="1047" y="413" key="RollbackChangesDialog" timestamp="1580318791194">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

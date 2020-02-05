@@ -1,13 +1,14 @@
 import { createContext, useContext } from 'react';
 
 import Document, { AnyDocument } from 'data/Document';
+import { OrderByField } from 'utils/sort';
 
 // Types
 export interface SelectedState { [id: string]: boolean }
 
 export type Order = 'asc' | 'desc'
 export interface Ordering<T extends Document> {
-  field?: keyof T,
+  field?: OrderByField<T>,
   order: Order
 }
 
@@ -25,7 +26,7 @@ interface BaseTableContextProps<T extends Document> {
 }
 
 export type TableContextProps<T extends Document> = BaseTableContextProps<T> & {
-  onOrderBy: (field: keyof T) => void
+  onOrderBy: (field: OrderByField<T>) => void
 };
 
 type TableContextDefaults = BaseTableContextProps<AnyDocument> & {

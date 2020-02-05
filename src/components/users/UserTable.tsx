@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo } from 'react';
+import React, { FC, useEffect } from 'react';
 import moment from 'moment';
 import { Theme, useMediaQuery } from '@material-ui/core';
 
@@ -20,12 +20,7 @@ import UserRow from './UserRow';
 import UserToolbar from './UserToolbar';
 
 // Types
-interface EnhancedUser extends User {
-  connexions: number,
-  last: moment.Moment
-}
-
-export interface UserTableProps extends Omit<TableProps<EnhancedUser>, 'data' | 'toolbar'> {
+export interface UserTableProps extends Omit<TableProps<User>, 'data' | 'toolbar'> {
   title: string, room?: string, users: User[],
   onLoad: () => void, onRefresh: () => void,
   onDeleteUser?: (id: string) => void,
@@ -55,14 +50,6 @@ const UserTable: FC<UserTableProps> = (props) => {
     }
   });
 
-  // Memos
-  const enhanced = useMemo(() => users.map(
-    user => ({ ...user,
-      connexions: user.tokens.length,
-      last: moment.max(user.tokens.map(tk => moment(tk.createdAt)))
-    })
-  ), [users]);
-
   // Handlers
   const handleDelete = onDeleteUser && ((ids: string[]) => {
     ids.forEach(onDeleteUser);
@@ -75,7 +62,7 @@ const UserTable: FC<UserTableProps> = (props) => {
     <Paper>
       <TableContainer>
         <Table
-          data={enhanced} {...table}
+          data={users} {...table}
           toolbar={
             <UserToolbar
               title={title}
@@ -85,9 +72,13 @@ const UserTable: FC<UserTableProps> = (props) => {
         >
           <TableHead>
             <TableRow>
-              <TableSortCell<EnhancedUser> field="email">Email</TableSortCell>
-              { !small && (<TableSortCell<EnhancedUser> field="connexions">Connexions</TableSortCell>) }
-              <TableSortCell<EnhancedUser> field="last">Dernière connexion</TableSortCell>
+              <TableSortCell<User> field="email">Email</TableSortCell>
+              { !small && (<TableSortCell field={(user: User) => user.tokens.length}>Connexions</TableSortCell>) }
+              <TableSortCell
+                field={(user: User) => moment.max(user.tokens.map(tk => moment(tk.createdAt)))}
+              >
+                Dernière connexion
+              </TableSortCell>
               { !small && (<TableCell>Admin</TableCell>) }
             </TableRow>
           </TableHead>

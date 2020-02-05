@@ -7,10 +7,11 @@ import {
 
 import { useTableContext } from 'contexts/TableContext';
 import Document from 'data/Document';
+import { OrderByField } from 'utils/sort';
 
 // Types
 export interface TableSortCellProps<T extends Document> extends Omit<TableCellProps, 'sortDirection'> {
-  field: keyof T,
+  field: OrderByField<T>,
   children: ReactNode
 }
 

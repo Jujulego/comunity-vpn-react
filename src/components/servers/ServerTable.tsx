@@ -1,23 +1,15 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Theme, useMediaQuery } from '@material-ui/core';
-
-import {
-  Paper,
-  TableContainer, TableHead, TableCell
-} from '@material-ui/core';
+import { Paper, TableCell, TableContainer, TableHead, Theme, useMediaQuery } from '@material-ui/core';
 
 import { useEventRoom } from 'contexts/EventContext';
 import Server from 'data/Server';
 
-import {
-  Table, TableProps,
-  TableBody, TableRow,
-  TableSortCell
-} from 'components/basics';
+import { Table, TableBody, TableProps, TableRow, TableSortCell } from 'components/basics';
 import UserCell from 'components/users/UserCell';
 
 import AddServerDialog from './AddServerDialog';
 import ServerToolbar from './ServerToolbar';
+import { ip2int } from 'utils/ip';
 
 // Types
 export interface ServerTableProps extends Omit<TableProps<Server>, 'data' | 'toolbar'> {
@@ -83,7 +75,7 @@ const ServerTable: FC<ServerTableProps> = (props) => {
         >
           <TableHead>
             <TableRow>
-              { showAddr && <TableSortCell<Server> field="ip">Adresse</TableSortCell> }
+              { showAddr && <TableSortCell field={(srv: Server) => ip2int(srv.ip)}>Adresse</TableSortCell> }
               { showPort && <TableCell>Port</TableCell> }
               <TableSortCell<Server> field="country">Pays</TableSortCell>
               { showUsers && <TableCell>Utilisateur</TableCell> }
