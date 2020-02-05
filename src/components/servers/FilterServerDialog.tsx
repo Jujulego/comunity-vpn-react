@@ -1,5 +1,4 @@
-import React, { FC, useEffect, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FC, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import validator from 'validator';
 
@@ -13,10 +12,10 @@ import { Controller } from 'react-hook-form';
 
 import { useTableContext } from 'contexts/TableContext';
 import Server from 'data/Server';
-import { AppState } from 'store';
-import { refreshAllUsers } from 'store/admin/thunks';
 import { useMe } from 'store/users/hooks';
 import { Filter } from 'utils/filter';
+
+import UserSelect from 'components/users/UserSelect';
 
 // Types
 interface FormState {
@@ -44,15 +43,9 @@ const FilterServerDialog: FC<FilterServerDialogProps> = (props) => {
 
   // Redux
   const me = useMe();
-  const dispatch = useDispatch();
-  const users = useSelector((state: AppState) => state.users);
+  const isAdmin = me?.admin || false;
 
   // Memos
-  const options = useMemo(
-    () => Object.keys(users).map(id => users[id].data),
-    [users]
-  );
-
   const countries = useMemo<string[]>(
     () => Object.keys(documents.reduce((acc, srv) => ({ ...acc, [srv.country]: true }), {})),
     [documents]
@@ -60,14 +53,6 @@ const FilterServerDialog: FC<FilterServerDialogProps> = (props) => {
 
   // Form
   const { control, errors, formState, handleSubmit, register } = useForm<FormState>();
-
-  // Effects
-  const isAdmin = me?.admin || false;
-  useEffect(() => {
-    if (filterUser && isAdmin) {
-      dispatch(refreshAllUsers());
-    }
-  }, [filterUser, isAdmin, dispatch]);
 
   // Handlers
   const handleFilter = ({ ip, port, user, country }: FormState) => {
@@ -142,19 +127,12 @@ const FilterServerDialog: FC<FilterServerDialogProps> = (props) => {
             <Grid item>
               <Controller
                 name="user" defaultValue={filter.user || ''}
-                control={control} as={TextField}
+                control={control} as={UserSelect}
 
-                select
+                empty="Tous les utilisateurs"
                 label="Utilisateur" fullWidth
                 error={!!errors.user} helperText={errors.user?.message}
-              >
-                <MenuItem value=""><em>Tous les utilisateurs</em></MenuItem>
-                { options.map(opt => opt && (
-                  <MenuItem key={opt._id} value={opt._id}>
-                    { opt.email }
-                  </MenuItem>
-                )) }
-              </Controller>
+              />
             </Grid>
           ) }
         </Grid>

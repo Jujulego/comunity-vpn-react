@@ -1,21 +1,19 @@
-import React, { FC, useEffect, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import validator from 'validator';
 
 import {
   Button, IconButton,
   Dialog, DialogTitle, DialogContent, DialogActions,
-  InputAdornment,
   Grid,
-  TextField, MenuItem
+  TextField, InputAdornment
 } from '@material-ui/core';
 import { Casino as CasinoIcon } from '@material-ui/icons';
 import { Controller } from 'react-hook-form';
 
-import { AppState } from 'store';
-import { refreshAllUsers } from 'store/admin/thunks';
 import { useMe } from 'store/users/hooks';
+
+import UserSelect from 'components/users/UserSelect';
 
 // Types
 interface FormState {
@@ -40,25 +38,10 @@ const AddServerDialog: FC<AddServerDialogProps> = (props) => {
 
   // Redux
   const me = useMe();
-  const dispatch = useDispatch();
-  const users = useSelector((state: AppState) => state.users);
-
-  // Memos
-  const options = useMemo(
-    () => Object.keys(users).map(id => users[id].data),
-    [users]
-  );
+  const isAdmin = me?.admin || false;
 
   // Form
   const { control, errors, formState, getValues, handleSubmit, register, setValue } = useForm<FormState>();
-
-  // Effects
-  const isAdmin = me?.admin || false;
-  useEffect(() => {
-    if (selectUser && isAdmin) {
-      dispatch(refreshAllUsers());
-    }
-  }, [selectUser, isAdmin, dispatch]);
 
   // Handlers
   const handleAdd = ({ ip, port, user }: FormState) => {
@@ -122,22 +105,15 @@ const AddServerDialog: FC<AddServerDialogProps> = (props) => {
             <Grid item>
               <Controller
                 name="user" defaultValue={me?._id || ''}
-                control={control} as={TextField}
+                control={control} as={UserSelect}
                 rules={{
                   required: "Utilisateur requis"
                 }}
 
-                select
+                empty={me ? undefined : "Pas d'utilisateur"}
                 label="Utilisateur" fullWidth required
                 error={!!errors.user} helperText={errors.user?.message}
-              >
-                <MenuItem value=""><em>Pas d'utilisateur</em></MenuItem>
-                { options.map(opt => opt && (
-                  <MenuItem key={opt._id} value={opt._id}>
-                    { opt.email }
-                  </MenuItem>
-                )) }
-              </Controller>
+              />
             </Grid>
           ) }
         </Grid>
