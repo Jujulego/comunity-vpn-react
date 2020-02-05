@@ -89,30 +89,34 @@ const AddServerDialog: FC<AddServerDialogProps> = (props) => {
       <DialogContent>
         <Grid container spacing={2} direction="column">
           <Grid item>
-            <TextField
-              label="Adresse IP" fullWidth required
-              error={!!errors.ip} helperText={errors.ip?.message}
-              name="ip" inputRef={
-                register({
-                  required: "Adresse IP requise",
-                  validate: (value: string) => validator.isIP(value) || "Adresse IP invalide"
-                })
-              }
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              label="Port" fullWidth required
-              error={!!errors.port} helperText={errors.port?.message}
-              name="port" inputRef={
-                register({
-                  required: "Port requis",
-                  validate: (value: string) => validator.isNumeric(value) || "Port invalide"
-                })
-              }
-              InputLabelProps={{ shrink: !!getValues().port || undefined }}
-              InputProps={{ endAdornment: randomButton }}
-            />
+            <Grid container spacing={2}>
+              <Grid item xs={8}>
+                <TextField
+                  label="Adresse IP" fullWidth required
+                  error={!!errors.ip} helperText={errors.ip?.message}
+                  name="ip" inputRef={
+                    register({
+                      required: "Adresse IP requise",
+                      validate: (value: string) => validator.isIP(value) || "Adresse IP invalide"
+                    })
+                  }
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <TextField
+                  label="Port" fullWidth required
+                  error={!!errors.port} helperText={errors.port?.message}
+                  name="port" inputRef={
+                    register({
+                      required: "Port requis",
+                      validate: (value: string) => validator.isNumeric(value) || "Port invalide"
+                    })
+                  }
+                  InputLabelProps={{ shrink: !!getValues().port || undefined }}
+                  InputProps={{ endAdornment: randomButton }}
+                />
+              </Grid>
+            </Grid>
           </Grid>
           { (selectUser && isAdmin) && (
             <Grid item>
