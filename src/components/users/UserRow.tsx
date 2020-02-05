@@ -10,7 +10,7 @@ import User from 'data/User';
 import { TableRow, TableRowProps } from 'components/basics';
 
 // Types
-export interface UserRowProps extends Omit<TableRowProps, 'doc'> {
+export interface UserRowProps extends Omit<TableRowProps<User>, 'doc'> {
   user: User,
   onToggleAdmin: () => void
 }

@@ -20,7 +20,12 @@ import UserRow from './UserRow';
 import UserToolbar from './UserToolbar';
 
 // Types
-export interface UserTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
+interface EnhancedUser extends User {
+  connexions: number,
+  last: moment.Moment
+}
+
+export interface UserTableProps extends Omit<TableProps<EnhancedUser>, 'data' | 'toolbar'> {
   title: string, room?: string, users: User[],
   onLoad: () => void, onRefresh: () => void,
   onDeleteUser?: (id: string) => void,
@@ -80,9 +85,9 @@ const UserTable: FC<UserTableProps> = (props) => {
         >
           <TableHead>
             <TableRow>
-              <TableSortCell field="email">Email</TableSortCell>
-              { !small && (<TableSortCell field="connexions">Connexions</TableSortCell>) }
-              <TableSortCell field="last">Dernière connexion</TableSortCell>
+              <TableSortCell<EnhancedUser> field="email">Email</TableSortCell>
+              { !small && (<TableSortCell<EnhancedUser> field="connexions">Connexions</TableSortCell>) }
+              <TableSortCell<EnhancedUser> field="last">Dernière connexion</TableSortCell>
               { !small && (<TableCell>Admin</TableCell>) }
             </TableRow>
           </TableHead>

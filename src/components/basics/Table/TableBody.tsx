@@ -1,34 +1,34 @@
-import React, { FC, ReactNode, useContext, useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 
 import {
   TableBody as MaterialTableBody,
   TableBodyProps as MaterialTableBodyProps
 } from '@material-ui/core';
 
-import TableContext, { Order } from 'contexts/TableContext';
-import { AnyDocument } from 'data/Document';
+import { Order, useTableContext } from 'contexts/TableContext';
+import Document from 'data/Document';
 import { Comparator, desc, stableSort } from 'utils/sort';
 
 // Types
-export interface TableBodyProps extends MaterialTableBodyProps {
-  children: (doc: AnyDocument) => ReactNode
+export interface TableBodyProps<T extends Document> extends MaterialTableBodyProps {
+  children: (doc: T) => ReactNode
 }
 
 // Utils
-function getSorting<K extends keyof AnyDocument>(field: K, order: Order): Comparator<AnyDocument> {
+function getSorting<T extends Document, K extends keyof T>(field: K, order: Order): Comparator<T> {
   return order === 'desc' ? (a, b) => desc(a, b, field) : (a, b) => -desc(a, b, field);
 }
 
 // Component
-export const TableBody: FC<TableBodyProps> = (props) => {
+const TableBody = <T extends Document> (props: TableBodyProps<T>) => {
   // Props
   const { children, ...body } = props;
 
   // Contexts
-  const { documents, ordering } = useContext(TableContext);
+  const { documents, ordering } = useTableContext<T>();
 
   // Memos
-  const sorted = useMemo<AnyDocument[]>(() => {
+  const sorted = useMemo<T[]>(() => {
     if (ordering.field === undefined) return documents;
     return stableSort(documents, getSorting(ordering.field, ordering.order));
   }, [documents, ordering]);

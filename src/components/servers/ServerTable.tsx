@@ -20,7 +20,7 @@ import AddServerDialog from './AddServerDialog';
 import ServerToolbar from './ServerToolbar';
 
 // Types
-export interface ServerTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
+export interface ServerTableProps extends Omit<TableProps<Server>, 'data' | 'toolbar'> {
   title: string, room?: string, servers: Server[], showUsers?: boolean,
   onLoad: () => void, onRefresh: () => void,
   onAddServer?: (ip: string, port: number, user: string) => void,
@@ -83,9 +83,9 @@ const ServerTable: FC<ServerTableProps> = (props) => {
         >
           <TableHead>
             <TableRow>
-              { showAddr && <TableSortCell field="ip">Adresse</TableSortCell> }
+              { showAddr && <TableSortCell<Server> field="ip">Adresse</TableSortCell> }
               { showPort && <TableCell>Port</TableCell> }
-              <TableSortCell field="country">Pays</TableSortCell>
+              <TableSortCell<Server> field="country">Pays</TableSortCell>
               { showUsers && <TableCell>Utilisateur</TableCell> }
             </TableRow>
           </TableHead>

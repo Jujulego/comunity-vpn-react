@@ -19,7 +19,7 @@ import {
 import TokenToolbar from './TokenToolbar';
 
 // Types
-export interface TokenTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
+export interface TokenTableProps extends Omit<TableProps<Token>, 'data' | 'toolbar'> {
   title: string, tokens: Token[],
   onDeleteToken?: (id: string) => void,
   onRefresh: () => void
@@ -60,8 +60,8 @@ const TokenTable: FC<TokenTableProps> = (props) => {
         >
           <TableHead>
             <TableRow>
-              <TableSortCell field="from">Adresse</TableSortCell>
-              <TableSortCell field="createdAt">Date</TableSortCell>
+              <TableSortCell<Token> field="from">Adresse</TableSortCell>
+              <TableSortCell<Token> field="createdAt">Date</TableSortCell>
             </TableRow>
           </TableHead>
           <TableBody>

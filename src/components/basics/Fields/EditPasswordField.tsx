@@ -29,7 +29,7 @@ export type EditPasswordFieldProps =
   StandardEditPasswordFieldProps;
 
 // Component
-export const EditPasswordField: FC<EditPasswordFieldProps> = (props) => {
+const EditPasswordField: FC<EditPasswordFieldProps> = (props) => {
   // Props
   const {
     editable: pEditable,

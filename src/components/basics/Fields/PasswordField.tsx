@@ -21,7 +21,7 @@ export type PasswordFieldProps =
   StandardPasswordFieldProps;
 
 // Component
-export const PasswordField: FC<PasswordFieldProps> = (props) => {
+const PasswordField: FC<PasswordFieldProps> = (props) => {
   // Props
   const { InputProps = {}, ...field } = props;
 

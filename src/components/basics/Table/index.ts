@@ -1,5 +1,14 @@
+export { default as Table } from './Table';
 export * from './Table';
+
+export { default as TableBody } from './TableBody';
 export * from './TableBody';
+
+export { default as TableRow } from './TableRow';
 export * from './TableRow';
+
+export { default as TableSortCell } from './TableSortCell';
 export * from './TableSortCell';
+
+export { default as TableToolbar } from './TableToolbar';
 export * from './TableToolbar';
