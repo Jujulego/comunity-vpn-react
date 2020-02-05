@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react';
 
 import Document, { AnyDocument } from 'data/Document';
+import { Filter } from 'utils/filter';
 import { OrderByField } from 'utils/sort';
 
 // Types
@@ -15,6 +16,7 @@ export interface Ordering<T extends Document> {
 interface BaseTableContextProps<T extends Document> {
   blacklist: string[],
   documents: T[],
+  filter: Filter<T>,
   ordering: Ordering<T>,
 
   selectedAll: boolean,
@@ -22,7 +24,8 @@ interface BaseTableContextProps<T extends Document> {
   selected: SelectedState,
 
   onSelect: (id: string) => void,
-  onSelectAll: () => void
+  onSelectAll: () => void,
+  onFilter: (filter: Filter<T>) => void
 }
 
 export type TableContextProps<T extends Document> = BaseTableContextProps<T> & {
@@ -37,15 +40,17 @@ type TableContextDefaults = BaseTableContextProps<AnyDocument> & {
 const tableDefaults: TableContextDefaults = {
   blacklist: [],
   documents: [],
+  filter: {},
   ordering: { order: 'asc' },
 
   selectedAll: false,
   selectedCount: 0,
   selected: {},
 
-  onOrderBy: () => {},
   onSelect: () => {},
-  onSelectAll: () => {}
+  onSelectAll: () => {},
+  onFilter: () => {},
+  onOrderBy: () => {}
 };
 
 // Context

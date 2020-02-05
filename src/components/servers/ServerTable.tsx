@@ -68,7 +68,7 @@ const ServerTable: FC<ServerTableProps> = (props) => {
           data={servers}
           toolbar={
             <ServerToolbar
-              title={title}
+              title={title} filterUser={showUsers}
               onAdd={handleOpen} onDelete={handleDelete} onRefresh={onRefresh}
             />
           }

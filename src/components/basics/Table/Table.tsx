@@ -7,6 +7,7 @@ import {
 
 import TableContext, { Order, Ordering, SelectedState } from 'contexts/TableContext';
 import Document from 'data/Document';
+import { Filter } from 'utils/filter';
 
 // Types
 export interface TableProps<T extends Document> extends MaterialTableProps {
@@ -27,6 +28,7 @@ const Table = <T extends Document> (props: TableProps<T>) => {
   } = props;
 
   // State
+  const [filter, setFilter]     = useState<Filter<T>>({});
   const [ordering, setOrdering] = useState<Ordering<T>>({ order: 'asc' });
   const [selected, setSelected] = useState<SelectedState>({});
 
@@ -77,12 +79,14 @@ const Table = <T extends Document> (props: TableProps<T>) => {
   return (
     <TableContext.Provider
       value={{
-        blacklist, documents: data, ordering,
+        blacklist, documents: data,
+        filter, ordering,
         selected, selectedCount,
         selectedAll: selectedCount > 0 && selectedAll,
-        onOrderBy,
         onSelect,
-        onSelectAll
+        onSelectAll,
+        onFilter: setFilter,
+        onOrderBy
       }}
     >
       { toolbar }
