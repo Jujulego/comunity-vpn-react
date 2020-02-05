@@ -73,7 +73,7 @@ const AddServerDialog: FC<AddServerDialogProps> = (props) => {
         <Grid container spacing={2} direction="column">
           <Grid item>
             <Grid container spacing={2}>
-              <Grid item xs={8}>
+              <Grid item xs={12} sm={8}>
                 <TextField
                   label="Adresse IP" fullWidth required
                   error={!!errors.ip} helperText={errors.ip?.message}
@@ -85,7 +85,7 @@ const AddServerDialog: FC<AddServerDialogProps> = (props) => {
                   }
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                 <TextField
                   label="Port" fullWidth required
                   error={!!errors.port} helperText={errors.port?.message}

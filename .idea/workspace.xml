@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1c592672-020b-47a6-9f42-20f4c67e1d77" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/basics/Table/Table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/Table/Table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/basics/Table/TableBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basics/Table/TableBody.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/servers/ServerToolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/servers/ServerToolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tokens/TokenToolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tokens/TokenToolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/UserToolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/UserToolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/TableContext.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/TableContext.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/servers/AddServerDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/servers/AddServerDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/servers/FilterServerDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/servers/FilterServerDialog.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,14 +195,8 @@
       <workItem from="1580823337892" duration="1664000" />
       <workItem from="1580857730610" duration="4242000" />
       <workItem from="1580862094149" duration="3375000" />
-      <workItem from="1580897585763" duration="15561000" />
-    </task>
-    <task id="LOCAL-00067" summary="add: validation in AddServerDialog">
-      <created>1580134284981</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1580134284981</updated>
+      <workItem from="1580897585763" duration="15849000" />
+      <workItem from="1580940486625" duration="195000" />
     </task>
     <task id="LOCAL-00068" summary="update: version 0.5.0">
       <created>1580134471742</created>
@@ -544,7 +534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580922288753</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="update: table selects apply on filtered documents">
+      <created>1580923156487</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1580923156487</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -554,7 +551,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: connect to server websocket" />
     <MESSAGE value="update: listen for user's events" />
     <MESSAGE value="update: listen for server's events" />
     <MESSAGE value="update: version 0.7.0" />
@@ -579,7 +575,8 @@
     <MESSAGE value="add: UserSelect" />
     <MESSAGE value="fix: filter default values for ip and port" />
     <MESSAGE value="update: can clear ip and port fields" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: can clear ip and port fields" />
+    <MESSAGE value="update: table selects apply on filtered documents" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: table selects apply on filtered documents" />
   </component>
   <component name="WindowStateProjectService">
     <state x="601" y="121" key="#Docker_Image" timestamp="1580424534444">
@@ -611,12 +608,12 @@
     <state x="-2829" y="-616" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579355574386" />
     <state x="607" y="264" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580823464385" />
     <state x="1012" y="449" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580476314905" />
-    <state x="888" y="27" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580922288205">
+    <state x="888" y="27" width="776" height="808" key="CommitChangelistDialog2" timestamp="1580923155742">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="-2951" y="-769" key="CommitChangelistDialog2/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579359131274" />
     <state x="452" y="16" width="776" height="808" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580898232092" />
-    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580922288205" />
+    <state x="888" y="27" key="CommitChangelistDialog2/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580923155742" />
     <state x="365" y="134" width="2048" height="1146" key="DiffContextDialog" timestamp="1580920804221">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -627,30 +624,30 @@
     </state>
     <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1579742010787" />
     <state x="915" y="285" key="FileChooserDialogImpl/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580909569951" />
-    <state width="2539" height="347" key="GridCell.Tab.0.bottom" timestamp="1580920774701">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1515" height="180" key="GridCell.Tab.0.bottom" timestamp="1580940509557">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.bottom/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819127" />
-    <state width="1515" height="181" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580898235670" />
-    <state width="2539" height="347" key="GridCell.Tab.0.bottom/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580920774701" />
-    <state width="2539" height="347" key="GridCell.Tab.0.center" timestamp="1580920774701">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1515" height="180" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580940509557" />
+    <state width="2539" height="347" key="GridCell.Tab.0.bottom/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580923359059" />
+    <state width="1515" height="180" key="GridCell.Tab.0.center" timestamp="1580940509557">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.center/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819126" />
-    <state width="1515" height="181" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580898235670" />
-    <state width="2539" height="347" key="GridCell.Tab.0.center/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580920774701" />
-    <state width="2539" height="347" key="GridCell.Tab.0.left" timestamp="1580920774701">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1515" height="180" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580940509557" />
+    <state width="2539" height="347" key="GridCell.Tab.0.center/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580923359059" />
+    <state width="1515" height="180" key="GridCell.Tab.0.left" timestamp="1580940509557">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.left/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819126" />
-    <state width="1515" height="181" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580898235670" />
-    <state width="2539" height="347" key="GridCell.Tab.0.left/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580920774701" />
-    <state width="2539" height="347" key="GridCell.Tab.0.right" timestamp="1580920774701">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1515" height="180" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580940509557" />
+    <state width="2539" height="347" key="GridCell.Tab.0.left/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580923359059" />
+    <state width="1515" height="180" key="GridCell.Tab.0.right" timestamp="1580940509557">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="2539" height="399" key="GridCell.Tab.0.right/0.0.1536.824/-3840.-1065.2560.1400@-3840.-1065.2560.1400" timestamp="1579357819127" />
-    <state width="1515" height="181" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580898235670" />
-    <state width="2539" height="347" key="GridCell.Tab.0.right/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580920774701" />
+    <state width="1515" height="180" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580940509557" />
+    <state width="2539" height="347" key="GridCell.Tab.0.right/3840.1093.1536.816/0.0.2560.1400@0.0.2560.1400" timestamp="1580923359059" />
     <state x="1047" y="413" key="RollbackChangesDialog" timestamp="1580318791194">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
