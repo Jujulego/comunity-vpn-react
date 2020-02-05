@@ -27,6 +27,7 @@ const EventProvider: FC = ({ children }) => {
 
     // Connect
     socket.current = io.connect(env.API_BASE_URL, { query: { token }});
+    socket.current.on('event', (event: AppState) => { console.log(event); });
     socket.current.on('error', (error: any) => {
       if (typeof error === 'string') {
         dispatch(addError(new WSErrorLog(error)));

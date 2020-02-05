@@ -23,7 +23,7 @@ import ServerToolbar from './ServerToolbar';
 export interface ServerTableProps extends Omit<TableProps, 'data' | 'toolbar'> {
   title: string, room?: string, servers: Server[], showUsers?: boolean,
   onLoad: () => void, onRefresh: () => void,
-  onAddServer?: (ip: string, port: number) => void,
+  onAddServer?: (ip: string, port: number, user: string) => void,
   onDeleteServer?: (id: string) => void
 }
 
@@ -102,7 +102,7 @@ const ServerTable: FC<ServerTableProps> = (props) => {
         </Table>
       </TableContainer>
       { onAddServer && (
-        <AddServerDialog open={dialog} onClose={handleClose} onAddServer={onAddServer} />
+        <AddServerDialog open={dialog} selectUser={showUsers} onClose={handleClose} onAddServer={onAddServer} />
       )}
     </Paper>
   );

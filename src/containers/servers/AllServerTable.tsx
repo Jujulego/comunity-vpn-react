@@ -4,7 +4,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import Server from 'data/Server';
 import { AppState } from 'store';
 import { refreshAllServers } from 'store/admin/thunks';
-import { downServer } from 'store/servers/thunks';
+import { downServer, upServer } from 'store/servers/thunks';
 
 import ServerTable, { ServerTableProps } from 'components/servers/ServerTable';
 
@@ -31,6 +31,7 @@ function mapDispatchToProps(dispatch: ThunkDispatch<AppState, {}, any>, _: AllSe
   return {
     onLoad: () => dispatch(refreshAllServers()),
     onRefresh: () => dispatch(refreshAllServers()),
+    onAddServer: (ip: string, port: number, user: string) => dispatch(upServer(ip, port, user)),
     onDeleteServer: (id: string) => dispatch(downServer(id))
   };
 }
