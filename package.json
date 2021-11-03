@@ -35,7 +35,7 @@
     "socket.io-client": "^2.3.0",
     "typeface-roboto": "^0.0.75",
     "typescript": "~3.7.2",
-    "validator": "^12.2.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "redux-devtools": "^3.5.0",
